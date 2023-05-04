@@ -2,9 +2,16 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Logo from '../assets/BlueTechtonicaWord.png'
+import { useAuth0 } from '@auth0/auth0-react';
+import { Outlet, Link } from 'react-router-dom'
 
 
 function MyNavBar(props) {
+
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+  console.log("From Navbar", user);
+  console.log("From Navbar", isAuthenticated)
 
   return (
     <>
@@ -18,15 +25,17 @@ function MyNavBar(props) {
               alt="React Bootstrap logo"
             />
         </Navbar.Brand>
-        <Nav.Link >Your Link</Nav.Link>
+        {!user ? null : <Nav.Link to="/user-profile" as={Link}>{user.name}</Nav.Link>}
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Cristina Rodriguez</a>
+            {!isAuthenticated ? (<button onClick={() => loginWithRedirect()}>Log In</button>) : (<button onClick={() => logout({ logoutParams: { returnTo: window.location.origin} })}>Log Out
+            </button>)}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Outlet />
     </>
   );
 };

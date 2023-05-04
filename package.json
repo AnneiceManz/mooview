@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "react-router-dom": "^6.11.1",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4",
+    "sort-by": "^1.2.0"
+  }
+}
