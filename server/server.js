@@ -124,6 +124,22 @@ app.get("/api/tv/popular/", (req, res) => {
     })
   });
 
+  //creates endpoint to fetch now playing movies
+app.get("/api/movie/now_playing/", (req, res) => {
+    const apiKey = process.env.API_KEY;
+  
+    const url= `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
+    
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        res.send({data})
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+  });
+
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
