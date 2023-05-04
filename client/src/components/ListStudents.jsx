@@ -13,7 +13,7 @@ const ListStudents = () => {
 
     const loadStudents = () => {
         // A function to fetch the list of students that will be load anytime that list change
-        fetch("http://localhost:8080/api/students")
+        fetch("http://localhost:8080/api/movie/popular")
             .then((response) => response.json())
             .then((students) => {
                 setStudents(students);
@@ -56,6 +56,7 @@ const ListStudents = () => {
         setEditingStudent(toUpdateStudent);
 
     }
+    console.log(students.data.results[0].original_title)
 
 
 
@@ -64,9 +65,10 @@ const ListStudents = () => {
         <div className="list-students">
             <h2>Techtonica Participants </h2>
             <ul>
-                {students.map((student) => {
+                {/* {students.map((student) => {
                     return <li key={student.id}> <Student student={student} toDelete={onDelete} toUpdate={onUpdate} /></li>
-                })}
+                })} */}
+                <li></li>
             </ul>
         </div>
         <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} />
