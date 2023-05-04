@@ -108,6 +108,23 @@ app.get("/api/movie/popular/", (req, res) => {
 });
 
 
+//creates endpoint to fetch popular tv shows
+app.get("/api/tv/popular/", (req, res) => {
+    const apiKey = process.env.API_KEY;
+  
+    const url= `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`
+    
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+        res.send({data})
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+  });
+
+
 // console.log that your server is up and running
 app.listen(PORT, () => {
   console.log(`Hola, Server listening on ${PORT}`);
