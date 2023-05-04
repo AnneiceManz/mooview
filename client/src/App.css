@@ -71,3 +71,7 @@ button.btn.btn-primary {
   margin-left: 2em;
   margin-right: 2em;
 }
+
+.list__movies {
+  height: 300px;
+}
