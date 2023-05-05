@@ -1,8 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyNavBar from './components/Navbar'
-import ListMovies from './components/ListMovies'
-import ListTV from './components/ListTV'
 import Profile from './components/profile';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
