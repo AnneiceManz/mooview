@@ -50,11 +50,11 @@ app.post("/api/users", async (req, res) => {
     };
     //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
-      "INSERT INTO users(user_id, name, email, birthday, username) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO users(user_id, name, email, birthday, username) VALUES($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING RETURNING *",
       [newUser.user_id, newUser.name, newUser.email, newUser.birthday, newUser.username]
     );
     console.log(result.rows[0]);
-    res.json(result.rows[0]);
+    res.json(result.rows[0] ?? {});
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });
