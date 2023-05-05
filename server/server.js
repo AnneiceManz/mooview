@@ -110,7 +110,7 @@ app.put("/api/user/:user_id", async (req, res) => {
 // create the get request for reviews in the endpoint '/api/reviews'
 app.get("/api/reviews", async (req, res) => {
   try {
-    const { rows: users } = await db.query("SELECT * FROM reviews");
+    const { rows: reviews } = await db.query("SELECT * FROM reviews");
     res.send(reviews);
   } catch (e) {
     return res.status(400).json({ e });
