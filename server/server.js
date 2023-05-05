@@ -26,6 +26,18 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+// create the get request for single user in the endpoint '/api/users/:user_id'
+app.get("/api/users/:user_id", async (req, res) => {
+  const user_id = req.params.user_id
+  try {
+    const { rows: users } = await db.query("SELECT * FROM users WHERE user_id=$1", [user_id]);
+    res.send(users.length > 0 ? users[0]: {});
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
 // create the POST request
 app.post("/api/users", async (req, res) => {
   try {
