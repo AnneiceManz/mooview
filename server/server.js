@@ -14,28 +14,30 @@ app.get("/", (req, res) => {
   res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
 });
 
-// create the get request for students in the endpoint '/api/students'
-app.get("/api/students", async (req, res) => {
+// create the get request for users in the endpoint '/api/users'
+app.get("/api/users", async (req, res) => {
   try {
-    const { rows: students } = await db.query("SELECT * FROM students");
-    res.send(students);
+    const { rows: users } = await db.query("SELECT * FROM users");
+    res.send(users);
   } catch (e) {
     return res.status(400).json({ e });
   }
 });
 
 // create the POST request
-app.post("/api/students", async (req, res) => {
+app.post("/api/users", async (req, res) => {
   try {
-    const newStudent = {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      iscurrent: req.body.iscurrent,
+    const newUser = {
+      user_id: req.body.user_id,
+      name: req.body.name,
+      email: req.body.lastname,
+      birthday: req.body.birthday,
+      username: req.body.username
     };
-    //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
+    //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
-      "INSERT INTO students(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *",
-      [newStudent.firstname, newStudent.lastname, newStudent.iscurrent]
+      "INSERT INTO users(user_id, name, email, birthday, username) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [newUser.user_id, newUser.name, newUser.email, newUser.birthday, newUser.username]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
@@ -45,12 +47,12 @@ app.post("/api/students", async (req, res) => {
   }
 });
 
-// delete request for students
-app.delete("/api/students/:studentId", async (req, res) => {
+// delete request for users
+app.delete("/api/users/:user_id", async (req, res) => {
   try {
-    const studentId = req.params.studentId;
-    await db.query("DELETE FROM students WHERE id=$1", [studentId]);
-    console.log("From the delete request-url", studentId);
+    const user_id = req.params.user_id;
+    await db.query("DELETE FROM users WHERE user_id=$1", [user_id]);
+    console.log(user_id, "Has been deleted");
     res.status(200).end();
   } catch (e) {
     console.log(e);
@@ -58,11 +60,11 @@ app.delete("/api/students/:studentId", async (req, res) => {
   }
 });
 
-//A put request - Update a student
-app.put("/api/students/:studentId", async (req, res) => {
+//A put request - Update a user
+app.put("/api/user/:user_id", async (req, res) => {
   //console.log(req.params);
   //This will be the id that I want to find in the DB - the student to be updated
-  const studentId = req.params.studentId;
+  const user_id = req.params.user_id;
   const updatedStudent = {
     id: req.body.id,
     firstname: req.body.firstname,
