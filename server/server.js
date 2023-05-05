@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
+//User table routes/requests
+
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
   res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
@@ -90,6 +92,21 @@ app.put("/api/user/:user_id", async (req, res) => {
     return res.status(400).json({ e });
   }
 });
+
+//Reviews routes/requests
+
+// create the get request for reviews in the endpoint '/api/reviews'
+app.get("/api/reviews", async (req, res) => {
+  try {
+    const { rows: users } = await db.query("SELECT * FROM reviews");
+    res.send(reviews);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
+//API routes/requests
 
 // creates endpoint to fetch popular movies
 app.get("/api/movie/popular/", (req, res) => {
