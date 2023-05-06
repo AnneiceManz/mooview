@@ -117,6 +117,17 @@ app.get("/api/reviews", async (req, res) => {
   }
 });
 
+// create the get request for single review in the endpoint '/api/review/:review_id'
+app.get("/api/review/:review_id", async (req, res) => {
+  const review_id = req.params.review_id
+  try {
+    const { rows: reviews } = await db.query("SELECT * FROM users WHERE review_id=$1", [review_id]);
+    res.send(reviews);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
 
 //API routes/requests
 
