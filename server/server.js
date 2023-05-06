@@ -139,6 +139,29 @@ app.get("/api/reviews/:review_id", async (req, res) => {
   }
 });
 
+// create the POST request for review
+app.post("/api/reviews", async (req, res) => {
+  try {
+    const newReview = {
+      movie_id: req.body.movie_id,
+      user_id: req.body.user_id,
+      star_rating: req.body.star_rating,
+      title: req.body.title,
+      post: req.body.post
+    };
+    //console.log([newReview.movie_id, newReview.user_id, newReview.star_rating, newReview.title, newReview.post]);
+    const result = await db.query(
+      "INSERT INTO reviews(movie_id, user_id, star_rating, title, post) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [newReview.movie_id, newReview.user_id, newReview.star_rating, newReview.title, newReview.post]
+    );
+    console.log(result.rows[0]);
+    res.json(result.rows[0]);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 //API routes/requests
 
