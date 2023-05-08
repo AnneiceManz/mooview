@@ -225,6 +225,23 @@ app.get("/api/movie/now_playing/", (req, res) => {
     })
   });
 
+//creates endpoint to fetch details about movie or show by id
+app.get("/api/info/:external_id/", (req, res) => {
+  const apiKey = process.env.API_KEY;
+
+  const url= `https://api.themoviedb.org/3/find/:external_id?api_key=${apiKey}&external_source=imdb_id`
+  
+  fetch(url)
+  .then((res) => res.json())
+  .then((data) => {
+      res.send({data})
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+});
+
+
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
