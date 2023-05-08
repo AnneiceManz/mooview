@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { Icons } from 'semantic-ui-react'
+import axios from 'react-axios'
 
 
 const SingleMovie = () => {
@@ -16,22 +17,32 @@ const SingleMovie = () => {
     const [saved, setSaved] = useState(false);
 
     const fetchData = async () => {
-        try {
-            const response = await fetch(`http://localhost:8080/api/movies`)
-        } catch (error) {
-            
-        }
+        axios
+        .get (`http//host:8080/api/movie/${movie_id}`)
+        .then((response) => {
+            setMovieData(response.data);
+            const trailerId = response.data.videos.results.find(
+                (vid) => vid.name === "Official Trailer"
+            );
+            setTrailer(trailerId ? trailerId : response.data.videos.results[0]);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
+    console.log(movieData)
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    
+    console.log("This is the poster path", movieData.data.poster_path)
+
 
     return (
         <div>
-            
+            <h2>Movie Data</h2>
+            <img src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`} />
         </div>
     );
 };

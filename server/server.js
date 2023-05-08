@@ -226,7 +226,7 @@ app.get("/api/movie/now_playing/", (req, res) => {
   });
 
 //creates endpoint to fetch details about movie or show by id
-app.get("/api/info/:movie_id/", (req, res) => {
+app.get("/api/movie/:movie_id", (req, res) => {
   const apiKey = process.env.API_KEY;
   const movie_id = req.params.movie_id
 
@@ -235,6 +235,7 @@ app.get("/api/info/:movie_id/", (req, res) => {
   fetch(url)
   .then((res) => res.json())
   .then((data) => {
+    console.log(data)
       res.send({data})
   })
   .catch((err) => {
