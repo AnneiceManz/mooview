@@ -11,11 +11,11 @@
 }
 
 a.navbar-brand {
-  margin-inline-start: -5em;
+  margin-inline-start: -3em;
 }
 
 .nav-link {
-  color: white !important;
+  color: black !important;
   margin-left: 5em;
 }
 
@@ -70,4 +70,8 @@ button.btn.btn-primary {
 .card-body {
   margin-left: 2em;
   margin-right: 2em;
+}
+
+.list__movies {
+  height: 300px;
 }
