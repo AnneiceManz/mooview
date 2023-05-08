@@ -226,10 +226,27 @@ app.get("/api/movie/now_playing/", (req, res) => {
   });
 
 //creates endpoint to fetch details about movie or show by id
-app.get("/api/info/:external_id/", (req, res) => {
+app.get("/api/info/:movie_id/", (req, res) => {
   const apiKey = process.env.API_KEY;
+  const movie_id = req.params.movie_id
 
-  const url= `https://api.themoviedb.org/3/find/:external_id?api_key=${apiKey}&external_source=imdb_id`
+  const url= `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}`
+  
+  fetch(url)
+  .then((res) => res.json())
+  .then((data) => {
+      res.send({data})
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+});
+
+app.get("/api/info/:tv_id/", (req, res) => {
+  const apiKey = process.env.API_KEY;
+  const tv_id = req.params.tv_id
+
+  const url= `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${apiKey}`
   
   fetch(url)
   .then((res) => res.json())
