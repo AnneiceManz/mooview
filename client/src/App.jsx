@@ -12,7 +12,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<MyNavBar />}>
       <Route index element={<Home />}/>
       <Route path='user-profile' element={<Profile />}/>
-      <Route path='/movie/:movieId' element={<SingleMovie />} />
+      <Route path='/movie/:movie_id' element={<SingleMovie />} />
     </Route>
   ))
 
