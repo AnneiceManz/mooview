@@ -75,3 +75,13 @@ button.btn.btn-primary {
 .list__movies {
   height: 300px;
 }
+
+.video {
+  width: auto;
+  height: auto;
+}
+
+.movieInfoDiv {
+  margin-top: 20px;
+}
+

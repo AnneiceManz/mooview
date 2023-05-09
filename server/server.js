@@ -230,7 +230,7 @@ app.get("/api/movie/:movie_id", (req, res) => {
   const apiKey = process.env.API_KEY;
   const movie_id = req.params.movie_id
 
-  const url= `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}`
+  const url= `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`
   
   fetch(url)
   .then((res) => res.json())
@@ -243,21 +243,21 @@ app.get("/api/movie/:movie_id", (req, res) => {
   })
 });
 
-app.get("/api/info/:tv_id/", (req, res) => {
-  const apiKey = process.env.API_KEY;
-  const tv_id = req.params.tv_id
+// app.get("/api/info/:tv_id/", (req, res) => {
+//   const apiKey = process.env.API_KEY;
+//   const tv_id = req.params.tv_id
 
-  const url= `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${apiKey}`
+//   const url= `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${apiKey}`
   
-  fetch(url)
-  .then((res) => res.json())
-  .then((data) => {
-      res.send({data})
-  })
-  .catch((err) => {
-      console.log(err)
-  })
-});
+//   fetch(url)
+//   .then((res) => res.json())
+//   .then((data) => {
+//       res.send({data})
+//   })
+//   .catch((err) => {
+//       console.log(err)
+//   })
+// });
 
 
 
