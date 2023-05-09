@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Auth0Context, useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { AuthContext } from "./AuthContext";
 import { Button, Image } from "semantic-ui-react";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const { authToken }= useContext(Auth0Context)
+  const { authToken }= useContext(AuthContext)
 
   //A function to handle the post request
   const addUserToDB = async () => {
