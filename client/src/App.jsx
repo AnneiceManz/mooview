@@ -4,6 +4,7 @@ import MyNavBar from './components/Navbar'
 import Profile from './components/profile';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
+import SingleMovie from './components/SingleMovie';
 
 
 const router = createBrowserRouter(
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<MyNavBar />}>
       <Route index element={<Home />}/>
       <Route path='user-profile' element={<Profile />}/>
+      <Route path='/movie/:movieId' element={<SingleMovie />} />
     </Route>
   ))
 

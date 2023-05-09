@@ -10,7 +10,6 @@ const Home = () => {
             <ListNowPlaying />
             <ListMovies />
             <ListTV />
-            <SingleMovie />
         </div>
     );
 };
