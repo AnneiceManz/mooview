@@ -1,11 +1,42 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, {useState, useEffect, useContext} from "react";
+import { Auth0Context, useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
 
 const Profile = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { authToken }= useContext(Auth0Context)
+
+  //A function to handle the post request
+  const addUserToDB = async () => {
+    const userData = { user_id: user.user_id, email: user.email, username: user.nickname }
+    await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken} `
+      },
+      body: JSON.stringify(userData)
+    })
+    .then((response) => {
+      console.log("Response from post method", response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    });
+  }
+
+  useEffect(() => {
+    if (authToken) addUserToDB();
+  }, [authToken]);
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
+    isAuthenticated && (
+
     <div className="profile">
       <div className="sidebar">
         <Image avatar size="small" src={user.picture} alt={user.name} />
@@ -27,6 +58,7 @@ const Profile = () => {
         <h2>My Reviews</h2>
       </div>
     </div>
+    )
   );
 };
 
