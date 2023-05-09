@@ -14,7 +14,7 @@ const ListMovies = () => {
     async function loadMovies() {
         // fetch the data from the backend
         const response = await fetch(
-          "http://localhost:8080/api/movie/popular/"
+          "/api/movie/popular/"
         );
         const json = await response.json();
         setMovies(json);

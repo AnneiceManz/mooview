@@ -25,7 +25,7 @@ const SingleMovie = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api${movie_id}`);
+      const response = await fetch(`/api${movie_id}`);
       console.log(response);
       const movieData = await response.json();
       setMovieData(movieData);

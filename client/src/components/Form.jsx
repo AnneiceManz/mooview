@@ -34,7 +34,7 @@ const MyForm = ({ onSaveStudent, editingStudent, onUpdateStudent }) => {
 
     //A function to handle the post request
     const postStudent = (newStudent) => {
-        return fetch("http://localhost:8080/api/students", {
+        return fetch("/api/students", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newStudent),
@@ -53,7 +53,7 @@ const MyForm = ({ onSaveStudent, editingStudent, onUpdateStudent }) => {
 
     //A function to handle the post request
     const putStudent = (toEditStudent) => {
-        return fetch(`http://localhost:8080/api/students/${toEditStudent.id}`, {
+        return fetch(`/api/students/${toEditStudent.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(toEditStudent),

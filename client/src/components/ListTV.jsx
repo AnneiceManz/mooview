@@ -14,7 +14,7 @@ const ListTV = () => {
     async function loadShows() {
         // fetch the data from the backend
         const response = await fetch(
-          "http://localhost:8080/api/tv/popular/"
+          "/api/tv/popular/"
         );
         const json = await response.json();
         setShows(json);
