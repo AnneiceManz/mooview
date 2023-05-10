@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavBar from "./components/Navbar";
 import Profile from "./components/profile";
 import SingleMovie from "./components/SingleMovie";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 
 function App() {

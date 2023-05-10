@@ -3,36 +3,36 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  // const { user, isAuthenticated, isLoading } = useAuth0();
 
-  //A function to handle the post request
-  const addUserToDB = async (authUser) => {
-    try {
-      const userInfo = {
-        user_id: authUser.sub,
-        name: authUser.name,
-        email: authUser.email,
-        user_username: authUser.nickname,
-      };
-      const response = await fetch(`api/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userInfo),
-      });
-      const userAdded = await response.json();
-      console.log(userAdded);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // //A function to handle the post request
+  // const addUserToDB = async (authUser) => {
+  //   try {
+  //     const userInfo = {
+  //       user_id: authUser.sub,
+  //       name: authUser.name,
+  //       email: authUser.email,
+  //       user_username: authUser.nickname,
+  //     };
+  //     const response = await fetch(`api/users`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(userInfo),
+  //     });
+  //     const userAdded = await response.json();
+  //     console.log(userAdded);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    addUserToDB(user);
-  }, []);
+  // useEffect(() => {
+  //   addUserToDB(user);
+  // }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     isAuthenticated && (
