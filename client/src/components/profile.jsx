@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
+import MyNavBar from "./Navbar";
 
 const Profile = () => {
-  // const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   // //A function to handle the post request
   // const addUserToDB = async (authUser) => {

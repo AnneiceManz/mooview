@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListMovies from '../components/ListMovies';
 import ListTV from '../components/ListTV'
 import ListNowPlaying from '../components/List_Now_Playing';
 
-const Dashboard = () => {
+const Home = () => {
+
+
     return (
         <div>
             <ListNowPlaying />
@@ -13,4 +15,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Home;

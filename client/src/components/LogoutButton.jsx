@@ -5,15 +5,15 @@ import { Button } from "semantic-ui-react";
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
-  return (
-    <Button
-      onClick={() =>
-        logout({ logoutParams: { returnTo: window.location.origin } })
-      }
-    >
-      Log Out
-    </Button>
-  );
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+
+  return <Button color="red" onClick={handleLogout}>Log Out</Button>;
 };
 
 export default LogoutButton;

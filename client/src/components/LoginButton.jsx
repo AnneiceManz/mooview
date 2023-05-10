@@ -5,7 +5,15 @@ import { Button } from "semantic-ui-react";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+  const handleLogin = async () => {
+    await loginWithRedirect({
+        appState: {
+            returnTo: "/"
+        }
+    })
+  }
+
+  return <Button color="red" onClick={handleLogin}>Log In</Button>;
 };
 
 export default LoginButton;
