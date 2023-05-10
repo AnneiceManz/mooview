@@ -3,7 +3,7 @@ import ListMovies from '../components/ListMovies';
 import ListTV from '../components/ListTV'
 import ListNowPlaying from '../components/List_Now_Playing';
 
-const Home = () => {
+const Dashboard = () => {
     return (
         <div>
             <ListNowPlaying />
@@ -13,4 +13,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Dashboard;

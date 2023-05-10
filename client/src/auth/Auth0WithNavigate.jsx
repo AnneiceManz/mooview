@@ -19,7 +19,7 @@ const Auth0WithNavigate = ({ children }) => {
           scope: "openid profile email",
         }}
         cacheLocation="localstorage"
-        redirectUri={window.location.origin}
+        redirectUri={`${window.location.origin}/dashboard`}
         onRedirectCallback={onRedirectCallback}
       >
         {children}
