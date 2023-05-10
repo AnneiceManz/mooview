@@ -21,7 +21,7 @@ function MyNavBar(props) {
         user_id: authUser.sub,
         name: authUser.name,
         email: authUser.email,
-        user_username: authUser.nickname,
+        username: authUser.nickname,
       };
       const response = await fetch(`api/users`, {
         method: "POST",
