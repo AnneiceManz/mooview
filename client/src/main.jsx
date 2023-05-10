@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain={DOMAIN}
       clientId={CLIENTID}
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri= { `${window.location.origin}/profile`}
       }}
     >
       <App />
