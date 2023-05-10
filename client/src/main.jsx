@@ -3,20 +3,17 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import "semantic-ui-css/semantic.min.css";
-import { Auth0Provider } from "@auth0/auth0-react";
-const DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN;
-const CLIENTID = import.meta.env.VITE_AUTH0_CLIENT_ID;
+import {
+  BrowserRouter
+} from "react-router-dom";
+import Auth0WithNavigate from "./auth/Auth0WithNavigate";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Auth0Provider
-      domain={DOMAIN}
-      clientId={CLIENTID}
-      authorizationParams={{
-        redirect_uri= { `${window.location.origin}/profile`}
-      }}
-    >
-      <App />
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0WithNavigate>
+        <App />
+      </Auth0WithNavigate>
+    </BrowserRouter>
   </React.StrictMode>
 );
