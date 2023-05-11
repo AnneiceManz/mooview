@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Button, Image } from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
 
-function MyNavBar(props) {
+function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
-  const location = useLocation();
 
   //A function to handle the post request
   const addUserToDB = async (authUser) => {

@@ -1,39 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
-import MyNavBar from "./Navbar";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  // //A function to handle the post request
-  // const addUserToDB = async (authUser) => {
-  //   try {
-  //     const userInfo = {
-  //       user_id: authUser.sub,
-  //       name: authUser.name,
-  //       email: authUser.email,
-  //       user_username: authUser.nickname,
-  //     };
-  //     const response = await fetch(`api/users`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(userInfo),
-  //     });
-  //     const userAdded = await response.json();
-  //     console.log(userAdded);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   addUserToDB(user);
-  // }, []);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  const { user, isAuthenticated } = useAuth0();
 
   return (
     isAuthenticated && (

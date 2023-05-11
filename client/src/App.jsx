@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MyNavBar />}>
-        <Route index element={<Home/>} />
+        <Route index element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/movie/:movie_id" element={<SingleMovie />} />
       </Route>
