@@ -144,7 +144,7 @@ app.get("/api/reviews/:user_id", async (req, res) => {
 });
 
 // create the get request for all reviews for single movie_id in the endpoint '/api/reviews/:movie_id'
-app.get("/api/reviews/:movie_id", async (req, res) => {
+app.get("/api/reviews/movie/:movie_id", async (req, res) => {
   const movie_id = req.params.movie_id
   try {
     const { rows: reviews } = await db.query("SELECT * FROM reviews WHERE movie_id=$1", [movie_id]);
