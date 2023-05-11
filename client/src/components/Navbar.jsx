@@ -42,7 +42,7 @@ function MyNavBar() {
 
   return (
     <>
-      <Navbar data-testid="navbar" bg="white" variant="dark" sticky="top">
+      <Navbar data-testid="navbar" bg="white" variant="dark" >
         <Container>
           <Navbar.Brand href="/">
             <Image src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />

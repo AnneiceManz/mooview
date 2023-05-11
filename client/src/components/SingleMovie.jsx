@@ -12,12 +12,12 @@ import {
 } from "semantic-ui-react";
 import Youtube from "react-youtube";
 import Reviews from "./Reviews";
+import PostReview from "./PostReview";
 
 const SingleMovie = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
-
 
   console.log(`movie_id: ${movie_id}`);
 
@@ -26,7 +26,7 @@ const SingleMovie = () => {
   const [showModal, setShowModal] = useState(false);
   const [like, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [reviews, setReviews] = useState(null)
+  const [reviews, setReviews] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -56,8 +56,8 @@ const SingleMovie = () => {
     }
   };
   console.log("movie data", movieData);
-  console.log("review data", reviews)
-  
+  console.log("review data", reviews);
+
   useEffect(() => {
     fetchData();
     fetchReviews();
@@ -141,18 +141,21 @@ const SingleMovie = () => {
               </Grid.Row>
             </Grid>
           </Container>
-          <Segment padded>
-            <Header textAlign="center" as="h2">
-              Reviews
-            </Header>
-            <Card.Group itemsPerRow={1}>
-            {reviews
-              ? reviews.map((review) => {
-                  return <Reviews key={review.review_id} review={review} />;
-                })
-              : null}
-            </Card.Group>
-          </Segment>
+          <div>
+            <Segment padded="very">
+              <Header textAlign="center" as="h2">
+                Reviews
+              </Header>
+              <Card.Group itemsPerRow={1}>
+                {reviews
+                  ? reviews.map((review) => {
+                      return <Reviews key={review.review_id} review={review} />;
+                    })
+                  : null}
+              </Card.Group>
+            </Segment>
+            <PostReview />
+          </div>
         </>
       ) : null}
     </div>
