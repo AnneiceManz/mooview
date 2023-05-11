@@ -30,7 +30,6 @@ function MyNavBar(props) {
       });
       const userAdded = await response.json();
       console.log(userAdded);
-      this.forceUpdate();
     } catch (error) {
       console.log(error.message);
     }

@@ -66,7 +66,7 @@ const ListNowPlaying = () => {
             <h2>Now Playing</h2>
             <Segment className='list__movies' style={{overflow:"auto"}}>
 
-            <Card.Group itemsPerRow={6} fluid >
+            <Card.Group itemsPerRow={6}>
             {movies ? movies.data.results.map((movie) => {return  <NowPlaying key={movie.id} movie={movie} />}) : null}
                 {/* // <li>{students ? students.data.results[0].original_title:null}</li> */}
             </Card.Group>
