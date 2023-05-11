@@ -17,7 +17,7 @@ const SingleMovie = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
-  const review_id = null
+
 
   console.log(`movie_id: ${movie_id}`);
 
@@ -55,10 +55,9 @@ const SingleMovie = () => {
       console.log(error.message);
     }
   };
-
   console.log("movie data", movieData);
   console.log("review data", reviews)
-
+  
   useEffect(() => {
     fetchData();
     fetchReviews();
@@ -149,7 +148,7 @@ const SingleMovie = () => {
             <Card.Group itemsPerRow={1}>
             {reviews
               ? reviews.map((review) => {
-                  return <Reviews key={review_id} review={review} />;
+                  return <Reviews key={review.review_id} review={review} />;
                 })
               : null}
             </Card.Group>
