@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Form, Modal } from "semantic-ui-react";
+import { Button, Form, Modal, Rating } from "semantic-ui-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const PostReview = ({ user, movie_id }) => {
+const PostReview = ({ user, movie_id, movie_title }) => {
   const [showModal, setShowModal] = useState(false);
+  const [rating, setRating] = useState(0)
   const state = useLocation().state
   const userId = user
   const movieId = parseInt(movie_id.replace('/movie/', ''));
@@ -15,13 +16,22 @@ const PostReview = ({ user, movie_id }) => {
         movie_id: movieId,
         title: "",
         post: "",
-        star_rating: null
+        star_rating: 0
     }
   )
 
   const handleChange = (e) => {
     setWriteReview ({ ...writeReview, [e.target.name]: e.target.value})
   }
+  console.log(writeReview.star_rating, 'stars!!!')
+
+  const handleRate = (e, {rating}) => {
+    setRating(rating)
+    setWriteReview({
+        ...writeReview, star_rating: rating
+    })
+    console.log(rating, 'stars')
+}
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -48,13 +58,21 @@ const PostReview = ({ user, movie_id }) => {
         size="small"
         style={{ height: "auto", margin: "20%" }}
       >
-        <Modal.Header>Write a Review</Modal.Header>
+        <Modal.Header>Write a Review for {movie_title}</Modal.Header>
         <Modal.Content>
           <Form
           id='postSubmission'
           action="#postSubmission"
           onSubmit={onSubmitForm}
           >
+            <span>Rating: {rating} stars </span>
+            <Rating
+             icon="star"
+             size="huge" 
+             maxRating={10}
+             name="star_rating"
+             onRate={handleRate} 
+             />
             <Form.Input
               fluid
               placeholder="Title"

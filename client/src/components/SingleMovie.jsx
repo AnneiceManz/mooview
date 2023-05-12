@@ -156,7 +156,7 @@ const SingleMovie = () => {
                   : null}
               </Card.Group>
             </Segment>
-            {!user ? null: <PostReview user={user.sub} movie_id={movie_id} /> }
+            {!user ? null: <PostReview user={user.sub} movie_id={movie_id} movie_title={movieData.data.title} /> }
           </div>
         </>
       ) : null}
