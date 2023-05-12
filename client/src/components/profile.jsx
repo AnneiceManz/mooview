@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Image, Card } from "semantic-ui-react";
+import Reviews from "./Reviews";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [userReviews, setUserReviews ] = useState(null)
+
+  const getUserReviews =  async () => {
+    try {
+      const userId = user.sub
+      const response = await fetch(`/api/reviews/user/${userId}`)
+      const userReviews = await response.json()
+      setUserReviews(userReviews)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getUserReviews()
+  }, [user])
 
   return (
     isAuthenticated && (
@@ -26,6 +43,13 @@ const Profile = () => {
         </div>
         <div className="profileReviews">
           <h2>My Reviews</h2>
+          <Card.Group itemsPerRow={1}>
+                {userReviews
+                  ? userReviews.map((review) => {
+                      return <Reviews key={review.review_id} review={review} />;
+                    })
+                  : null}
+              </Card.Group>
         </div>
       </div>
     )
