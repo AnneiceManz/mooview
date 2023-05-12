@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image, Card } from "semantic-ui-react";
-import Reviews from "./Reviews";
+import Reviews from "../components/Reviews";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -43,7 +43,7 @@ const Profile = () => {
         </div>
         <div className="profileReviews">
           <h2>My Reviews</h2>
-          <Card.Group itemsPerRow={1}>
+          <Card.Group itemsPerRow={2}>
                 {userReviews
                   ? userReviews.map((review) => {
                       return <Reviews key={review.review_id} review={review} />;

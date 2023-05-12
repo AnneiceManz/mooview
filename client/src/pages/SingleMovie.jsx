@@ -11,8 +11,8 @@ import {
   Card,
 } from "semantic-ui-react";
 import Youtube from "react-youtube";
-import Reviews from "./Reviews";
-import PostReview from "./PostReview";
+import Reviews from "../components/Reviews";
+import PostReview from "../components/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const SingleMovie = () => {
