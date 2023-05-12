@@ -13,11 +13,13 @@ import {
 import Youtube from "react-youtube";
 import Reviews from "./Reviews";
 import PostReview from "./PostReview";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SingleMovie = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
+  const {user, isAuthenticated } = useAuth0();
 
   console.log(`movie_id: ${movie_id}`);
 
@@ -154,7 +156,7 @@ const SingleMovie = () => {
                   : null}
               </Card.Group>
             </Segment>
-            <PostReview />
+            {!user ? null: <PostReview user={user.sub} movie_id={movie_id} /> }
           </div>
         </>
       ) : null}
