@@ -41,7 +41,7 @@ const PostReview = ({ user, movie_id, movie_title }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(writeReview),
       });
-      navigate(`/`)
+      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }
