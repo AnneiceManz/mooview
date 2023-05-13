@@ -177,6 +177,34 @@ app.post("/api/reviews", async (req, res) => {
   }
 });
 
+//A put request - Update a user
+app.put("/api/reviews/:review_id", async (req, res) => {
+  //console.log(req.params);
+  //This will be the id that I want to find in the DB - the student to be updated
+  const review_id = req.params.review_id;
+  const updated_review = {
+    title: req.body.title,
+    post: req.body.post,
+    star_rating: req.body.star_rating,
+  };
+  console.log('review',review_id, "Has been updated");
+  // UPDATE users SET name = "something" WHERE id="16";
+  const query = `UPDATE reviews SET title=$1, post=$2, star_rating=$3 WHERE review_id=${review_id} RETURNING *`;
+  const values = [
+    updated_review.title,
+    updated_review.post,
+    updated_review.star_rating
+  ];
+  try {
+    const updated = await db.query(query, values);
+    console.log(updated.rows[0]);
+    res.send(updated.rows[0]);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 //API routes/requests
 

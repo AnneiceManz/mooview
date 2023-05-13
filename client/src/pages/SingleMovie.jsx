@@ -19,7 +19,7 @@ const SingleMovie = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
-  const {user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   console.log(`movie_id: ${movie_id}`);
 
@@ -151,12 +151,24 @@ const SingleMovie = () => {
               <Card.Group itemsPerRow={1}>
                 {reviews
                   ? reviews.map((review) => {
-                      return <Reviews key={review.review_id} review={review} />;
+                      return (
+                        <Reviews
+                          key={review.review_id}
+                          review={review}
+                          movieName={movieData.data.title}
+                        />
+                      );
                     })
                   : null}
               </Card.Group>
             </Segment>
-            {!user ? null: <PostReview user={user.sub} movie_id={movie_id} movie_title={movieData.data.title} /> }
+            {!user ? null : (
+              <PostReview
+                user={user.sub}
+                movie_id={movie_id}
+                movie_title={movieData.data.title}
+              />
+            )}
           </div>
         </>
       ) : null}

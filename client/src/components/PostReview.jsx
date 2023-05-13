@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, Rating } from "semantic-ui-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const PostReview = ({ user, movie_id, movie_title }) => {
+const PostReview = ({ user, movie_id, movieName }) => {
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(0)
   const state = useLocation().state
@@ -58,7 +58,7 @@ const PostReview = ({ user, movie_id, movie_title }) => {
         size="small"
         style={{ height: "auto", margin: "20%" }}
       >
-        <Modal.Header>Write a Review for {movie_title}</Modal.Header>
+        <Modal.Header>Write a Review for {movieName}</Modal.Header>
         <Modal.Content>
           <Form
           id='postSubmission'
