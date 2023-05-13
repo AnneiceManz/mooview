@@ -14,6 +14,7 @@ import Youtube from "react-youtube";
 import Reviews from "../components/Reviews";
 import PostReview from "../components/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../components/LoginButton";
 
 const SingleMovie = () => {
   const navigate = useNavigate();
@@ -162,13 +163,22 @@ const SingleMovie = () => {
                   : null}
               </Card.Group>
             </Segment>
-            {!user ? null : (
+            {!isAuthenticated && (
+                <>
+<span>Login to post a review!</span>
+<LoginButton />
+                </>
+              )}
+              {isAuthenticated && (
+
               <PostReview
                 user={user.sub}
                 movie_id={movie_id}
                 movie_title={movieData.data.title}
               />
-            )}
+              )}
+            {/* {!user ? null : (
+            )} */}
           </div>
         </>
       ) : null}
