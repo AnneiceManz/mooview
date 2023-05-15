@@ -13,7 +13,11 @@ const LogoutButton = () => {
     });
   };
 
-  return <Button color="red" onClick={handleLogout}>Log Out</Button>;
+  return (
+    <Button color="red" onClick={handleLogout}>
+      Log Out
+    </Button>
+  );
 };
 
 export default LogoutButton;

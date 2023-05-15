@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import ListMovies from '../components/ListMovies';
-import ListNowPlaying from '../components/List_Now_Playing';
+import React from "react";
+import ListMovies from "../components/ListMovies";
+import ListNowPlaying from "../components/List_Now_Playing";
+import Main from "../components/Main";
 
 const Home = () => {
-
-
-    return (
-        <div>
-            <ListNowPlaying />
-            <ListMovies />
-        </div>
-    );
+  return (
+    <div>
+      <Main />
+      <ListNowPlaying />
+      <ListMovies />
+    </div>
+  );
 };
 
 export default Home;
