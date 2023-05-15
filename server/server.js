@@ -48,16 +48,16 @@ app.post("/api/users", async (req, res) => {
     const newUser = {
       user_id: req.body.user_id,
       name: req.body.name,
-      email: req.body.lastname,
-      birthday: req.body.birthday,
+      email: req.body.email,
       username: req.body.username
     };
     //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
-      "INSERT INTO users(user_id, name, email, birthday, username) VALUES($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING RETURNING *",
-      [newUser.user_id, newUser.name, newUser.email, newUser.birthday, newUser.username]
+      "INSERT INTO users(user_id, name, email, username) VALUES($1, $2, $3, $4) ON CONFLICT DO NOTHING RETURNING *",
+      [newUser.user_id, newUser.name, newUser.email, newUser.username]
     );
     console.log(result.rows[0]);
+    //if value is undefined set value to null/nothing
     res.json(result.rows[0] ?? {});
   } catch (e) {
     console.log(e);
@@ -133,7 +133,7 @@ app.get("/api/reviews/:review_id", async (req, res) => {
 });
 
 // create the get request for all reviews for single user_id in the endpoint '/api/reviews/:user_id'
-app.get("/api/reviews/:user_id", async (req, res) => {
+app.get("/api/reviews/user/:user_id", async (req, res) => {
   const user_id = req.params.user_id
   try {
     const { rows: reviews } = await db.query("SELECT * FROM reviews WHERE user_id=$1", [user_id]);
@@ -144,7 +144,7 @@ app.get("/api/reviews/:user_id", async (req, res) => {
 });
 
 // create the get request for all reviews for single movie_id in the endpoint '/api/reviews/:movie_id'
-app.get("/api/reviews/:movie_id", async (req, res) => {
+app.get("/api/reviews/movie/:movie_id", async (req, res) => {
   const movie_id = req.params.movie_id
   try {
     const { rows: reviews } = await db.query("SELECT * FROM reviews WHERE movie_id=$1", [movie_id]);
@@ -171,6 +171,34 @@ app.post("/api/reviews", async (req, res) => {
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
+//A put request - Update a user
+app.put("/api/reviews/:review_id", async (req, res) => {
+  //console.log(req.params);
+  //This will be the id that I want to find in the DB - the student to be updated
+  const review_id = req.params.review_id;
+  const updated_review = {
+    title: req.body.title,
+    post: req.body.post,
+    star_rating: req.body.star_rating,
+  };
+  console.log('review',review_id, "Has been updated");
+  // UPDATE users SET name = "something" WHERE id="16";
+  const query = `UPDATE reviews SET title=$1, post=$2, star_rating=$3 WHERE review_id=${review_id} RETURNING *`;
+  const values = [
+    updated_review.title,
+    updated_review.post,
+    updated_review.star_rating
+  ];
+  try {
+    const updated = await db.query(query, values);
+    console.log(updated.rows[0]);
+    res.send(updated.rows[0]);
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });
