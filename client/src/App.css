@@ -85,3 +85,42 @@ button.btn.btn-primary {
   margin-top: 20px;
 }
 
+.profile {
+  display: flex;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100dvh;
+  margin: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: white;
+  background-color: rgb(78, 24, 122);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarItem {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.sidebarButton {
+  padding-top: 10px;
+  flex-direction: column;
+}
+
+.profileReviews {
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex: 7;
+}
+
+.profileReviews > h2 {
+  text-align: center;
+}
+
