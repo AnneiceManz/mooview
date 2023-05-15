@@ -1,29 +1,21 @@
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNavBar from './components/Navbar'
-import Profile from './components/profile';
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';
-
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<MyNavBar />}>
-      <Route index element={<Home />}/>
-      <Route path='user-profile' element={<Profile />}/>
-    </Route>
-  ))
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Profile from "./pages/profile";
+import SingleMovie from "./pages/SingleMovie";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import MyNavBar from "./components/Navbar";
 
 function App() {
-
   return (
-    // <div className="App">
-    //   <MyNavBar />
-    //   <ListStudents />
-
-    // </div>
-    <RouterProvider router={router} />
-  )
+    <Routes>
+      <Route path="/" element={<MyNavBar />}>
+        <Route index element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/movie/:movie_id" element={<SingleMovie />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
