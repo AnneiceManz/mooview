@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Profile from "./components/profile";
-import SingleMovie from "./components/SingleMovie";
+import Profile from "./pages/profile";
+import SingleMovie from "./pages/SingleMovie";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MyNavBar from "./components/Navbar";

@@ -21,7 +21,7 @@ function MyNavBar() {
         email: authUser.email,
         username: authUser.nickname,
       };
-      const response = await fetch(`api/users`, {
+      const response = await fetch(`/api/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userInfo),
@@ -42,7 +42,7 @@ function MyNavBar() {
 
   return (
     <>
-      <Navbar data-testid="navbar" bg="white" variant="dark" sticky="top">
+      <Navbar data-testid="navbar" bg="white" variant="dark" >
         <Container>
           <Navbar.Brand href="/">
             <Image src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
