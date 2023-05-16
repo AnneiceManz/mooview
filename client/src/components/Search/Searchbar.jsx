@@ -1,39 +1,20 @@
-import React, { useState } from 'react';
-import SearchResults from './SearchResults';
-import {Input} from 'semantic-ui-react'
-import {useDetectClickOutside} from 'react-detect-click-outside'
+import React, { useState } from "react";
+
+import { Search } from "semantic-ui-react";
 
 const Searchbar = () => {
-
-  const [search, setSearch] = useState("")
-  const [showSearch, setShowSearch] = useState(false)
-  const ref= useDetectClickOutside({onTriggered: toggleSearchOff})
+  const [search, setSearch] = useState("");
 
   function handleSearch(e) {
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   }
 
-  function toggleSearchOn(){
-    setShowSearch(true)
-  }
-
-  function toggleSearchOff(){
-    setShowSearch(false)
-  }
-  
   return (
-    <div ref={ref}>
-      <Input
-      icon='search'
-      id='simple-search'
-      type='text'
+    <Search
       placeholder="Search..."
       value={search}
-      onChange={handleSearch}
-      onMouseDown={toggleSearchOn}
-      />
-      { showSearch && <SearchResults search={search}/>}
-    </div>
+      onSearchChange={handleSearch}
+    />
   );
 };
 
