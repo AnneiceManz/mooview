@@ -41,40 +41,41 @@ function MyNavBar() {
 
   return (
     <>
-      <Menu secondary stackable >
+      <Menu compact stackable fixed="top" borderless  >
+            <Image  href="/" src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
         <Container>
           <Menu.Item>
-            <Image  href="/" src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
-          </Menu.Item>
           {!user ? null : <h3>Hello {user.nickname}!</h3>}
-          <Menu.Item>
 
-            <Searchbar />
           </Menu.Item>
             <Menu.Menu position="right">
+            <Searchbar />
+              <Menu.Item>
               {!isAuthenticated && (
-                <Menu.Item>
                   <Button.Group>
 
                   <SignupButton />
                   <LoginButton />
                   </Button.Group>
-                </Menu.Item>
+
               )}
               {isAuthenticated && (
-                <Menu.Item>
+
                   <Button.Group>
                   <Button color="blue" as={Link} to='/profile'>
                     Profile
                   </Button>
                   <LogoutButton />
                   </Button.Group>
-                </Menu.Item>
               )}
+              </Menu.Item>
             </Menu.Menu>
         </Container>
       </Menu>
+      <Container  style={{marginTop: '13em'}}>
+
       <Outlet />
+      </Container>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import SearchMovieCard from "./SearchMovieCard";
+import { Container, Popup } from "semantic-ui-react";
 
 const SearchResults = (props) => {
   const [movies, setMovies] = useState(null);
@@ -43,11 +44,7 @@ const SearchResults = (props) => {
   }, [movies]);
 
   return (
-    <motion.div
-      className="absolute top-12 w-full"
-      transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-      initial={{ y: -20 }}
-      animate={{ y: 0 }}
+    <Container
     >
       {movies && results ? (
         <div className="bg-neutral-800 rounded drop-shadow-xl border-neutral-700 border-[1px]">
@@ -58,7 +55,7 @@ const SearchResults = (props) => {
           Nothing found
         </p>
       )}
-    </motion.div>
+    </Container>
   );
 };
 
