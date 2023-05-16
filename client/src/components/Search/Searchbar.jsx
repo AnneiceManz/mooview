@@ -22,18 +22,18 @@ const Searchbar = () => {
   }
   
   return (
-    <form  className='relative flex w-1/2 ml-10' ref={ref}>
-      <input
+    <div ref={ref}>
+      <Input
+      icon='search'
       id='simple-search'
       type='text'
-      className='bg-neutral-800 border border-neutral-700 text-neutral-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full'
       placeholder="Search..."
       value={search}
       onChange={handleSearch}
       onMouseDown={toggleSearchOn}
       />
       { showSearch && <SearchResults search={search}/>}
-    </form>
+    </div>
   );
 };
 
