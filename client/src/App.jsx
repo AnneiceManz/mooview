@@ -1,5 +1,4 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./pages/profile";
 import SingleMovie from "./pages/SingleMovie";
 import { Routes, Route } from "react-router-dom";

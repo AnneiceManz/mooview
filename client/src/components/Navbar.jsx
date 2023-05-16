@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet, Link } from "react-router-dom";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Image, Menu, Container } from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
@@ -43,34 +41,39 @@ function MyNavBar() {
 
   return (
     <>
-      <Navbar data-testid="navbar" bg="white" variant="dark" >
+      <Menu secondary stackable >
         <Container>
-          <Navbar.Brand href="/">
-            <Image src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
-          </Navbar.Brand>
+          <Menu.Item>
+            <Image  href="/" src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
+          </Menu.Item>
           {!user ? null : <h3>Hello {user.nickname}!</h3>}
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          <Menu.Item>
+
             <Searchbar />
-            <Navbar.Text>
+          </Menu.Item>
+            <Menu.Menu position="right">
               {!isAuthenticated && (
-                <>
+                <Menu.Item>
+                  <Button.Group>
+
                   <SignupButton />
                   <LoginButton />
-                </>
+                  </Button.Group>
+                </Menu.Item>
               )}
               {isAuthenticated && (
-                <>
+                <Menu.Item>
+                  <Button.Group>
                   <Button color="blue">
                     <Link to="/profile">Profile</Link>
                   </Button>
                   <LogoutButton />
-                </>
+                  </Button.Group>
+                </Menu.Item>
               )}
-            </Navbar.Text>
-          </Navbar.Collapse>
+            </Menu.Menu>
         </Container>
-      </Navbar>
+      </Menu>
       <Outlet />
     </>
   );

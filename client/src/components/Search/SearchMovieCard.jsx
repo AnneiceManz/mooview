@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
+import { Icon, Image } from "semantic-ui-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +17,10 @@ const SearchMovieCard = ({ movie }) => {
       }}
     >
       <div className="flex h-16">
-        <img
-          className="rounded aspect-[2/3"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        <Image
+        size="tiny"
+          className="rounded aspect-[2/3]"
+          src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
           alt="Couldn't find image"
         />
         <div className="flex-col ml-3">
