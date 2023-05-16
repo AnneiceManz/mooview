@@ -1,36 +1,37 @@
-import React, { useState } from "react";
-import { Input, Button } from "semantic-ui-react";
+import React, { useState } from 'react';
+import SearchResults from './SearchResults';
+import {Input, Form} from 'semantic-ui-react'
+import {useDetectClickOutside} from 'react-detect-click-outside'
 
 const Searchbar = () => {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`/api/search/${query}`);
-      const results = await response.json();
-      setResults(results);
-      console.log("searchbat results:",results);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const [search, setSearch] = useState("")
+  const [showSearch, setShowSearch] = useState(false)
+  const ref= useDetectClickOutside({onTriggered: toggleSearchOff})
 
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
+
+  function toggleSearchOn(){
+    setShowSearch(true)
+  }
+
+  function toggleSearchOff(){
+    setShowSearch(false)
+  }
+  
   return (
-    <div>
+    <Form ref={ref}>
       <Input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+      type='text'
+      placeholder="Search..."
+      value={search}
+      onChange={handleSearch}
+      onMouseDown={toggleSearchOn}
       />
-      <Button onClick={handleSearch}>Search</Button>
-
-      {results.map(result => (
-        <div key={result.id}>
-            <h2>{result.title}</h2>
-        </div>
-      ))}
-    </div>
+      { showSearch && <SearchResults search={search}/>}
+    </Form>
   );
 };
 
