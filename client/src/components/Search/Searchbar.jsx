@@ -22,8 +22,9 @@ const Searchbar = () => {
   }
   
   return (
-    <Form ref={ref}>
+    <Form >
       <Input
+      ref={ref}
       type='text'
       placeholder="Search..."
       value={search}
