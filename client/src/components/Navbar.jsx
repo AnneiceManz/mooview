@@ -8,6 +8,7 @@ import { Button, Image } from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
+import Searchbar from "./Search/Searchbar";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
@@ -50,6 +51,7 @@ function MyNavBar() {
           {!user ? null : <h3>Hello {user.nickname}!</h3>}
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
+            <Searchbar />
             <Navbar.Text>
               {!isAuthenticated && (
                 <>

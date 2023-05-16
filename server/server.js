@@ -275,6 +275,24 @@ app.get("/api/movie/:movie_id", (req, res) => {
   })
 });
 
+//creates endpoint to fetch search results for movie
+app.get("/api/search/:movie_query", (req, res) => {
+  const apiKey = process.env.API_KEY;
+  const movie_query = req.params.movie_query
+
+  const url= `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`
+  
+  fetch(url)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+      res.send({data})
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+});
+
 // app.get("/api/info/:tv_id/", (req, res) => {
 //   const apiKey = process.env.API_KEY;
 //   const tv_id = req.params.tv_id
