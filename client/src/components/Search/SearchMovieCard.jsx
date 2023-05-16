@@ -13,7 +13,7 @@ const SearchMovieCard = ({ movie }) => {
     <motion.div
       className="p-1.5 text-neutral-100 hover:bg-neautral-900 cursor-pointer"
       onClick={() => {
-        handleClick;
+        handleClick();
       }}
     >
       <div className="flex h-16">

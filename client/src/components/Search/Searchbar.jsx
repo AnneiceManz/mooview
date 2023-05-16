@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchResults from './SearchResults';
-import {Input, Form} from 'semantic-ui-react'
+import {Input} from 'semantic-ui-react'
 import {useDetectClickOutside} from 'react-detect-click-outside'
 
 const Searchbar = () => {

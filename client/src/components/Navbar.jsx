@@ -64,8 +64,8 @@ function MyNavBar() {
               {isAuthenticated && (
                 <Menu.Item>
                   <Button.Group>
-                  <Button color="blue">
-                    <Link to="/profile">Profile</Link>
+                  <Button color="blue" as={Link} to='/profile'>
+                    Profile
                   </Button>
                   <LogoutButton />
                   </Button.Group>
