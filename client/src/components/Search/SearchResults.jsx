@@ -47,11 +47,11 @@ const SearchResults = (props) => {
     <Container
     >
       {movies && results ? (
-        <div className="bg-neutral-800 rounded drop-shadow-xl border-neutral-700 border-[1px]">
+        <div >
           {movies}
         </div>
       ) : (
-        <p className="bg-neutral-800 rounded drop-shadow-xl border-neutral-700 border-[1px] text-neutral-100 p-2">
+        <p >
           Nothing found
         </p>
       )}
