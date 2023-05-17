@@ -19,6 +19,7 @@ function MyNavBar() {
 
     if (!search) return
     navigate(`/search/${search}`)
+    console.log('searched: ', search)
     setSearch("")
   }
 

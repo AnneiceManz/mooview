@@ -7,7 +7,7 @@ const Search = () => {
 
     const [searchParams]=useSearchParams(); 
 
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState(null);
     const query = searchParams.get("query");
 
     const getMovies = async () => {
