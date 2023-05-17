@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
 
 const CommentForm = ({review_id}) => {
+
+    const [writeComment, setWriteComment] = useState(
+        state || {
+            user_id: userId,
+            review_id: movieId,
+            comment_text: "",
+        }
+      )
     
 
     const onSubmitForm = async (e) => {
