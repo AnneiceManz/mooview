@@ -227,7 +227,7 @@ app.put("/api/reviews/:review_id", async (req, res) => {
 app.get("/api/comments/:review_id", async (req, res) => {
   const review_id = req.params.review_id;
   try {
-    const { rows: comments } = await db.query("SELECT * FROM comments WHERE review_id=$1", [review_id]);
+    const { rows: comments } = await db.query("SELECT * FROM comments WHERE movie_review_id=$1", [review_id]);
     res.send(comments);
   } catch (e) {
     return res.status(400).json({ e });
@@ -245,7 +245,7 @@ app.post("/api/comments", async (req, res) => {
     };
 
     const result = await db.query(
-      "INSERT INTO comments(review_id, user_id, comment_text, timestamp) VALUES($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO comments(movie_review_id, user_id, comment_text, timestamp) VALUES($1, $2, $3, $4) RETURNING *",
       [
         newComment.review_id,
         newComment.user_id,
