@@ -23,6 +23,12 @@ function MyNavBar() {
     setSearch("")
   }
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e)
+    }
+  }
+
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
     try {
@@ -73,6 +79,7 @@ function MyNavBar() {
             placeholder="Search..." 
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            onKeyPress={handleKeyPress}
             />
             <Button onClick={handleSubmit}>Search</Button>
             </Menu.Item>
