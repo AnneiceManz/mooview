@@ -1,7 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { Comment, Header, Form, Button, Segment } from "semantic-ui-react";
-import { useLocation, Link } from "react-router-dom";
 
 const CommentForm = ({ review_id, user_id }) => {
   console.log("this is the review id", review_id);
@@ -59,41 +57,48 @@ const CommentForm = ({ review_id, user_id }) => {
           {collapsed ? "Show Comments" : "Collapse Comments"}
         </Button>
       </div>
-<div>
-
-      <Comment.Group collapsed={collapsed}>
-      <Segment>
-        <Header as="h3" dividing>
-          Comments
-        </Header>
-        {comments
-          ? comments.map((comment) => (
-              <Comment key={comment.comment_id}>
-                <Comment.Avatar src={comment.picture} />
-                <Comment.Content>
-                  <Comment.Author>{comment.username}</Comment.Author>
-                  <Comment.Metadata>Posted: {comment.posted}</Comment.Metadata>
-                  <Comment.Text>
-                    <p>{comment.comment_text}</p>
-                  </Comment.Text>
-                </Comment.Content>
-              </Comment>
-            ))
-          : null}
-        <Form reply onSubmit={onSubmitForm} size="mini">
-            <Header as="h3" dividing>Add Comment</Header>
-          <Form.TextArea rows={2} name="comment_text" onChange={handleChange} />
-          <Button
-            size="mini"
-            content="Add Comment"
-            labelPosition="left"
-            icon="edit"
-            primary
-          />
-        </Form>
-      </Segment>
-      </Comment.Group>
-</div>
+      <div>
+        <Comment.Group collapsed={collapsed}>
+          <Segment>
+            <Header as="h3" dividing>
+              Comments
+            </Header>
+            {comments
+              ? comments.map((comment) => (
+                  <Comment key={comment.comment_id}>
+                    <Comment.Avatar src={comment.picture} />
+                    <Comment.Content>
+                      <Comment.Author>{comment.username}</Comment.Author>
+                      <Comment.Metadata>
+                        Posted: {comment.posted}
+                      </Comment.Metadata>
+                      <Comment.Text>
+                        <p>{comment.comment_text}</p>
+                      </Comment.Text>
+                    </Comment.Content>
+                  </Comment>
+                ))
+              : null}
+            <Form reply onSubmit={onSubmitForm} size="mini">
+              <Header as="h3" dividing>
+                Add Comment
+              </Header>
+              <Form.TextArea
+                rows={2}
+                name="comment_text"
+                onChange={handleChange}
+              />
+              <Button
+                size="mini"
+                content="Add Comment"
+                labelPosition="left"
+                icon="edit"
+                primary
+              />
+            </Form>
+          </Segment>
+        </Comment.Group>
+      </div>
     </>
   );
 };
