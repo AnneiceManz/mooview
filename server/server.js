@@ -234,6 +234,33 @@ app.get("/api/comments/:review_id", async (req, res) => {
   }
 });
 
+// create the POST request for comments
+app.post("/api/comments", async (req, res) => {
+  try {
+    const newComment = {
+      review_id: req.body.review_id,
+      user_id: req.body.user_id,
+      comment_text: req.body.comment_text,
+      timestamp: req.body.timestamp,
+    };
+
+    const result = await db.query(
+      "INSERT INTO comments(review_id, user_id, comment_text, timestamp) VALUES($1, $2, $3, $4) RETURNING *",
+      [
+        newComment.review_id,
+        newComment.user_id,
+        newComment.comment_text,
+        newComment.timestamp,
+      ]
+    );
+    console.log(result.rows[0]);
+    res.json(result.rows[0]);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 
 //API routes/requests
