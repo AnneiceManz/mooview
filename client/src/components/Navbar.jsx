@@ -68,7 +68,7 @@ function MyNavBar() {
   return (
     <>
       <Menu compact stackable fixed="top" borderless widths={3}>
-        <Menu.Item>
+        <Menu.Item fitted='vertically '>
         <Image
           href="/"
           src={IMAGES.mooview_logo}
