@@ -58,7 +58,7 @@ const CommentForm = ({ review_id, user_id }) => {
             <Comment key={comment.comment_id}>
               <Comment.Content>
                 <Comment.Metadata>
-                  Posted: {comment.time_stamp}
+                  Posted: {comment.posted}
                 </Comment.Metadata>
                 <Comment.Text>
                   <p>{comment.comment_text}</p>
