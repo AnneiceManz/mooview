@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { Button, Image, Menu, Container, Input } from "semantic-ui-react";
+import {
+  Button,
+  Image,
+  Menu,
+  Container,
+  Input,
+  Segment,
+  Form,
+} from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
@@ -15,19 +23,19 @@ function MyNavBar() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!search) return
-    navigate(`/search/${search}`)
-    console.log('searched: ', search)
-    setSearch("")
-  }
+    if (!search) return;
+    navigate(`/search/${search}`);
+    console.log("searched: ", search);
+    setSearch("");
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSubmit(e)
+      handleSubmit(e);
     }
-  }
+  };
 
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
@@ -59,42 +67,48 @@ function MyNavBar() {
 
   return (
     <>
-      <Menu compact stackable fixed="top" borderless>
+      <Menu compact stackable fixed="top" borderless widths={3}>
+        <Menu.Item>
         <Image
           href="/"
           src={IMAGES.mooview_logo}
           size="small"
           alt="Mooview Logo"
         />
-        <Container>
+        </Menu.Item>
           <Menu.Item>
-            {!user ? null : <h3>Hello {user.nickname}!</h3>}
+            <Form>
+              <Form.Group>
+
+              <Form.Input
+                type="text"
+                size="small"
+                placeholder="Search..."
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                onKeyPress={handleKeyPress}
+              />
+              <Form.Button
+              floated="right"
+                color="blue"
+                size="small"
+                type="submit"
+                content="Search"
+                onClick={handleSubmit}
+              />
+              </Form.Group>
+            </Form>
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
-            {/* <Searchbar /> */}
-            <Input 
-            type="text" 
-            icon="search" 
-            placeholder="Search..." 
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-            onKeyPress={handleKeyPress}
-            action
-            >
-              <input/>
-            <Button type='submit' onClick={handleSubmit}>Search</Button>
-            </Input>
-            </Menu.Item>
-            <Menu.Item>
               {!isAuthenticated && (
-                <Button.Group>
+                <Button.Group size="small">
                   <SignupButton />
                   <LoginButton />
                 </Button.Group>
               )}
               {isAuthenticated && (
-                <Button.Group>
+                <Button.Group size="small">
                   <Button color="blue" as={Link} to="/profile">
                     Profile
                   </Button>
@@ -103,7 +117,6 @@ function MyNavBar() {
               )}
             </Menu.Item>
           </Menu.Menu>
-        </Container>
       </Menu>
       <Container style={{ marginTop: "13em" }}>
         <Outlet />
