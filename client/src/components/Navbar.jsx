@@ -12,6 +12,16 @@ function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
   const [search, setSearch] = React.useState("");
 
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!search) return
+    navigate(`/search/${search}`)
+    setSearch("")
+  }
+
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
     try {
@@ -54,6 +64,7 @@ function MyNavBar() {
             {!user ? null : <h3>Hello {user.nickname}!</h3>}
           </Menu.Item>
           <Menu.Menu position="right">
+            <Menu.Item>
             {/* <Searchbar /> */}
             <Input 
             type="text" 
@@ -62,6 +73,8 @@ function MyNavBar() {
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             />
+            <Button onClick={handleSubmit}>Search</Button>
+            </Menu.Item>
             <Menu.Item>
               {!isAuthenticated && (
                 <Button.Group>
