@@ -67,12 +67,12 @@ function MyNavBar() {
 
   return (
     <>
-      <Menu compact stackable fixed="top" borderless widths={3}>
-        <Menu.Item fitted='vertically '>
+      <Menu size="small" stackable fixed="top" borderless widths={3}>
+        <Menu.Item>
         <Image
           href="/"
           src={IMAGES.mooview_logo}
-          size="small"
+          style={{ width: "130px", height: "auto", margin: "0.5em"}}
           alt="Mooview Logo"
         />
         </Menu.Item>
@@ -99,8 +99,7 @@ function MyNavBar() {
               </Form.Group>
             </Form>
           </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item>
+            <Menu.Item position="right">
               {!isAuthenticated && (
                 <Button.Group size="small">
                   <SignupButton />
@@ -116,7 +115,6 @@ function MyNavBar() {
                 </Button.Group>
               )}
             </Menu.Item>
-          </Menu.Menu>
       </Menu>
       <Container style={{ marginTop: "13em" }}>
         <Outlet />
