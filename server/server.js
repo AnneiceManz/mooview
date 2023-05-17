@@ -266,14 +266,12 @@ app.put("/api/comments/:comment_id", async (req, res) => {
   const comment_id = req.params.comment_id;
   const updatedComment = {
     comment_text: req.body.comment_text,
-    timestamp: req.body.timestamp,
   };
   console.log("comment", comment_id, "Has been updated");
   // UPDATE comments SET name = "something" WHERE id="16";
-  const query = `UPDATE comments SET comment_text=$1, timestamp=$2 WHERE comment_id=${comment_id} RETURNING *`;
+  const query = `UPDATE comments SET comment_text=$1 WHERE comment_id=${comment_id} RETURNING *`;
   const values = [
     updatedComment.comment_text,
-    updatedComment.timestamp,
   ];
   try {
     const updated = await db.query(query, values);
