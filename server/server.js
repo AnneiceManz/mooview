@@ -241,16 +241,15 @@ app.post("/api/comments", async (req, res) => {
       review_id: req.body.review_id,
       user_id: req.body.user_id,
       comment_text: req.body.comment_text,
-      timestamp: req.body.timestamp,
+
     };
 
     const result = await db.query(
-      "INSERT INTO comments(movie_review_id, user_id, comment_text, timestamp) VALUES($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO comments(movie_review_id, user_id, comment_text) VALUES($1, $2, $3) RETURNING *",
       [
         newComment.review_id,
         newComment.user_id,
         newComment.comment_text,
-        newComment.timestamp,
       ]
     );
     console.log(result.rows[0]);

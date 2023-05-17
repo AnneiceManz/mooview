@@ -7,7 +7,6 @@ const CommentForm = ({ review_id, user_id }) => {
   console.log("this is the review id", review_id);
   console.log("this is the user id", user_id);
 
-  const state = useLocation().state;
   const [writeComment, setWriteComment] = useState({
     user_id: user_id,
     review_id: review_id,
