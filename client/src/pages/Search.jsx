@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Movie from '../components/MovieCard';
 import { useSearchParams } from 'react-router-dom';
+import { Card, Segment } from 'semantic-ui-react';
 
 const Search = () => {
 
