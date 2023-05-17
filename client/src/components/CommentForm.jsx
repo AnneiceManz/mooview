@@ -12,6 +12,8 @@ const CommentForm = ({review_id, user}) => {
             comment_text: "",
         }
       )
+
+      const [comments, setComments] = useState([])
     
       const handleChange = (e) => {
         setWriteComment ({ ...writeComment, [e.target.name]: e.target.value})
@@ -30,6 +32,18 @@ const CommentForm = ({review_id, user}) => {
           console.log(error.message);
         }
       };  
+
+      const getComments = async () => {
+        try {
+           const response = await fetch(`/api/comments/${review_id}`);
+            const comments = await response.json();
+            setComments(comments);
+        } catch (error) {
+            console.error(error.message);
+        }
+      }
+
+      
 
     return (
         <div>
