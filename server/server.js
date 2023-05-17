@@ -155,7 +155,7 @@ app.get("/api/reviews/movie/:movie_id", async (req, res) => {
   const movie_id = req.params.movie_id;
   try {
     const { rows: reviews } = await db.query(
-      "SELECT * FROM reviews WHERE movie_id=$1",
+      "SELECT * FROM reviews JOIN users ON reviews.reviewers_user_id=users.user_id WHERE movie_id=$1",
       [movie_id]
     );
     res.send(reviews);
