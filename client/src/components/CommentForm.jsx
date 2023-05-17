@@ -55,7 +55,7 @@ const CommentForm = ({ review_id, user_id }) => {
   return (
     <>
       <div>
-        <Button size="small" onClick={handleCollapse}>
+        <Button basic floated="right" size="small" onClick={handleCollapse}>
           {collapsed ? "Show Comments" : "Collapse Comments"}
         </Button>
       </div>
