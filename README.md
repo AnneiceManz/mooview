@@ -27,10 +27,11 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 
 
 ## Authors
-
-- [@AnneiceManz](https://www.github.com/AnneiceManz)
 [![Contributors][contributors-shield]][contributors-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+
+- [@AnneiceManz](https://www.github.com/AnneiceManz)
+
 
 
 ## Features
@@ -67,8 +68,8 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 Step 1: Go to your terminal: clone the project and switch into the project directory.
 
 ```bash
-  git clone https://github.com/rubycmarroquin/MoneyOnMyMind.git
-  cd moneyonmymind
+  git clone https://github.com/AnneiceManz/mooview.git
+  cd mooview
 ```
 
 Step 2: Install all packages.
@@ -85,7 +86,7 @@ Step 4: Connect the database and the data.
 
 ```bash
   cd server
-  psql moneyonmymind -f db.sql
+  psql mooview -f db.sql
 ```
 
 Step 5: Start the program!
