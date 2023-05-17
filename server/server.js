@@ -141,7 +141,7 @@ app.get("/api/reviews/user/:user_id", async (req, res) => {
   const user_id = req.params.user_id;
   try {
     const { rows: reviews } = await db.query(
-      "SELECT * FROM reviews WHERE user_id=$1",
+      "SELECT * FROM reviews WHERE reviewers_user_id=$1",
       [user_id]
     );
     res.send(reviews);
@@ -176,7 +176,7 @@ app.post("/api/reviews", async (req, res) => {
     };
 
     const result = await db.query(
-      "INSERT INTO reviews(movie_id, user_id, star_rating, title, post) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO reviews(movie_id, reviewers_user_id, star_rating, title, post) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [
         newReview.movie_id,
         newReview.user_id,
