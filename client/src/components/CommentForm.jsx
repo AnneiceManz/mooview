@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Comment, Header, Form, Button } from 'semantic-ui-react';
 
 const CommentForm = ({review_id, user}) => {
 
@@ -48,9 +49,25 @@ const CommentForm = ({review_id, user}) => {
       },[review_id])
 
     return (
-        <div>
-            
-        </div>
+        <Comment.Group>
+            <Header as='h3' dividing>
+                Comments
+            </Header>
+            {comments.map((comment) => (
+                <Comment>
+                    <Comment.Content>
+                        <Comment.Metadata>Posted: {comment.time_stamp}</Comment.Metadata>
+                        <Comment.Text>
+                            <p>{comment.comment_text}</p>
+                        </Comment.Text>
+                    </Comment.Content>
+                </Comment>
+            ))}
+            <Form reply onSubmit={onSubmitForm}>
+                <Form.TextArea name="comment_text" onChange={handleChange} />
+                <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+            </Form>
+        </Comment.Group>
     );
 };
 
