@@ -193,7 +193,7 @@ app.post("/api/reviews", async (req, res) => {
   }
 });
 
-//A put request - Update a user
+//A put request - Update a review
 app.put("/api/reviews/:review_id", async (req, res) => {
   //This will be the id that I want to find in the DB - the student to be updated
   const review_id = req.params.review_id;
@@ -255,6 +255,31 @@ app.post("/api/comments", async (req, res) => {
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
+//A put request - Update a comment
+app.put("/api/comments/:comment_id", async (req, res) => {
+  //This will be the id that I want to find in the DB - the student to be updated
+  const comment_id = req.params.comment_id;
+  const updatedComment = {
+    comment_text: req.body.comment_text,
+    timestamp: req.body.timestamp,
+  };
+  console.log("comment", comment_id, "Has been updated");
+  // UPDATE comments SET name = "something" WHERE id="16";
+  const query = `UPDATE comments SET comment_text=$1, timestamp=$2 WHERE comment_id=${comment_id} RETURNING *`;
+  const values = [
+    updatedComment.comment_text,
+    updatedComment.timestamp,
+  ];
+  try {
+    const updated = await db.query(query, values);
+    console.log(updated.rows[0]);
+    res.send(updated.rows[0]);
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });
