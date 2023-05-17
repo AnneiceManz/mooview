@@ -52,11 +52,12 @@ app.post("/api/users", async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       username: req.body.username,
+      picture: req.body.picture,
     };
     //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
-      "INSERT INTO users(user_id, name, email, username) VALUES($1, $2, $3, $4) ON CONFLICT DO NOTHING RETURNING *",
-      [newUser.user_id, newUser.name, newUser.email, newUser.username]
+      "INSERT INTO users(user_id, name, email, username, picture) VALUES($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING RETURNING *",
+      [newUser.user_id, newUser.name, newUser.email, newUser.username, newUser.picture]
     );
     console.log(result.rows[0]);
     //if value is undefined set value to null/nothing
