@@ -17,7 +17,7 @@ app.use(express.json());
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
   // res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
-  res.sendFile(path.join(REACT_BUILD_DIR, "index.html"))
+  res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
 // create the get request for users in the endpoint '/api/users'
@@ -32,15 +32,17 @@ app.get("/api/users", async (req, res) => {
 
 // create the get request for single user in the endpoint '/api/users/:user_id'
 app.get("/api/users/:user_id", async (req, res) => {
-  const user_id = req.params.user_id
+  const user_id = req.params.user_id;
   try {
-    const { rows: users } = await db.query("SELECT * FROM users WHERE user_id=$1", [user_id]);
-    res.send(users.length > 0 ? users[0]: {});
+    const { rows: users } = await db.query(
+      "SELECT * FROM users WHERE user_id=$1",
+      [user_id]
+    );
+    res.send(users.length > 0 ? users[0] : {});
   } catch (e) {
     return res.status(400).json({ e });
   }
 });
-
 
 // create the POST request
 app.post("/api/users", async (req, res) => {
@@ -49,7 +51,7 @@ app.post("/api/users", async (req, res) => {
       user_id: req.body.user_id,
       name: req.body.name,
       email: req.body.email,
-      username: req.body.username
+      username: req.body.username,
     };
     //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
@@ -80,7 +82,6 @@ app.delete("/api/users/:user_id", async (req, res) => {
 
 //A put request - Update a user
 app.put("/api/user/:user_id", async (req, res) => {
-  //console.log(req.params);
   //This will be the id that I want to find in the DB - the student to be updated
   const user_id = req.params.user_id;
   const updated_user = {
@@ -97,7 +98,7 @@ app.put("/api/user/:user_id", async (req, res) => {
     updated_user.name,
     updated_user.email,
     updated_user.birthday,
-    updated_user.username
+    updated_user.username,
   ];
   try {
     const updated = await db.query(query, values);
@@ -123,9 +124,12 @@ app.get("/api/reviews", async (req, res) => {
 
 // create the get request for single review in the endpoint '/api/reviews/:review_id'
 app.get("/api/reviews/:review_id", async (req, res) => {
-  const review_id = req.params.review_id
+  const review_id = req.params.review_id;
   try {
-    const { rows: reviews } = await db.query("SELECT * FROM users WHERE review_id=$1", [review_id]);
+    const { rows: reviews } = await db.query(
+      "SELECT * FROM users WHERE review_id=$1",
+      [review_id]
+    );
     res.send(reviews);
   } catch (e) {
     return res.status(400).json({ e });
@@ -134,9 +138,12 @@ app.get("/api/reviews/:review_id", async (req, res) => {
 
 // create the get request for all reviews for single user_id in the endpoint '/api/reviews/:user_id'
 app.get("/api/reviews/user/:user_id", async (req, res) => {
-  const user_id = req.params.user_id
+  const user_id = req.params.user_id;
   try {
-    const { rows: reviews } = await db.query("SELECT * FROM reviews WHERE user_id=$1", [user_id]);
+    const { rows: reviews } = await db.query(
+      "SELECT * FROM reviews WHERE user_id=$1",
+      [user_id]
+    );
     res.send(reviews);
   } catch (e) {
     return res.status(400).json({ e });
@@ -145,9 +152,12 @@ app.get("/api/reviews/user/:user_id", async (req, res) => {
 
 // create the get request for all reviews for single movie_id in the endpoint '/api/reviews/:movie_id'
 app.get("/api/reviews/movie/:movie_id", async (req, res) => {
-  const movie_id = req.params.movie_id
+  const movie_id = req.params.movie_id;
   try {
-    const { rows: reviews } = await db.query("SELECT * FROM reviews WHERE movie_id=$1", [movie_id]);
+    const { rows: reviews } = await db.query(
+      "SELECT * FROM reviews WHERE movie_id=$1",
+      [movie_id]
+    );
     res.send(reviews);
   } catch (e) {
     return res.status(400).json({ e });
@@ -162,12 +172,18 @@ app.post("/api/reviews", async (req, res) => {
       user_id: req.body.user_id,
       star_rating: req.body.star_rating,
       title: req.body.title,
-      post: req.body.post
+      post: req.body.post,
     };
-    //console.log([newReview.movie_id, newReview.user_id, newReview.star_rating, newReview.title, newReview.post]);
+
     const result = await db.query(
       "INSERT INTO reviews(movie_id, user_id, star_rating, title, post) VALUES($1, $2, $3, $4, $5) RETURNING *",
-      [newReview.movie_id, newReview.user_id, newReview.star_rating, newReview.title, newReview.post]
+      [
+        newReview.movie_id,
+        newReview.user_id,
+        newReview.star_rating,
+        newReview.title,
+        newReview.post,
+      ]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
@@ -179,7 +195,6 @@ app.post("/api/reviews", async (req, res) => {
 
 //A put request - Update a user
 app.put("/api/reviews/:review_id", async (req, res) => {
-  //console.log(req.params);
   //This will be the id that I want to find in the DB - the student to be updated
   const review_id = req.params.review_id;
   const updated_review = {
@@ -187,13 +202,13 @@ app.put("/api/reviews/:review_id", async (req, res) => {
     post: req.body.post,
     star_rating: req.body.star_rating,
   };
-  console.log('review',review_id, "Has been updated");
+  console.log("review", review_id, "Has been updated");
   // UPDATE users SET name = "something" WHERE id="16";
   const query = `UPDATE reviews SET title=$1, post=$2, star_rating=$3 WHERE review_id=${review_id} RETURNING *`;
   const values = [
     updated_review.title,
     updated_review.post,
-    updated_review.star_rating
+    updated_review.star_rating,
   ];
   try {
     const updated = await db.query(query, values);
@@ -205,111 +220,91 @@ app.put("/api/reviews/:review_id", async (req, res) => {
   }
 });
 
-
 //API routes/requests
 
 // creates endpoint to fetch popular movies
 app.get("/api/movie/popular/", (req, res) => {
   const apiKey = process.env.API_KEY;
 
-  const url= `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
-  
-  fetch(url)
-  .then((res) => res.json())
-  .then((data) => {
-      res.send({data})
-  })
-  .catch((err) => {
-      console.log(err)
-  })
-});
+  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //creates endpoint to fetch popular tv shows
 app.get("/api/tv/popular/", (req, res) => {
-    const apiKey = process.env.API_KEY;
-  
-    const url= `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`
-    
-    fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-        res.send({data})
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-  });
+  const apiKey = process.env.API_KEY;
 
-  //creates endpoint to fetch now playing movies
-app.get("/api/movie/now_playing/", (req, res) => {
-    const apiKey = process.env.API_KEY;
-  
-    const url= `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
-    
-    fetch(url)
+  const url = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`;
+
+  fetch(url)
     .then((res) => res.json())
     .then((data) => {
-        res.send({data})
+      res.send({ data });
     })
     .catch((err) => {
-        console.log(err)
+      console.log(err);
+    });
+});
+
+//creates endpoint to fetch now playing movies
+app.get("/api/movie/now_playing/", (req, res) => {
+  const apiKey = process.env.API_KEY;
+
+  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
     })
-  });
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //creates endpoint to fetch details about movie or show by id
 app.get("/api/movie/:movie_id", (req, res) => {
   const apiKey = process.env.API_KEY;
-  const movie_id = req.params.movie_id
+  const movie_id = req.params.movie_id;
 
-  const url= `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`
-  
+  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
+
   fetch(url)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-      res.send({data})
-  })
-  .catch((err) => {
-      console.log(err)
-  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //creates endpoint to fetch search results for movie
 app.get("/api/search/:movie_query", (req, res) => {
   const apiKey = process.env.API_KEY;
-  const movie_query = req.params.movie_query
+  const movie_query = req.params.movie_query;
 
-  const url= `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`
-  
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`;
+
   fetch(url)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-      res.send({data})
-  })
-  .catch((err) => {
-      console.log(err)
-  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
-
-// app.get("/api/info/:tv_id/", (req, res) => {
-//   const apiKey = process.env.API_KEY;
-//   const tv_id = req.params.tv_id
-
-//   const url= `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${apiKey}`
-  
-//   fetch(url)
-//   .then((res) => res.json())
-//   .then((data) => {
-//       res.send({data})
-//   })
-//   .catch((err) => {
-//       console.log(err)
-//   })
-// });
-
-
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
