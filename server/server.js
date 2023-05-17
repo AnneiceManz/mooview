@@ -227,7 +227,7 @@ app.put("/api/reviews/:review_id", async (req, res) => {
 app.get("/api/comments/:review_id", async (req, res) => {
   const review_id = req.params.review_id;
   try {
-    const { rows: comments } = await db.query("SELECT * FROM comments WHERE movie_review_id=$1", [review_id]);
+    const { rows: comments } = await db.query("SELECT * FROM comments JOIN users ON comments.user_id=users.user_id WHERE movie_review_id=$1", [review_id]);
     res.send(comments);
   } catch (e) {
     return res.status(400).json({ e });
