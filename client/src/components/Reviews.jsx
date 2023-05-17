@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { Card, Button, Icon } from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
+import CommentForm from "./CommentForm";
 
 const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
@@ -23,6 +24,7 @@ const Reviews = ({ review, movieName }) => {
           </Button.Group>
         </Card.Content>
       )}
+      <CommentForm review_id={review.review_id} user={user?.sub} />
     </Card>
   );
 };
