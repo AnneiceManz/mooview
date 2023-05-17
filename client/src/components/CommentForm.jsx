@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Comment, Header, Form, Button, Segment } from "semantic-ui-react";
+import moment from "moment";
+
 
 const CommentForm = ({ review_id, user_id }) => {
   console.log("this is the review id", review_id);
   console.log("this is the user id", user_id);
+
+
 
   const [writeComment, setWriteComment] = useState({
     user_id: user_id,
@@ -70,7 +74,7 @@ const CommentForm = ({ review_id, user_id }) => {
                     <Comment.Content>
                       <Comment.Author>{comment.username}</Comment.Author>
                       <Comment.Metadata>
-                        Posted: {comment.posted}
+                        Posted: {moment(comment.posted).format("MMM Do YYYY, h:mm a")}
                       </Comment.Metadata>
                       <Comment.Text>
                         <p>{comment.comment_text}</p>
