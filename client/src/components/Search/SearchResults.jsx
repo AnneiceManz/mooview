@@ -3,59 +3,28 @@ import { motion } from "framer-motion";
 import SearchMovieCard from "./SearchMovieCard";
 import { Container, Popup } from "semantic-ui-react";
 
-const SearchResults = (props) => {
+const SearchResults = ({query}) => {
   const [movies, setMovies] = useState(null);
-  const [results, setResults] = useState(false);
 
   const fetchMovies = async () => {
-    try {
-      const response = await fetch(`/api/search/${props.search}`);
-      const json = await response.json();
-      const movieResults = json.data.results.slice(0, 5);
-      console.log("movie results", movieResults);
-      const movieCards = movieResults.map((movie, i) => {
-        return <SearchMovieCard movie={movie} key={movie.id} />;
-      });
-      return movieCards;
-    } catch (error) {
-      console.log("Error fetching data: ", error);
-      return [];
-    }
+ const response = await fetch("/api/movie/search/" + props.query);
+ const data = await response.json();
+ const filterdMovies = data.results.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()))
+ setMovies(filterdMovies);
   };
 
   console.log("Here are the results", movies)
 
-  useEffect(() => {
-    if (props.search.length === 0) return;
+  useEffect(() => { 
+    fetchMovies();
+  })
 
-    fetchMovies(props.search).then((movieCards) => {
-      setMovies(movieCards);
-    });
-  }, [props.search]);
 
-  useEffect(() => {
-    if (props.search.length === 0) {
-      setResults(false);
-    } else if (!props.search.isEmpty && movies.length === 0) {
-      setResults(false);
-    } else {
-      setResults(true);
-    }
-  }, [movies]);
 
   return (
-    <Container
-    >
-      {movies && results ? (
-        <div >
-          {movies}
-        </div>
-      ) : (
-        <p >
-          Nothing found
-        </p>
-      )}
-    </Container>
+ <Card.Group itemsPerRow={1}>
+    {movies.map(movie => <SearchMovieCard key={movie.id} movie={movie} />)}
+    </Card.Group>
   );
 };
 

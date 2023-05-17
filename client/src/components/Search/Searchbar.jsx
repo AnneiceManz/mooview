@@ -3,17 +3,18 @@ import React, { useState } from "react";
 import { Search } from "semantic-ui-react";
 
 const Searchbar = () => {
-  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
 
-  function handleSearch(e) {
-    setSearch(e.target.value);
+  const handleSearchChange=(e, {value}) => {
+    setQuery(value);
   }
+
 
   return (
     <Search
       placeholder="Search..."
-      value={search}
-      onSearchChange={handleSearch}
+      value={query}
+      onSearchChange={handleSearchChange}
     />
   );
 };
