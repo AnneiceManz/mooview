@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Movie from "../components/MovieCard";
 import { useLocation } from "react-router-dom";
-import { Card, Segment } from "semantic-ui-react";
+import { Card, Segment, Header } from "semantic-ui-react";
 
 const Search = () => {
   const location = useLocation();
@@ -24,8 +24,9 @@ const Search = () => {
   }, [query]);
 
   return (
-    <Segment className="list__movies" style={{ overflow: "auto" }}>
-      <Card.Group itemsPerRow={6}>
+    <Segment>
+        <Header textAlign="center"> Search Results</Header>
+      <Card.Group itemsPerRow={3}>
         {movies
           ? movies.data.results.map((movie) => {
               return <Movie key={movie.id} movie={movie} />;
