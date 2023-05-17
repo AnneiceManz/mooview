@@ -80,8 +80,11 @@ function MyNavBar() {
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             onKeyPress={handleKeyPress}
-            />
-            <Button onClick={handleSubmit}>Search</Button>
+            action
+            >
+              <input/>
+            <Button type='submit' onClick={handleSubmit}>Search</Button>
+            </Input>
             </Menu.Item>
             <Menu.Item>
               {!isAuthenticated && (
