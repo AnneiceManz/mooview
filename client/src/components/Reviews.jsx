@@ -8,6 +8,7 @@ const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
   const currentUser = user?.sub;
   return (
+    <>
     <Card centered>
       <Card.Content>
         <Card.Header textAlign="center">{review.title}</Card.Header>
@@ -25,8 +26,9 @@ const Reviews = ({ review, movieName }) => {
           </Button.Group>
         </Card.Content>
       )}
-      <CommentForm review_id={review.review_id} user_id={currentUser} />
     </Card>
+      <CommentForm review_id={review.review_id} user_id={currentUser} />
+    </>
   );
 };
 

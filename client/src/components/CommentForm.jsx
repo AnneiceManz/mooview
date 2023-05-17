@@ -74,7 +74,7 @@ const CommentForm = ({ review_id, user_id }) => {
             ))
           : null}
         <Form reply onSubmit={onSubmitForm}>
-          <Form.TextArea name="comment_text" onChange={handleChange} />
+          <Form.TextArea  name="comment_text" onChange={handleChange} />
           <Button
             content="Add Comment"
             labelPosition="left"
