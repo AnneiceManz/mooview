@@ -13,6 +13,9 @@ const CommentForm = ({review_id, user}) => {
         }
       )
     
+      const handleChange = (e) => {
+        setWriteComment ({ ...writeComment, [e.target.name]: e.target.value})
+      }
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
