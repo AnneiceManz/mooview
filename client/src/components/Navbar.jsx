@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Outlet, Link } from "react-router-dom";
-import { Button, Image, Menu, Container } from "semantic-ui-react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import {
+  Button,
+  Image,
+  Menu,
+  Container,
+  Input,
+  Segment,
+  Form,
+} from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
@@ -10,6 +18,24 @@ import Searchbar from "./Search/Searchbar";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
+  const [search, setSearch] = React.useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!search) return;
+    navigate(`/search/${search}`);
+    console.log("searched: ", search);
+    setSearch("");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
 
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
@@ -41,40 +67,57 @@ function MyNavBar() {
 
   return (
     <>
-      <Menu compact stackable fixed="top" borderless  >
-            <Image  href="/" src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
-        <Container>
+      <Menu size="small" stackable fixed="top" borderless widths={3}>
+        <Menu.Item>
+        <Image
+          href="/"
+          src={IMAGES.mooview_logo}
+          style={{ width: "130px", height: "auto", margin: "0.5em"}}
+          alt="Mooview Logo"
+        />
+        </Menu.Item>
           <Menu.Item>
-          {!user ? null : <h3>Hello {user.nickname}!</h3>}
+            <Form>
+              <Form.Group>
 
+              <Form.Input
+                type="text"
+                size="small"
+                placeholder="Search..."
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                onKeyPress={handleKeyPress}
+              />
+              <Form.Button
+              floated="right"
+                color="blue"
+                size="small"
+                type="submit"
+                content="Search"
+                onClick={handleSubmit}
+              />
+              </Form.Group>
+            </Form>
           </Menu.Item>
-            <Menu.Menu position="right">
-            <Searchbar />
-              <Menu.Item>
+            <Menu.Item position="right">
               {!isAuthenticated && (
-                  <Button.Group>
-
+                <Button.Group size="small">
                   <SignupButton />
                   <LoginButton />
-                  </Button.Group>
-
+                </Button.Group>
               )}
               {isAuthenticated && (
-
-                  <Button.Group>
-                  <Button color="blue" as={Link} to='/profile'>
+                <Button.Group size="small">
+                  <Button color="blue" as={Link} to="/profile">
                     Profile
                   </Button>
                   <LogoutButton />
-                  </Button.Group>
+                </Button.Group>
               )}
-              </Menu.Item>
-            </Menu.Menu>
-        </Container>
+            </Menu.Item>
       </Menu>
-      <Container  style={{marginTop: '13em'}}>
-
-      <Outlet />
+      <Container style={{ marginTop: "13em" }}>
+        <Outlet />
       </Container>
     </>
   );

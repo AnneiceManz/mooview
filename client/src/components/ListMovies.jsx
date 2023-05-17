@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Movie from "./Movie";
+import Movie from "./MovieCard";
 import { Card, Segment } from "semantic-ui-react";
 
 const ListMovies = () => {
