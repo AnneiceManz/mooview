@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Outlet, Link } from "react-router-dom";
-import { Button, Image, Menu, Container } from "semantic-ui-react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Button, Image, Menu, Container, Input } from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
@@ -10,6 +10,7 @@ import Searchbar from "./Search/Searchbar";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
+  const [search, setSearch] = React.useState("");
 
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
@@ -41,40 +42,47 @@ function MyNavBar() {
 
   return (
     <>
-      <Menu compact stackable fixed="top" borderless  >
-            <Image  href="/" src={IMAGES.mooview_logo} size="small" alt="Mooview Logo" />
+      <Menu compact stackable fixed="top" borderless>
+        <Image
+          href="/"
+          src={IMAGES.mooview_logo}
+          size="small"
+          alt="Mooview Logo"
+        />
         <Container>
           <Menu.Item>
-          {!user ? null : <h3>Hello {user.nickname}!</h3>}
-
+            {!user ? null : <h3>Hello {user.nickname}!</h3>}
           </Menu.Item>
-            <Menu.Menu position="right">
-            <Searchbar />
-              <Menu.Item>
+          <Menu.Menu position="right">
+            {/* <Searchbar /> */}
+            <Input 
+            type="text" 
+            icon="search" 
+            placeholder="Search..." 
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+            />
+            <Menu.Item>
               {!isAuthenticated && (
-                  <Button.Group>
-
+                <Button.Group>
                   <SignupButton />
                   <LoginButton />
-                  </Button.Group>
-
+                </Button.Group>
               )}
               {isAuthenticated && (
-
-                  <Button.Group>
-                  <Button color="blue" as={Link} to='/profile'>
+                <Button.Group>
+                  <Button color="blue" as={Link} to="/profile">
                     Profile
                   </Button>
                   <LogoutButton />
-                  </Button.Group>
+                </Button.Group>
               )}
-              </Menu.Item>
-            </Menu.Menu>
+            </Menu.Item>
+          </Menu.Menu>
         </Container>
       </Menu>
-      <Container  style={{marginTop: '13em'}}>
-
-      <Outlet />
+      <Container style={{ marginTop: "13em" }}>
+        <Outlet />
       </Container>
     </>
   );
