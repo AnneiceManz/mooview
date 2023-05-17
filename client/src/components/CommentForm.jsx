@@ -59,8 +59,9 @@ const CommentForm = ({ review_id, user_id }) => {
           {collapsed ? "Show Comments" : "Collapse Comments"}
         </Button>
       </div>
+<div>
 
-      <Comment.Group size="large" collapsed={collapsed}>
+      <Comment.Group collapsed={collapsed}>
       <Segment>
         <Header as="h3" dividing>
           Comments
@@ -79,9 +80,11 @@ const CommentForm = ({ review_id, user_id }) => {
               </Comment>
             ))
           : null}
-        <Form reply onSubmit={onSubmitForm}>
-          <Form.TextArea name="comment_text" onChange={handleChange} />
+        <Form reply onSubmit={onSubmitForm} size="mini">
+            <Header as="h3" dividing>Add Comment</Header>
+          <Form.TextArea rows={2} name="comment_text" onChange={handleChange} />
           <Button
+            size="mini"
             content="Add Comment"
             labelPosition="left"
             icon="edit"
@@ -90,6 +93,7 @@ const CommentForm = ({ review_id, user_id }) => {
         </Form>
       </Segment>
       </Comment.Group>
+</div>
     </>
   );
 };
