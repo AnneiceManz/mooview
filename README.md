@@ -1,6 +1,6 @@
-
-![Logo](https://i.imgur.com/zBOQqYA.png)
-
+<h1 align="center">
+<img src='https://i.imgur.com/zBOQqYA.png' width="350px"/>
+</h1>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -9,10 +9,12 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
-        <li><a href="api-reference">API Reference</a></li>
+        <li><a href="#api-reference">API Reference</a></li>
+        <li><a href="#color-reference">Color Reference</a></li>
       </ul>
     </li>
         <li><a href="#installation">Installation</a></li>
+    <li><a href="#feedback">Feedback</a></li>
   </ol>
 </details>
 
@@ -59,7 +61,24 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 
 - [The Movie DB API](https://developer.themoviedb.org/reference/intro/getting-started)
 
+<!-- Color Reference -->
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Red | ![#C63729](https://via.placeholder.com/10/c63729?text=+) #C63729 |
+| Blue | ![#3977C9](https://via.placeholder.com/10/3977c9?text=+) #3977C9|
+| Brown | ![#7E3E12 ](https://via.placeholder.com/10/7E3E12?text=+) #7E3E12 |
+| Cream| ![#F8F5DE](https://via.placeholder.com/10/F8F5DE?text=+) #F8F5DE|
+
 <!-- Installation -->
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY` from The Movie DB
 
 ## Installation
 
@@ -94,6 +113,11 @@ Step 5: Start the program!
 ```bash
   cd server && npm run dev
 ```
+<!-- FEEDBACK -->
+
+## Feedback
+
+If you have any feedback, please reach out to us at anneice.manzanares@gmail.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
