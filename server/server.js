@@ -220,6 +220,22 @@ app.put("/api/reviews/:review_id", async (req, res) => {
   }
 });
 
+
+//Comments routes/requests
+
+// create the get request for comments according to review_id in the endpoint '/api/comments/:review_id'
+app.get("/api/comments/:review_id", async (req, res) => {
+  const review_id = req.params.review_id;
+  try {
+    const { rows: comments } = await db.query("SELECT * FROM comments WHERE review_id=$1", [review_id]);
+    res.send(comments);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
+
 //API routes/requests
 
 // creates endpoint to fetch popular movies
