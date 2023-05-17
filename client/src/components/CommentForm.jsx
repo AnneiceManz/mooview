@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const CommentForm = ({review_id, user}) => {
 
@@ -43,7 +43,9 @@ const CommentForm = ({review_id, user}) => {
         }
       }
 
-      
+      useEffect(() => {
+        getComments();
+      },[review_id])
 
     return (
         <div>
