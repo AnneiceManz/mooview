@@ -22,7 +22,7 @@ const CommentForm = ({ review_id, user_id }) => {
 
   const handleCollapse = (e) => {
     setCollapsed(!collapsed);
-  }
+  };
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -48,48 +48,41 @@ const CommentForm = ({ review_id, user_id }) => {
     }
   };
 
-
   useEffect(() => {
     getComments();
   }, [review_id]);
 
   return (
     <>
-    <Button
-    onClick={handleCollapse}
-    >Read/Post Comments</Button>
-    <Comment.Group collapsed={collapsed}>
-      <Header as="h3" dividing>
-        Comments
-      </Header>
-      {comments
-        ? comments.map((comment) => (
-            <Comment key={comment.comment_id}>
+      <Button onClick={handleCollapse}>{collapsed ? 'Show Comments' : 'Collapse Comments'}</Button>
+      <Comment.Group collapsed={collapsed}>
+        <Header as="h3" dividing>
+          Comments
+        </Header>
+        {comments
+          ? comments.map((comment) => (
+              <Comment key={comment.comment_id}>
                 <Comment.Avatar src={comment.picture} />
-              <Comment.Content>
-                <Comment.Author>
-                    {comment.username}
-                </Comment.Author>
-                <Comment.Metadata>
-                  Posted: {comment.posted}
-                </Comment.Metadata>
-                <Comment.Text>
-                  <p>{comment.comment_text}</p>
-                </Comment.Text>
-              </Comment.Content>
-            </Comment>
-          ))
-        : null}
-      <Form reply onSubmit={onSubmitForm}>
-        <Form.TextArea name="comment_text" onChange={handleChange} />
-        <Button
-          content="Add Comment"
-          labelPosition="left"
-          icon="edit"
-          primary
-        />
-      </Form>
-    </Comment.Group>
+                <Comment.Content>
+                  <Comment.Author>{comment.username}</Comment.Author>
+                  <Comment.Metadata>Posted: {comment.posted}</Comment.Metadata>
+                  <Comment.Text>
+                    <p>{comment.comment_text}</p>
+                  </Comment.Text>
+                </Comment.Content>
+              </Comment>
+            ))
+          : null}
+        <Form reply onSubmit={onSubmitForm}>
+          <Form.TextArea name="comment_text" onChange={handleChange} />
+          <Button
+            content="Add Comment"
+            labelPosition="left"
+            icon="edit"
+            primary
+          />
+        </Form>
+      </Comment.Group>
     </>
   );
 };
