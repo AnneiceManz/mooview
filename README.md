@@ -29,6 +29,8 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 ## Authors
 
 - [@AnneiceManz](https://www.github.com/AnneiceManz)
+[![Contributors][contributors-shield]][contributors-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 ## Features
@@ -97,7 +99,7 @@ Step 5: Start the program!
 [contributors-shield]: https://img.shields.io/badge/Contributors-1-brightgreen?style=for-the-badge&logo=appveyor
 [contributors-url]: https://github.com/rubycmarroquin/MoneyOnMyMind/graphs/contributors
 [linkedin-shield]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
-[linkedin-url]: https://www.linkedin.com/in/rubymarroquin/
+[linkedin-url]: https://www.linkedin.com/in/Anneice-Manzanares/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 
