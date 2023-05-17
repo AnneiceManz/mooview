@@ -3,18 +3,16 @@ import React, { useEffect, useState } from "react";
 import { Comment, Header, Form, Button } from "semantic-ui-react";
 import { useLocation } from "react-router-dom";
 
-const CommentForm = ({ review_id, user }) => {
- const reviewId= review_id
-    console.log('this is the review id', reviewId)
-    
-    const state = useLocation().state;
-  const [writeComment, setWriteComment] = useState(
-    state || {
-      user_id: user,
-      review_id: review_id,
-      comment_text: "",
-    }
-  );
+const CommentForm = ({ review_id, user_id }) => {
+  console.log("this is the review id", review_id);
+  console.log("this is the user id", user_id);
+
+  const state = useLocation().state;
+  const [writeComment, setWriteComment] = useState({
+    user_id: user_id,
+    review_id: review_id,
+    comment_text: "",
+  });
 
   const [comments, setComments] = useState(null);
 
@@ -30,6 +28,7 @@ const CommentForm = ({ review_id, user }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(writeComment),
       });
+      console.log("New Comment Added", response);
       window.location.reload();
     } catch (error) {
       console.log(error.message);
@@ -55,16 +54,20 @@ const CommentForm = ({ review_id, user }) => {
       <Header as="h3" dividing>
         Comments
       </Header>
-      {comments ? comments.map((comment) => (
-        <Comment>
-          <Comment.Content>
-            <Comment.Metadata>Posted: {comment.time_stamp}</Comment.Metadata>
-            <Comment.Text>
-              <p>{comment.comment_text}</p>
-            </Comment.Text>
-          </Comment.Content>
-        </Comment>
-      ) ) : null}
+      {comments
+        ? comments.map((comment) => (
+            <Comment key={comment.comment_id}>
+              <Comment.Content>
+                <Comment.Metadata>
+                  Posted: {comment.time_stamp}
+                </Comment.Metadata>
+                <Comment.Text>
+                  <p>{comment.comment_text}</p>
+                </Comment.Text>
+              </Comment.Content>
+            </Comment>
+          ))
+        : null}
       <Form reply onSubmit={onSubmitForm}>
         <Form.TextArea name="comment_text" onChange={handleChange} />
         <Button

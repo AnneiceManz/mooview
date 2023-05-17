@@ -6,6 +6,7 @@ import CommentForm from "./CommentForm";
 
 const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
+  const currentUser = user?.sub;
   return (
     <Card centered>
       <Card.Content>
@@ -24,7 +25,7 @@ const Reviews = ({ review, movieName }) => {
           </Button.Group>
         </Card.Content>
       )}
-      <CommentForm review_id={review.review_id} user={user?.sub} />
+      <CommentForm review_id={review.review_id} user_id={currentUser} />
     </Card>
   );
 };
