@@ -8,7 +8,7 @@ const Searchbar = ({onSearch}) => {
   const searchMovies = async () => {
     if (query) {
       try {
-        const response = await fetch("/api/movie/search/" + query);
+        const response = await fetch("/api/search/" + query);
         const data = await response.json();
         onSearch(data.results);
       } catch (error) {
@@ -25,13 +25,20 @@ const Searchbar = ({onSearch}) => {
     setQuery(e.target.value);
   }
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      searchMovies();
+    }
+  }
+
 
   return (
     <Input
     icon='search'
       placeholder="Search..."
       value={query}
-      onSearchChange={handleSearchChange}
+      onChange={handleSearchChange}
+      onKeyPress={handleKeyPress}
     />
   );
 };

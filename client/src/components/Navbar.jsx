@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet, Link } from "react-router-dom";
@@ -10,6 +10,11 @@ import Searchbar from "./Search/Searchbar";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
+  const [results, setResults] = useState([]);
+
+  const handleSearch = (results) => {
+    setResults(results);
+  }
 
   //A function to handle the post request
   const addUserToDB = async (authUser) => {
@@ -49,7 +54,7 @@ function MyNavBar() {
 
           </Menu.Item>
             <Menu.Menu position="right">
-            <Searchbar />
+            <Searchbar onSearch={handleSearch} results={results}/>
               <Menu.Item>
               {!isAuthenticated && (
                   <Button.Group>

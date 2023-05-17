@@ -4,6 +4,7 @@ import SingleMovie from "./pages/SingleMovie";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MyNavBar from "./components/Navbar";
+import SearchResults from "./components/Search/SearchResults";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/movie/:movie_id" element={<SingleMovie />} />
+        <Route path='/search/results' element={<SearchResults />} />
       </Route>
     </Routes>
   );
