@@ -57,6 +57,9 @@ const CommentForm = ({ review_id, user_id }) => {
         ? comments.map((comment) => (
             <Comment key={comment.comment_id}>
               <Comment.Content>
+                <Comment.Author>
+                    {comment.username}
+                </Comment.Author>
                 <Comment.Metadata>
                   Posted: {comment.posted}
                 </Comment.Metadata>

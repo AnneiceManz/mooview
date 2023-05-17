@@ -11,9 +11,9 @@ const Reviews = ({ review, movieName }) => {
     <Card centered>
       <Card.Content>
         <Card.Header textAlign="center">{review.title}</Card.Header>
-        {/* <Card.Meta>{review.user_id}</Card.Meta> */}
+        <Card.Meta textAlign="center" style={{color: "red", fontWeight: "bold"}}><span style={{color: "#3977C9"}}>{'Written by: '}</span> {review.username}</Card.Meta>
         <Card.Meta>
-          {review.star_rating} stars for {movieName}!
+          {review.star_rating} <Icon name="star" color="yellow"/>'s for {movieName}!
         </Card.Meta>
         <Card.Description>{review.post}</Card.Description>
       </Card.Content>
