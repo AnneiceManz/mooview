@@ -54,7 +54,7 @@ const PostReview = ({ user, movie_id, movieName }) => {
         onClose={() => setShowModal(false)}
         onOpen={() => setShowModal(true)}
         open={showModal}
-        trigger={<Button>Post Review</Button>}
+        trigger={<Button size="small" color="blue">Post Review</Button>}
         size="small"
         style={{ height: "auto", margin: "20%" }}
       >

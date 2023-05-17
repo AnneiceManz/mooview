@@ -131,7 +131,7 @@ const SingleMovie = () => {
                         onClose={() => setShowModal(false)}
                         onOpen={() => setShowModal(true)}
                         open={showModal}
-                        trigger={<Button size="mini" color="blue">Watch Trailer</Button>}
+                        trigger={<Button size="small" color="blue">Watch Trailer</Button>}
                         dimmer="blurring"
                       >
                         <Modal.Content>
