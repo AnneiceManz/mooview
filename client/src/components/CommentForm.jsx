@@ -56,6 +56,7 @@ const CommentForm = ({ review_id, user_id }) => {
       {comments
         ? comments.map((comment) => (
             <Comment key={comment.comment_id}>
+                <Comment.Avatar src={comment.picture} />
               <Comment.Content>
                 <Comment.Author>
                     {comment.username}
