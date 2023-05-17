@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
-import { Comment, Header, Form, Button } from "semantic-ui-react";
+import { Comment, Header, Form, Button, Segment } from "semantic-ui-react";
 import { useLocation, Link } from "react-router-dom";
 
 const CommentForm = ({ review_id, user_id }) => {
@@ -54,8 +54,14 @@ const CommentForm = ({ review_id, user_id }) => {
 
   return (
     <>
-      <Button onClick={handleCollapse}>{collapsed ? 'Show Comments' : 'Collapse Comments'}</Button>
-      <Comment.Group collapsed={collapsed}>
+      <div>
+        <Button onClick={handleCollapse}>
+          {collapsed ? "Show Comments" : "Collapse Comments"}
+        </Button>
+      </div>
+
+      <Comment.Group size="large" collapsed={collapsed}>
+      <Segment>
         <Header as="h3" dividing>
           Comments
         </Header>
@@ -74,7 +80,7 @@ const CommentForm = ({ review_id, user_id }) => {
             ))
           : null}
         <Form reply onSubmit={onSubmitForm}>
-          <Form.TextArea  name="comment_text" onChange={handleChange} />
+          <Form.TextArea name="comment_text" onChange={handleChange} />
           <Button
             content="Add Comment"
             labelPosition="left"
@@ -82,6 +88,7 @@ const CommentForm = ({ review_id, user_id }) => {
             primary
           />
         </Form>
+      </Segment>
       </Comment.Group>
     </>
   );
