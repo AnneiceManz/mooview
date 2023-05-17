@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-
-import { Input, Search } from "semantic-ui-react";
+import SearchResults from "./SearchResults";
+import { Button, Input, Search } from "semantic-ui-react";
 
 const Searchbar = ({onSearch}) => {
   const [query, setQuery] = useState("");
+  const [searched, setSearched] = useState(false);
 
   const searchMovies = async () => {
     if (query) {
@@ -11,15 +12,16 @@ const Searchbar = ({onSearch}) => {
         const response = await fetch("/api/search/" + query);
         const data = await response.json();
         onSearch(data.results);
+        setSearched(true);
       } catch (error) {
         console.log(error);
       }
     }
   }
 
-  useEffect(() => {
-    searchMovies();
-  }, [query]);
+  // useEffect(() => {
+  //   searchMovies();
+  // }, [query]);
 
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
@@ -31,8 +33,14 @@ const Searchbar = ({onSearch}) => {
     }
   }
 
+  const handleSearchButtonClicked = () => {
+    searchMovies();
+  }
+
 
   return (
+    <>
+    
     <Input
     icon='search'
       placeholder="Search..."
@@ -40,6 +48,9 @@ const Searchbar = ({onSearch}) => {
       onChange={handleSearchChange}
       onKeyPress={handleKeyPress}
     />
+    <Button onClick={handleSearchButtonClicked}>Search</Button>
+    {searched && <SearchResults query={query} />}
+    </>
   );
 };
 
