@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { Comment, Header, Form, Button } from "semantic-ui-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const CommentForm = ({ review_id, user_id }) => {
   console.log("this is the review id", review_id);
@@ -14,11 +14,15 @@ const CommentForm = ({ review_id, user_id }) => {
   });
 
   const [comments, setComments] = useState(null);
+  const [collapsed, setCollapsed] = useState(true);
 
   const handleChange = (e) => {
     setWriteComment({ ...writeComment, [e.target.name]: e.target.value });
   };
 
+  const handleCollapse = (e) => {
+    setCollapsed(!collapsed);
+  }
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -44,12 +48,17 @@ const CommentForm = ({ review_id, user_id }) => {
     }
   };
 
+
   useEffect(() => {
     getComments();
   }, [review_id]);
 
   return (
-    <Comment.Group>
+    <>
+    <Button
+    onClick={handleCollapse}
+    >Read/Post Comments</Button>
+    <Comment.Group collapsed={collapsed}>
       <Header as="h3" dividing>
         Comments
       </Header>
@@ -81,6 +90,7 @@ const CommentForm = ({ review_id, user_id }) => {
         />
       </Form>
     </Comment.Group>
+    </>
   );
 };
 
