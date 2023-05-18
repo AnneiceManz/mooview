@@ -63,7 +63,7 @@ const CommentForm = ({ review_id, user_id }) => {
       </div>
       <div>
         <Comment.Group collapsed={collapsed}>
-          <Segment>
+          <Segment >
             <Header as="h3" dividing>
               Comments
             </Header>

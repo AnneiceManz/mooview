@@ -81,7 +81,7 @@ const SingleMovie = () => {
                   />
                 </Grid.Column>
                 <Grid.Column width={10}>
-                  <Segment padded="very" textAlign="center">
+                  <Segment padded="very" textAlign="center" basic>
                     <Grid>
                       <Grid.Row>
                         <div>
@@ -145,7 +145,7 @@ const SingleMovie = () => {
             </Grid>
           </Container>
           <div>
-            <Segment padded="very">
+            <Segment padded="very" basic>
               <Header textAlign="center" as="h2">
                 Reviews
               </Header>
