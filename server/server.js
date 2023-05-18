@@ -297,6 +297,19 @@ app.put("/api/comments/:comment_id", async (req, res) => {
   }
 });
 
+// delete request for users
+app.delete("/api/comments/:comment_id", async (req, res) => {
+  try {
+    const comment_id = req.params.comment_id;
+    await db.query("DELETE FROM comments WHERE comment_id=$1", [user_id]);
+    console.log(comment_id, "Has been deleted");
+    res.status(200).end();
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 
 //API routes/requests
