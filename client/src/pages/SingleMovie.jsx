@@ -119,6 +119,7 @@ const SingleMovie = () => {
                           .slice(0, 5)
                           .map((cast, i) => (
                             <Grid.Column width={4} key={i}>
+                              <Image src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}/>
                               {cast.name}
                             </Grid.Column>
                           ))}
