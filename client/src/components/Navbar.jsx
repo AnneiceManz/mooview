@@ -63,8 +63,8 @@ function MyNavBar() {
         <Menu.Item>
           <Image
             href="/"
-            src={IMAGES.mooview_logo}
-            style={{ width: "130px", height: "auto", margin: "0.5em" }}
+            src={IMAGES.mooview_logo2}
+            style={{ width: "15em", height: "auto", margin: "0.5em" }}
             alt="Mooview Logo"
           />
         </Menu.Item>
