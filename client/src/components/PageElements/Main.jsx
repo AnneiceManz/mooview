@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { resolvePath, useNavigate } from "react-router-dom";
-import { Button, Container, Header, Image, Segment } from "semantic-ui-react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Button, Container, Header, Segment } from "semantic-ui-react";
 import moment from "moment";
 
 const Main = () => {
@@ -18,12 +17,9 @@ const Main = () => {
       const randomIndex = Math.floor(
         Math.random() * movies.data.results.length
       );
-      console.log("from main", movies);
       //if/else statement: if there is movie data AND the movie data array is more than zero --> setMovie to a random movie
       if (movies && movies.data.results.length > 0) {
-        console.log("do we get to this point");
         setMovie(movies.data.results[randomIndex]);
-        console.log("from main", movie);
         //else console log "No movies found"
       } else {
         console.log("No Movies found");
@@ -58,7 +54,9 @@ const Main = () => {
           <Segment basic padded>
             <Header.Content>
               <h1 className="header-text header-movie-title">{movie.title}</h1>
-              <Button color="red" onClick={handleClick}>More Info</Button>
+              <Button color="red" onClick={handleClick}>
+                More Info
+              </Button>
               <div style={{ paddingTop: "20px" }}>
                 <h4 className="header-text header-release-date">
                   {moment(movie.release_date).format("MMM DD, YYYY")}
