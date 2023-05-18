@@ -58,16 +58,12 @@ const Main = () => {
           <Segment basic padded>
             <Header.Content>
               <h1 className="header-text header-movie-title">{movie.title}</h1>
-              <Button.Group>
-              <Button color="blue">Trailer</Button>
               <Button color="red">More Info</Button>
-              </Button.Group>
-              <div style={{paddingTop: "20px"}}>
-
-              <h4 className="header-text header-release-date">
-                {moment(movie.release_date).format("MMM DD, YYYY")}
-              </h4>
-              <p className="header-text header-overview">{movie.overview}</p>
+              <div style={{ paddingTop: "20px" }}>
+                <h4 className="header-text header-release-date">
+                  {moment(movie.release_date).format("MMM DD, YYYY")}
+                </h4>
+                <p className="header-text header-overview">{movie.overview}</p>
               </div>
             </Header.Content>
           </Segment>
