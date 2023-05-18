@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
-import { Container, Header, Image, Segment } from "semantic-ui-react";
+import { Button, Container, Header, Image, Segment } from "semantic-ui-react";
 import axios from "axios";
 
 const Main = () => {
@@ -54,13 +54,20 @@ const Main = () => {
       ></div>
       <div className="main-header-overlay">
         {movie ? (
-          <Segment basic>
+          <Segment basic padded>
             <Header.Content>
               <h1 className="header-text header-movie-title">{movie.title}</h1>
+              <Button.Group>
+              <Button color="blue">Trailer</Button>
+              <Button color="red">More Info</Button>
+              </Button.Group>
+              <div>
+
               <h4 className="header-text header-release-date">
                 {movie.release_date}
               </h4>
               <p className="header-text header-overview">{movie.overview}</p>
+              </div>
             </Header.Content>
           </Segment>
         ) : null}
