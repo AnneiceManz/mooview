@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
-import { Image } from "semantic-ui-react";
+import { Container, Header, Image } from "semantic-ui-react";
 import axios from "axios";
 
 const Main = () => {
@@ -43,22 +43,26 @@ const Main = () => {
   };
 
   return (
-    <div>
+    <Header
+      className="main-header"
+      style={{
+        backgroundImage: movie
+          ? `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
+          : null,
+        backgroundSize: "cover",
+        filter: "brightness(50%)",
+      }}
+    >
       {movie ? (
-        <div>
-          <Image
-            centered
-            size="medium"
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            onClick={handleClick}
-          />
-          <h2>{movie.title}</h2>
-          <p>{movie.overview}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+        <Container>
+          <Header.Content>
+            <Header as="h1" className="header-text">{movie.title}</Header>
+            <Header.Subheader className="header-text">{movie.release_date}</Header.Subheader>
+            <Header as="h3" className="header-text">{movie.overview}</Header>
+          </Header.Content>
+        </Container>
+      ) : null}
+    </Header>
   );
 };
 

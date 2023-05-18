@@ -139,3 +139,12 @@ button.btn.btn-primary {
   opacity: 1;
 }
 
+.main-header {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
