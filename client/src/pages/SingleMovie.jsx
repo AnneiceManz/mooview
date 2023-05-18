@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -17,7 +17,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/LoginButton";
 
 const SingleMovie = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
   const { user, isAuthenticated } = useAuth0();
@@ -27,8 +26,6 @@ const SingleMovie = () => {
   const [movieData, setMovieData] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [like, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [reviews, setReviews] = useState(null);
 
   const fetchData = async () => {
@@ -131,7 +128,11 @@ const SingleMovie = () => {
                         onClose={() => setShowModal(false)}
                         onOpen={() => setShowModal(true)}
                         open={showModal}
-                        trigger={<Button size="small" color="blue">Watch Trailer</Button>}
+                        trigger={
+                          <Button size="small" color="blue">
+                            Watch Trailer
+                          </Button>
+                        }
                         dimmer="blurring"
                       >
                         <Modal.Content>
@@ -164,19 +165,18 @@ const SingleMovie = () => {
               </Card.Group>
             </Segment>
             {!isAuthenticated && (
-                <>
-<span>Login to post a review!</span>
-<LoginButton />
-                </>
-              )}
-              {isAuthenticated && (
-
+              <>
+                <span>Login to post a review!</span>
+                <LoginButton />
+              </>
+            )}
+            {isAuthenticated && (
               <PostReview
                 user={user.sub}
                 movie_id={movie_id}
                 movie_title={movieData.data.title}
               />
-              )}
+            )}
             {/* {!user ? null : (
             )} */}
           </div>

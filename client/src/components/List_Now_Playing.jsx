@@ -3,7 +3,7 @@ import { Card, Segment } from "semantic-ui-react";
 import Movie from "./MovieCard";
 
 const ListNowPlaying = () => {
-  // this is my original state with an array of students
+
   const [movies, setMovies] = useState(null);
 
   async function loadMovies() {
