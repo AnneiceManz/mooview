@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NowPlaying from "./Now_Playing";
 import { Card, Segment } from "semantic-ui-react";
+import Movie from "./MovieCard";
 
 const ListNowPlaying = () => {
   // this is my original state with an array of students
@@ -26,7 +26,7 @@ const ListNowPlaying = () => {
           <Card.Group itemsPerRow={6}>
             {movies
               ? movies.data.results.map((movie) => {
-                  return <NowPlaying key={movie.id} movie={movie} />;
+                  return <Movie key={movie.id} movie={movie} />;
                 })
               : null}
             {/* // <li>{students ? students.data.results[0].original_title:null}</li> */}
