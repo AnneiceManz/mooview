@@ -18,28 +18,37 @@ const Reviews = ({ review, movieName }) => {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
     <>
-    <Card centered>
-      <Card.Content>
-        <Card.Header textAlign="center">{review.title}</Card.Header>
-        <Card.Meta textAlign="center" style={{color: "red", fontWeight: "bold"}}><span style={{color: "#3977C9"}}>{'Written by: '}</span> {review.username}</Card.Meta>
-        <Card.Meta>
-          {review.star_rating} <Icon name="star" color="yellow"/>'s for {movieName}!
-        </Card.Meta>
-        <Card.Description>{review.post}</Card.Description>
-      </Card.Content>
-      {user?.sub === review.user_id && (
-        <Card.Content extra>
-          <Button.Group size="tiny">
-            <UpdateReview review={review} movieName={movieName} />
-            <Button color="red" onClick={handleDelete}>Delete</Button>
-          </Button.Group>
+      <Card centered>
+        <Card.Content>
+          <Card.Header textAlign="center">{review.title}</Card.Header>
+          <Card.Meta
+            textAlign="center"
+            style={{ color: "red", fontWeight: "bold" }}
+          >
+            <span style={{ color: "#3977C9" }}>{"Written by: "}</span>{" "}
+            {review.username}
+          </Card.Meta>
+          <Card.Meta>
+            {review.star_rating} <Icon name="star" color="yellow" />
+            's for {movieName}!
+          </Card.Meta>
+          <Card.Description>{review.post}</Card.Description>
         </Card.Content>
-      )}
-    </Card>
+        {user?.sub === review.user_id && (
+          <Card.Content extra>
+            <Button.Group size="tiny">
+              <UpdateReview review={review} movieName={movieName} />
+              <Button color="red" onClick={handleDelete}>
+                Delete
+              </Button>
+            </Button.Group>
+          </Card.Content>
+        )}
+      </Card>
       <CommentForm review_id={review.review_id} user_id={currentUser} />
     </>
   );

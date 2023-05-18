@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MyNavBar />}>
         <Route index element={<Home />} />
-        <Route path="/profile" element={<AuthGuard component={Profile }/>} />
+        <Route path="/profile" element={<AuthGuard component={Profile} />} />
         <Route path="/movie/:movie_id" element={<SingleMovie />} />
         <Route path="/search/:search_term" element={<Search />} />
       </Route>

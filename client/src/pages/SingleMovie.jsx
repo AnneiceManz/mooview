@@ -88,7 +88,12 @@ const SingleMovie = () => {
                       </Grid.Row>
                       <Grid.Row>
                         <div>
-                          <span>Released: {moment(movieData.data.release_date).format("MMM DD, YYYY")} </span>
+                          <span>
+                            Released:{" "}
+                            {moment(movieData.data.release_date).format(
+                              "MMM DD, YYYY"
+                            )}{" "}
+                          </span>
                           <span>
                             {movieData.data.runtime}
                             {" mins"}
