@@ -40,6 +40,18 @@ const CommentForm = ({ review_id, user_id }) => {
     }
   };
 
+  const handleDelete = async (comment_id) => {
+    try {
+      const response = await fetch(`/api/comments/${comment_id}`, {
+        method: "DELETE",
+      });
+      console.log(response);
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   const getComments = async () => {
     try {
       const response = await fetch(`/api/comments/${review_id}`);
@@ -81,7 +93,7 @@ const CommentForm = ({ review_id, user_id }) => {
                       </Comment.Text>
                       {user_id=== comment.user_id && (
         <Comment.Actions>
-            <Comment.Action style={{color: "red"}}>Delete Comment</Comment.Action>
+            <Comment.Action style={{color: "red"}} onClick={() => handleDelete(comment.comment_id)}>Delete Comment</Comment.Action>
         </Comment.Actions>
       )}
                     </Comment.Content>
