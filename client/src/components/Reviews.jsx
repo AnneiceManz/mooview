@@ -2,16 +2,19 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { Card, Button, Icon } from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
+import CommentForm from "./CommentForm";
 
 const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
+  const currentUser = user?.sub;
   return (
+    <>
     <Card centered>
       <Card.Content>
         <Card.Header textAlign="center">{review.title}</Card.Header>
-        {/* <Card.Meta>{review.user_id}</Card.Meta> */}
+        <Card.Meta textAlign="center" style={{color: "red", fontWeight: "bold"}}><span style={{color: "#3977C9"}}>{'Written by: '}</span> {review.username}</Card.Meta>
         <Card.Meta>
-          {review.star_rating} stars for {movieName}!
+          {review.star_rating} <Icon name="star" color="yellow"/>'s for {movieName}!
         </Card.Meta>
         <Card.Description>{review.post}</Card.Description>
       </Card.Content>
@@ -24,6 +27,8 @@ const Reviews = ({ review, movieName }) => {
         </Card.Content>
       )}
     </Card>
+      <CommentForm review_id={review.review_id} user_id={currentUser} />
+    </>
   );
 };
 

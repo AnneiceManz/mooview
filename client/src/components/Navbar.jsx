@@ -45,6 +45,7 @@ function MyNavBar() {
         name: authUser.name,
         email: authUser.email,
         username: authUser.nickname,
+        picture: authUser.picture,
       };
       const response = await fetch(`/api/users`, {
         method: "POST",
