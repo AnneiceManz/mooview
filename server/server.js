@@ -221,6 +221,19 @@ app.put("/api/reviews/:review_id", async (req, res) => {
   }
 });
 
+// delete request for reviews
+app.delete("/api/reviews/:review_id", async (req, res) => {
+  try {
+    const review_id = req.params.review_id;
+    await db.query("DELETE FROM reviews WHERE review_id=$1", [review_id]);
+    console.log(review_id, "Has been deleted");
+    res.status(200).end();
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 
 //Comments routes/requests
 
