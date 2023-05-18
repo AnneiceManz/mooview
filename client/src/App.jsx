@@ -3,7 +3,7 @@ import Profile from "./pages/profile";
 import SingleMovie from "./pages/SingleMovie";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import MyNavBar from "./components/Navbar";
+import MyNavBar from "./components/PageElements/Navbar";
 import Search from "./pages/Search";
 import { AuthGuard } from "./components/Auth0/AuthGuard";
 

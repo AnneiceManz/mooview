@@ -11,10 +11,10 @@ import {
   Card,
 } from "semantic-ui-react";
 import Youtube from "react-youtube";
-import Reviews from "../components/Reviews";
-import PostReview from "../components/PostReview";
+import Reviews from "../components/Reviews/Reviews";
+import PostReview from "../components/Reviews/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "../components/LoginButton";
+import LoginButton from "../components/Auth0/LoginButton";
 import moment from "moment";
 
 const SingleMovie = () => {

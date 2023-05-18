@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import IMAGES from "../images/IMAGES";
+import IMAGES from "../../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { Button, Image, Menu, Container, Form } from "semantic-ui-react";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import SignupButton from "./SignupButton";
+import LoginButton from "../Auth0/LoginButton";
+import LogoutButton from "../Auth0/LogoutButton";
+import SignupButton from "../Auth0/SignupButton";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();

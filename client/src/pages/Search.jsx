@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Movie from "../components/MovieCard";
+import Movie from "../components/Movies/MovieCard";
 import { useLocation } from "react-router-dom";
 import { Card, Segment, Header } from "semantic-ui-react";
 

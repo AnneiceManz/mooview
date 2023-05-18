@@ -1,7 +1,7 @@
 import React from "react";
-import ListMovies from "../components/ListMovies";
-import ListNowPlaying from "../components/List_Now_Playing";
-import Main from "../components/Main";
+import ListMovies from "../components/Movies/ListMovies";
+import ListNowPlaying from "../components/Movies/List_Now_Playing";
+import Main from "../components/PageElements/Main";
 
 const Home = () => {
   return (

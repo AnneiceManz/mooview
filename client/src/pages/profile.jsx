@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image, Card } from "semantic-ui-react";
-import Reviews from "../components/Reviews";
+import Reviews from "../components/Reviews/Reviews";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
