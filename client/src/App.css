@@ -144,6 +144,10 @@ button.btn.btn-primary {
   opacity: 1;
 }
 
+.main-container {
+  position: relative;
+  height: 500px;
+}
 .main-header {
   background-size: cover;
   height: 500px;
@@ -151,9 +155,23 @@ button.btn.btn-primary {
   justify-content:flex-start;
   align-items: center;
   text-align: left;
-  opacity: 70%;
   border-radius: 10px;
 
+}
+
+.main-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 500px;
+  z-index: 1;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  text-align: left;
+  border-radius: 10px;
 }
 
 .header-text {
