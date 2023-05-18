@@ -9,6 +9,13 @@
   margin: 5px;
 }
 
+.main-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
 .mybody {
   display: flex;
   gap: 3em;
@@ -86,8 +93,23 @@ button.btn.btn-primary {
   height: auto;
 }
 
+.singleMovie-Container {
+  position: relative;
+}
+.movieInfoBackgroundDiv {
+  height: 70vh;
+  background-size: cover;
+}
+
 .movieInfoDiv {
-  margin-top: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
 }
 
 .profile {
