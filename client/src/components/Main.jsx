@@ -56,9 +56,9 @@ const Main = () => {
         <Segment basic>
           <Header></Header>
           <Header.Content>
-            <h1 className="header-text">{movie.title}</h1>
-            <h4 className="header-text">{movie.release_date}</h4>
-            <p className="header-text">{movie.overview}</p>
+            <h1 className="header-text header-movie-title">{movie.title}</h1>
+            <h4 className="header-text header-release-date">{movie.release_date}</h4>
+            <p className="header-text header-overview">{movie.overview}</p>
           </Header.Content>
         </Segment>
       ) : null}
