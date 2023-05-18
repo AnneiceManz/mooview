@@ -7,6 +7,19 @@ import CommentForm from "./CommentForm";
 const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
   const currentUser = user?.sub;
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`/api/reviews/${review.review_id}`, {
+        method: "DELETE",
+      });
+      console.log(response);
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <>
     <Card centered>
@@ -22,7 +35,7 @@ const Reviews = ({ review, movieName }) => {
         <Card.Content extra>
           <Button.Group size="tiny">
             <UpdateReview review={review} movieName={movieName} />
-            <Button color="red">Delete</Button>
+            <Button color="red" onClick={handleDelete}>Delete</Button>
           </Button.Group>
         </Card.Content>
       )}
