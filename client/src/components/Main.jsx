@@ -55,7 +55,6 @@ const Main = () => {
       <div className="main-header-overlay">
         {movie ? (
           <Segment basic>
-            <Header></Header>
             <Header.Content>
               <h1 className="header-text header-movie-title">{movie.title}</h1>
               <h4 className="header-text header-release-date">
