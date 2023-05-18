@@ -15,6 +15,7 @@ import Reviews from "../components/Reviews";
 import PostReview from "../components/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/LoginButton";
+import moment from "moment";
 
 const SingleMovie = () => {
   const location = useLocation();
@@ -87,7 +88,7 @@ const SingleMovie = () => {
                       </Grid.Row>
                       <Grid.Row>
                         <div>
-                          <span>Released: {movieData.data.release_date} </span>
+                          <span>Released: {moment(movieData.data.release_date).format("MMM DD, YYYY")} </span>
                           <span>
                             {movieData.data.runtime}
                             {" mins"}

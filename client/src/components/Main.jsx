@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
 import { Button, Container, Header, Image, Segment } from "semantic-ui-react";
 import axios from "axios";
+import moment from "moment";
 
 const Main = () => {
   // this is my original state with an array of students
@@ -64,7 +65,7 @@ const Main = () => {
               <div style={{paddingTop: "20px"}}>
 
               <h4 className="header-text header-release-date">
-                {movie.release_date}
+                {moment(movie.release_date).format("MMM DD, YYYY")}
               </h4>
               <p className="header-text header-overview">{movie.overview}</p>
               </div>
