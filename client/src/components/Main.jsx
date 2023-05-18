@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
-import { Container, Header, Image } from "semantic-ui-react";
+import { Container, Header, Image, Segment } from "semantic-ui-react";
 import axios from "axios";
 
 const Main = () => {
@@ -43,26 +43,26 @@ const Main = () => {
   };
 
   return (
-    <Header
+    <div
       className="main-header"
       style={{
         backgroundImage: movie
           ? `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
           : null,
-        backgroundSize: "cover",
-        filter: "brightness(50%)",
+        backgroundSize: "cover"
       }}
     >
       {movie ? (
-        <Container>
+        <Segment basic>
+          <Header></Header>
           <Header.Content>
-            <Header as="h1" className="header-text">{movie.title}</Header>
-            <Header.Subheader className="header-text">{movie.release_date}</Header.Subheader>
-            <Header as="h3" className="header-text">{movie.overview}</Header>
+            <h1 className="header-text">{movie.title}</h1>
+            <h4 className="header-text">{movie.release_date}</h4>
+            <p className="header-text">{movie.overview}</p>
           </Header.Content>
-        </Container>
+        </Segment>
       ) : null}
-    </Header>
+    </div>
   );
 };
 
