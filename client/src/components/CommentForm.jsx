@@ -79,6 +79,11 @@ const CommentForm = ({ review_id, user_id }) => {
                       <Comment.Text>
                         <p>{comment.comment_text}</p>
                       </Comment.Text>
+                      {user_id=== comment.user_id && (
+        <Comment.Actions>
+            <Comment.Action style={{color: "red"}}>Delete Comment</Comment.Action>
+        </Comment.Actions>
+      )}
                     </Comment.Content>
                   </Comment>
                 ))
