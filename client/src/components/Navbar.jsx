@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import IMAGES from "../images/IMAGES";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import {
-  Button,
-  Image,
-  Menu,
-  Container,
-  Input,
-  Segment,
-  Form,
-} from "semantic-ui-react";
+import { Button, Image, Menu, Container, Form } from "semantic-ui-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import SignupButton from "./SignupButton";
-import Searchbar from "./Search/Searchbar";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
@@ -70,17 +61,16 @@ function MyNavBar() {
     <>
       <Menu size="small" stackable fixed="top" borderless widths={3}>
         <Menu.Item>
-        <Image
-          href="/"
-          src={IMAGES.mooview_logo}
-          style={{ width: "130px", height: "auto", margin: "0.5em"}}
-          alt="Mooview Logo"
-        />
+          <Image
+            href="/"
+            src={IMAGES.mooview_logo}
+            style={{ width: "130px", height: "auto", margin: "0.5em" }}
+            alt="Mooview Logo"
+          />
         </Menu.Item>
-          <Menu.Item>
-            <Form>
-              <Form.Group>
-
+        <Menu.Item>
+          <Form>
+            <Form.Group>
               <Form.Input
                 type="text"
                 size="small"
@@ -90,32 +80,32 @@ function MyNavBar() {
                 onKeyPress={handleKeyPress}
               />
               <Form.Button
-              floated="right"
+                floated="right"
                 color="blue"
                 size="small"
                 type="submit"
                 content="Search"
                 onClick={handleSubmit}
               />
-              </Form.Group>
-            </Form>
-          </Menu.Item>
-            <Menu.Item position="right">
-              {!isAuthenticated && (
-                <Button.Group size="small">
-                  <SignupButton />
-                  <LoginButton />
-                </Button.Group>
-              )}
-              {isAuthenticated && (
-                <Button.Group size="small">
-                  <Button color="blue" as={Link} to="/profile">
-                    Profile
-                  </Button>
-                  <LogoutButton />
-                </Button.Group>
-              )}
-            </Menu.Item>
+            </Form.Group>
+          </Form>
+        </Menu.Item>
+        <Menu.Item position="right">
+          {!isAuthenticated && (
+            <Button.Group size="small">
+              <SignupButton />
+              <LoginButton />
+            </Button.Group>
+          )}
+          {isAuthenticated && (
+            <Button.Group size="small">
+              <Button color="blue" as={Link} to="/profile">
+                Profile
+              </Button>
+              <LogoutButton />
+            </Button.Group>
+          )}
+        </Menu.Item>
       </Menu>
       <Container style={{ marginTop: "13em" }}>
         <Outlet />
