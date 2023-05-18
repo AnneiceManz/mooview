@@ -61,7 +61,7 @@ const Main = () => {
               <Button color="blue">Trailer</Button>
               <Button color="red">More Info</Button>
               </Button.Group>
-              <div>
+              <div style={{paddingTop: "20px"}}>
 
               <h4 className="header-text header-release-date">
                 {movie.release_date}
