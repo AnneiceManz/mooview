@@ -57,7 +57,13 @@ app.post("/api/users", async (req, res) => {
     //console.log([newUser.id, newUser.name, newUser.email, newUser.birthday, newUser.username]);
     const result = await db.query(
       "INSERT INTO users(user_id, name, email, username, picture) VALUES($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING RETURNING *",
-      [newUser.user_id, newUser.name, newUser.email, newUser.username, newUser.picture]
+      [
+        newUser.user_id,
+        newUser.name,
+        newUser.email,
+        newUser.username,
+        newUser.picture,
+      ]
     );
     console.log(result.rows[0]);
     //if value is undefined set value to null/nothing
@@ -234,14 +240,16 @@ app.delete("/api/reviews/:review_id", async (req, res) => {
   }
 });
 
-
 //Comments routes/requests
 
 // create the get request for comments according to review_id in the endpoint '/api/comments/:review_id'
 app.get("/api/comments/:review_id", async (req, res) => {
   const review_id = req.params.review_id;
   try {
-    const { rows: comments } = await db.query("SELECT * FROM comments JOIN users ON comments.user_id=users.user_id WHERE movie_review_id=$1", [review_id]);
+    const { rows: comments } = await db.query(
+      "SELECT * FROM comments JOIN users ON comments.user_id=users.user_id WHERE movie_review_id=$1",
+      [review_id]
+    );
     res.send(comments);
   } catch (e) {
     return res.status(400).json({ e });
@@ -255,16 +263,11 @@ app.post("/api/comments", async (req, res) => {
       review_id: req.body.review_id,
       user_id: req.body.user_id,
       comment_text: req.body.comment_text,
-
     };
 
     const result = await db.query(
       "INSERT INTO comments(movie_review_id, user_id, comment_text) VALUES($1, $2, $3) RETURNING *",
-      [
-        newComment.review_id,
-        newComment.user_id,
-        newComment.comment_text,
-      ]
+      [newComment.review_id, newComment.user_id, newComment.comment_text]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
@@ -284,9 +287,7 @@ app.put("/api/comments/:comment_id", async (req, res) => {
   console.log("comment", comment_id, "Has been updated");
   // UPDATE comments SET name = "something" WHERE id="16";
   const query = `UPDATE comments SET comment_text=$1 WHERE comment_id=${comment_id} RETURNING *`;
-  const values = [
-    updatedComment.comment_text,
-  ];
+  const values = [updatedComment.comment_text];
   try {
     const updated = await db.query(query, values);
     console.log(updated.rows[0]);
@@ -310,8 +311,6 @@ app.delete("/api/comments/:comment_id", async (req, res) => {
   }
 });
 
-
-
 //API routes/requests
 
 // creates endpoint to fetch popular movies
@@ -319,22 +318,6 @@ app.get("/api/movie/popular/", (req, res) => {
   const apiKey = process.env.API_KEY;
 
   const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-//creates endpoint to fetch popular tv shows
-app.get("/api/tv/popular/", (req, res) => {
-  const apiKey = process.env.API_KEY;
-
-  const url = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`;
 
   fetch(url)
     .then((res) => res.json())
