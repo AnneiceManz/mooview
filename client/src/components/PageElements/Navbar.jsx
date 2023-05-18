@@ -58,7 +58,7 @@ function MyNavBar() {
   console.log("From Navbar", isAuthenticated);
 
   return (
-    <div className="main-app">
+    <>
       <Menu size="small" stackable fixed="top" borderless widths={3}>
         <Menu.Item>
           <Image
@@ -110,7 +110,7 @@ function MyNavBar() {
       <Container style={{ marginTop: "13em" }}>
         <Outlet />
       </Container>
-    </div>
+    </>
   );
 }
 
