@@ -90,18 +90,18 @@ const SingleMovie = () => {
                       <Grid>
                         <Grid.Row>
                           <div>
-                            <h2>{movieData.data.title}</h2>
+                            <h2 className="single-movie-title">{movieData.data.title}</h2>
                           </div>
                         </Grid.Row>
                         <Grid.Row>
                           <div>
-                            <span>
+                            <span className="single-movie-span">
                               Released:{" "}
                               {moment(movieData.data.release_date).format(
                                 "MMM DD, YYYY"
                               )}{" "}
                             </span>
-                            <span>
+                            <span className="single-movie-span">
                               {movieData.data.runtime}
                               {" mins"}
                             </span>
@@ -124,18 +124,22 @@ const SingleMovie = () => {
                         </Grid.Row>
                         <Grid.Row>
                           <span>Starring: </span>
+                        </Grid.Row>
+                        <Grid.Row>
                           {movieData.data.credits.cast
                             .slice(0, 5)
                             .map((cast, i) => (
-                              <Grid.Column width={4} key={i}>
+                              <Grid.Column width={3} key={i}>
                                 <Image
+                                size="tiny"
                                   src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                                 />
                                 {cast.name}
                               </Grid.Column>
                             ))}
+                          
                         </Grid.Row>
-                        <Grid.Row></Grid.Row>
+                        <Grid.Row centered>
                         <Modal
                           size="small"
                           style={{
@@ -157,6 +161,7 @@ const SingleMovie = () => {
                             <Youtube className="video" videoId={trailer.key} />
                           </Modal.Content>
                         </Modal>
+                        </Grid.Row>
                       </Grid>
                     </Segment>
                   </Grid.Column>
