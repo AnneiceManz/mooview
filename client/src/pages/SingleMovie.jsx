@@ -166,7 +166,7 @@ const SingleMovie = () => {
                             onOpen={() => setShowModal(true)}
                             open={showModal}
                             trigger={
-                              <Button size="small" color="blue">
+                              <Button basic inverted size="small">
                                 Watch Trailer
                               </Button>
                             }
