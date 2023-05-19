@@ -248,6 +248,7 @@ margin-right: 20px;
 }
 
 .reviews {
-  width: 70vw;
   margin: auto;
+  margin-top: -220px;
+  width: 70vw;
 }
