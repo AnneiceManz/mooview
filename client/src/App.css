@@ -240,6 +240,7 @@ button.btn.btn-primary {
   color: white;
   position: relative;
   top: 20vh;
+  height: 600px;
   width: 80%;
   z-index: 1;
   display: flex;
