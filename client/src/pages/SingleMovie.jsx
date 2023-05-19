@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -9,15 +9,16 @@ import {
   Container,
   Header,
   Card,
+  Icon,
 } from "semantic-ui-react";
 import Youtube from "react-youtube";
-import Reviews from "../components/Reviews";
-import PostReview from "../components/PostReview";
+import Reviews from "../components/Reviews/Reviews";
+import PostReview from "../components/Reviews/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "../components/LoginButton";
+import LoginButton from "../components/Auth0/LoginButton";
+import moment from "moment";
 
 const SingleMovie = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const movie_id = location.pathname;
   const { user, isAuthenticated } = useAuth0();
@@ -27,8 +28,6 @@ const SingleMovie = () => {
   const [movieData, setMovieData] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [like, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [reviews, setReviews] = useState(null);
 
   const fetchData = async () => {
@@ -67,85 +66,129 @@ const SingleMovie = () => {
   }, [movie_id]);
 
   return (
-    <div className="movieInfoDiv">
+    <div className="single">
       {movieData ? (
         <>
-          <Container>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={5}>
-                  <Image
-                    size="medium"
-                    rounded
-                    src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
-                  />
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <Segment padded="very" textAlign="center">
-                    <Grid>
-                      <Grid.Row>
-                        <div>
-                          <h2>{movieData.data.title}</h2>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <div>
-                          <span>Released: {movieData.data.release_date} </span>
-                          <span>
-                            {movieData.data.runtime}
-                            {" mins"}
-                          </span>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        {movieData.data.genres &&
-                          movieData.data.genres.slice(0, 5).map((genre, i) => (
-                            <Grid.Column width={3} key={i}>
-                              {genre.name}
-                            </Grid.Column>
-                          ))}
-                      </Grid.Row>
-                      <Grid.Row>
-                        <div>
-                          <p>{movieData.data.overview}</p>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <span>Starring: </span>
-                        {movieData.data.credits.cast
-                          .slice(0, 5)
-                          .map((cast, i) => (
-                            <Grid.Column width={4} key={i}>
-                              {cast.name}
-                            </Grid.Column>
-                          ))}
-                      </Grid.Row>
-                      <Grid.Row></Grid.Row>
-                      <Modal
-                        size="small"
-                        style={{
-                          marginTop: "180px",
-                          height: "auto",
-                          width: "auto",
-                        }}
-                        onClose={() => setShowModal(false)}
-                        onOpen={() => setShowModal(true)}
-                        open={showModal}
-                        trigger={<Button>Watch Trailer</Button>}
-                        dimmer="blurring"
-                      >
-                        <Modal.Content>
-                          <Youtube className="video" videoId={trailer.key} />
-                        </Modal.Content>
-                      </Modal>
-                    </Grid>
-                  </Segment>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-          <div>
-            <Segment padded="very">
+          <div className="movieInfoDiv">
+            <div
+              className="movieBackdrop"
+              style={{
+                background: `linear-gradient(180deg, rgba(0,0,0,0.3169861694677871) 33%, rgba(0,0,0,1) 69%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <Container className="movieInfoContainer">
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={5}>
+                    <Image
+                      size="medium"
+                      rounded
+                      src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={10}>
+                    <Segment padded="very" textAlign="center" basic>
+                      <Grid relaxed>
+                        <Grid.Row>
+                          <div>
+                            <h2 className="single-movie-title">
+                              {movieData.data.title}
+                            </h2>
+                          </div>
+                        </Grid.Row>
+
+                        <Grid.Row stretched>
+                          <Grid.Column>
+                            <Header style={{color: "white"}} as='h1' icon='star' content={movieData.data.vote_average.toFixed(1)} />
+                          </Grid.Column>
+                          <Grid.Column width={12}>
+                            <Grid.Row>
+                              <span className="single-movie-span">
+                                Released:{" "}
+                                {moment(movieData.data.release_date).format(
+                                  "MMM DD, YYYY"
+                                )}{" "}
+                              </span>
+                              <span className="single-movie-span">
+                                {movieData.data.runtime}
+                                {" mins"}
+                              </span>
+                            </Grid.Row>
+                            <Grid.Row>
+                              {movieData.data.genres &&
+                                movieData.data.genres
+                                  .slice(0, 5)
+                                  .map((genre, i) => (
+                                    <span
+                                      className="single-movie-genres"
+                                      key={i}
+                                    >
+                                      {genre.name}
+                                    </span>
+                                  ))}
+                            </Grid.Row>
+                          </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row>
+                          <div>
+                            <p>{movieData.data.overview}</p>
+                          </div>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <span>Starring: </span>
+                        </Grid.Row>
+                        <Grid.Row>
+                          {movieData.data.credits.cast
+                            .slice(0, 5)
+                            .map((cast, i) => (
+                              <Grid.Column width={3} key={i}>
+                                <Image
+                                  size="tiny"
+                                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                                />
+                                {cast.name}
+                              </Grid.Column>
+                            ))}
+                        </Grid.Row>
+                        <Grid.Row centered>
+                          <Modal
+                            size="small"
+                            style={{
+                              marginTop: "180px",
+                              height: "auto",
+                              width: "auto",
+                            }}
+                            onClose={() => setShowModal(false)}
+                            onOpen={() => setShowModal(true)}
+                            open={showModal}
+                            trigger={
+                              <Button basic inverted size="small">
+                                Watch Trailer
+                              </Button>
+                            }
+                            dimmer="blurring"
+                          >
+                            <Modal.Content>
+                              <Youtube
+                                className="video"
+                                videoId={trailer.key}
+                              />
+                            </Modal.Content>
+                          </Modal>
+                        </Grid.Row>
+                      </Grid>
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          </div>
+          <div className="reviews">
+            <Segment padded="very" basic>
               <Header textAlign="center" as="h2">
                 Reviews
               </Header>
@@ -163,22 +206,23 @@ const SingleMovie = () => {
                   : null}
               </Card.Group>
             </Segment>
+            <Segment textAlign="center" basic>
             {!isAuthenticated && (
-                <>
-<span>Login to post a review!</span>
-<LoginButton />
-                </>
-              )}
-              {isAuthenticated && (
-
+              <>
+                <span>Login to post a review!</span>
+                <LoginButton />
+              </>
+            )}
+            {isAuthenticated && (
               <PostReview
                 user={user.sub}
                 movie_id={movie_id}
                 movie_title={movieData.data.title}
               />
-              )}
+            )}
             {/* {!user ? null : (
             )} */}
+            </Segment>
           </div>
         </>
       ) : null}

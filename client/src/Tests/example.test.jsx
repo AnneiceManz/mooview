@@ -1,5 +1,5 @@
 
-import MyNavBar from './components/Navbar';
+import MyNavBar from '../components/Navbar';
 import {expect, test} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import Student from './components/Student';

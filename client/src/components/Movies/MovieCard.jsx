@@ -1,9 +1,9 @@
+import { motion} from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Icon, Image } from "semantic-ui-react";
 
-const NowPlaying = ({ movie }) => {
-
+const Movie = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -11,6 +11,8 @@ const NowPlaying = ({ movie }) => {
   };
 
   return (
+    <div className="item">
+
     <Card centered>
       <Image
         centered
@@ -18,8 +20,13 @@ const NowPlaying = ({ movie }) => {
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         onClick={handleClick}
       />
+      <div className="overlay-icon">
+
+          {movie.vote_average}{' '}<Icon name="star" color="yellow" />'s
+      </div>
     </Card>
+    </div>
   );
 };
 
-export default NowPlaying;
+export default Movie;
