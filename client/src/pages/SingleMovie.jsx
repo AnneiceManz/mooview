@@ -102,7 +102,7 @@ const SingleMovie = () => {
 
                         <Grid.Row stretched>
                           <Grid.Column>
-                            <Header className="single-movie-star" as='h2' icon='star' content={movieData.data.vote_average.toFixed(1)} />
+                            <Header style={{color: "white"}} as='h2' icon='star' content={movieData.data.vote_average.toFixed(1)} />
                           </Grid.Column>
                           <Grid.Column width={12}>
                             <Grid.Row>
