@@ -242,6 +242,11 @@ button.btn.btn-primary {
 .single-movie-span {
   margin: 0 10px;
 }
+
+.single-movie-genres {
+margin-right: 20px;
+}
+
 .reviews {
   width: 70vw;
   margin: auto;
