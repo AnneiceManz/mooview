@@ -231,6 +231,14 @@ button.btn.btn-primary {
   align-items: center;
 }
 
+.single-movie-title {
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 0.5;
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+}
+
 .reviews {
   width: 70vw;
   margin: auto;
