@@ -1,3 +1,4 @@
+import { motion} from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Icon, Image } from "semantic-ui-react";
@@ -10,6 +11,8 @@ const Movie = ({ movie }) => {
   };
 
   return (
+    <div className="item">
+
     <Card centered>
       <Image
         centered
@@ -22,6 +25,7 @@ const Movie = ({ movie }) => {
           {movie.vote_average}{' '}<Icon name="star" color="yellow" />'s
       </div>
     </Card>
+    </div>
   );
 };
 

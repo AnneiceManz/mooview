@@ -126,7 +126,23 @@ button.btn.btn-primary {
 .profileReviews > h2 {
   text-align: center;
 }
+.home-div{
+  width: 100vh;
+  margin: auto;
+}
 
+.inner-carousel {
+  display: flex;
+}
+
+.item{
+  margin: 10px;
+}
+.carousel {
+  cursor: grab;
+  overflow: scroll;
+  overflow-y: hidden;
+}
 .overlay-icon {
   color: white;
   position: absolute;
