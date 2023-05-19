@@ -349,7 +349,7 @@ app.get("/api/movie/now_playing/", (req, res) => {
 app.get("/api/movie/horror/", (req, res) => {
   const api_key = process.env.API_KEY;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=horror&page=1&include_adult=false`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27`;
 
   fetch(url)
     .then((res) => res.json())
@@ -365,7 +365,7 @@ app.get("/api/movie/horror/", (req, res) => {
 app.get("/api/movie/comedy/", (req, res) => {
   const api_key = process.env.API_KEY;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=comedy&page=1&include_adult=false`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=35`;
 
   fetch(url)
     .then((res) => res.json())
@@ -381,7 +381,7 @@ app.get("/api/movie/comedy/", (req, res) => {
 app.get("/api/movie/action/", (req, res) => {
   const api_key = process.env.API_KEY;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=action&page=1&include_adult=false`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28`;
 
   fetch(url)
     .then((res) => res.json())
@@ -393,11 +393,59 @@ app.get("/api/movie/action/", (req, res) => {
     });
 });
 
-//creates endpoint to fetch action movies
+//creates endpoint to fetch fantasy movies
 app.get("/api/movie/fantasy/", (req, res) => {
   const api_key = process.env.API_KEY;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=fantasy&page=1&include_adult=false`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=14`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//creates endpoint to fetch animated movies
+app.get("/api/movie/animated/", (req, res) => {
+  const api_key = process.env.API_KEY;
+
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//creates endpoint to fetch family movies
+app.get("/api/movie/family/", (req, res) => {
+  const api_key = process.env.API_KEY;
+
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10751`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//creates endpoint to fetch scifi movies
+app.get("/api/movie/scifi/", (req, res) => {
+  const api_key = process.env.API_KEY;
+
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=878`;
 
   fetch(url)
     .then((res) => res.json())
