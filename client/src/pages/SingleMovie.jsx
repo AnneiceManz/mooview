@@ -68,11 +68,15 @@ const SingleMovie = () => {
     <div className="movieInfoDiv">
       {movieData ? (
         <>
-          <Container>
+        <div  className="movieBackdrop">
+          <Image className="movieInfoPoster" src={`https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path}`}/>
+        </div>
+          <Container className="movieInfoContainer">
             <Grid>
               <Grid.Row>
                 <Grid.Column width={5}>
                   <Image
+
                     size="medium"
                     rounded
                     src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
