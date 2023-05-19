@@ -72,7 +72,7 @@ const SingleMovie = () => {
             <div
               className="movieBackdrop"
               style={{
-                background: `linear-gradient(180deg, rgba(6,6,6,0.2721682422969187) 0%, rgba(0,0,0,1) 30%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`,
+                background: `linear-gradient(180deg, rgba(0,0,0,0.3169861694677871) 33%, rgba(0,0,0,1) 69%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`,
               }}
             ></div>
             <Container className="movieInfoContainer">

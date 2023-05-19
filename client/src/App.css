@@ -199,7 +199,7 @@ button.btn.btn-primary {
   width: 50%;
 }
 .movieInfoDiv {
-  margin-top: -100px;
+  margin-top: -60px;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -208,24 +208,17 @@ button.btn.btn-primary {
 
 .movieBackdrop{
   position: absolute;
-  height: 100vh;
+  height: 70vh;
   width: 100%;
   display: flex;
   left: 0;
 }
 
-.movieInfoPoster {
- background-size: cover;
- height: 70vh;
- width: 100%;
- opacity: 100%;
-}
 
 .movieInfoContainer {
   color: white;
   position: relative;
-  top: 30vh;
-
+  top: 20vh;
   width: 80%;
   z-index: 1;
   display: flex;
