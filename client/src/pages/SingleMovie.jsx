@@ -9,6 +9,7 @@ import {
   Container,
   Header,
   Card,
+  Icon,
 } from "semantic-ui-react";
 import Youtube from "react-youtube";
 import Reviews from "../components/Reviews/Reviews";
@@ -72,7 +73,10 @@ const SingleMovie = () => {
             <div
               className="movieBackdrop"
               style={{
-                background: `linear-gradient(180deg, rgba(0,0,0,0.3169861694677871) 33%, rgba(0,0,0,1) 69%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"
+                background: `linear-gradient(180deg, rgba(0,0,0,0.3169861694677871) 33%, rgba(0,0,0,1) 69%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Container className="movieInfoContainer">
@@ -87,36 +91,48 @@ const SingleMovie = () => {
                   </Grid.Column>
                   <Grid.Column width={10}>
                     <Segment padded="very" textAlign="center" basic>
-                      <Grid>
+                      <Grid relaxed>
                         <Grid.Row>
                           <div>
-                            <h2 className="single-movie-title">{movieData.data.title}</h2>
+                            <h2 className="single-movie-title">
+                              {movieData.data.title}
+                            </h2>
                           </div>
                         </Grid.Row>
-                        <Grid.Row>
-                          <div>
-                            <span className="single-movie-span">
-                              Released:{" "}
-                              {moment(movieData.data.release_date).format(
-                                "MMM DD, YYYY"
-                              )}{" "}
-                            </span>
-                            <span className="single-movie-span">
-                              {movieData.data.runtime}
-                              {" mins"}
-                            </span>
-                          </div>
+
+                        <Grid.Row stretched>
+                          <Grid.Column>
+                            <Header className="single-movie-star" as='h2' icon='star' content={movieData.data.vote_average.toFixed(1)} />
+                          </Grid.Column>
+                          <Grid.Column width={12}>
+                            <Grid.Row>
+                              <span className="single-movie-span">
+                                Released:{" "}
+                                {moment(movieData.data.release_date).format(
+                                  "MMM DD, YYYY"
+                                )}{" "}
+                              </span>
+                              <span className="single-movie-span">
+                                {movieData.data.runtime}
+                                {" mins"}
+                              </span>
+                            </Grid.Row>
+                            <Grid.Row>
+                              {movieData.data.genres &&
+                                movieData.data.genres
+                                  .slice(0, 5)
+                                  .map((genre, i) => (
+                                    <span
+                                      className="single-movie-genres"
+                                      key={i}
+                                    >
+                                      {genre.name}
+                                    </span>
+                                  ))}
+                            </Grid.Row>
+                          </Grid.Column>
                         </Grid.Row>
-                        <Grid.Row>
-                          {movieData.data.genres &&
-                            movieData.data.genres
-                              .slice(0, 5)
-                              .map((genre, i) => (
-                                <Grid.Column width={3} key={i}>
-                                  {genre.name}
-                                </Grid.Column>
-                              ))}
-                        </Grid.Row>
+
                         <Grid.Row>
                           <div>
                             <p>{movieData.data.overview}</p>
@@ -131,36 +147,38 @@ const SingleMovie = () => {
                             .map((cast, i) => (
                               <Grid.Column width={3} key={i}>
                                 <Image
-                                size="tiny"
+                                  size="tiny"
                                   src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                                 />
                                 {cast.name}
                               </Grid.Column>
                             ))}
-                          
                         </Grid.Row>
                         <Grid.Row centered>
-                        <Modal
-                          size="small"
-                          style={{
-                            marginTop: "180px",
-                            height: "auto",
-                            width: "auto",
-                          }}
-                          onClose={() => setShowModal(false)}
-                          onOpen={() => setShowModal(true)}
-                          open={showModal}
-                          trigger={
-                            <Button size="small" color="blue">
-                              Watch Trailer
-                            </Button>
-                          }
-                          dimmer="blurring"
-                        >
-                          <Modal.Content>
-                            <Youtube className="video" videoId={trailer.key} />
-                          </Modal.Content>
-                        </Modal>
+                          <Modal
+                            size="small"
+                            style={{
+                              marginTop: "180px",
+                              height: "auto",
+                              width: "auto",
+                            }}
+                            onClose={() => setShowModal(false)}
+                            onOpen={() => setShowModal(true)}
+                            open={showModal}
+                            trigger={
+                              <Button size="small" color="blue">
+                                Watch Trailer
+                              </Button>
+                            }
+                            dimmer="blurring"
+                          >
+                            <Modal.Content>
+                              <Youtube
+                                className="video"
+                                videoId={trailer.key}
+                              />
+                            </Modal.Content>
+                          </Modal>
                         </Grid.Row>
                       </Grid>
                     </Segment>

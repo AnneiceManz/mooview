@@ -239,6 +239,9 @@ button.btn.btn-primary {
   width: 100%;
 }
 
+.single-movie-span {
+  margin: 0 10px;
+}
 .reviews {
   width: 70vw;
   margin: auto;
