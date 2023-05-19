@@ -361,6 +361,22 @@ app.get("/api/movie/horror/", (req, res) => {
     });
 });
 
+//creates endpoint to fetch comedy movies
+app.get("/api/movie/comedy/", (req, res) => {
+  const api_key = process.env.API_KEY;
+
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=comedy&page=1&include_adult=false`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      res.send({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 //creates endpoint to fetch details about movie or show by id
 app.get("/api/movie/:movie_id", (req, res) => {
   const apiKey = process.env.API_KEY;
