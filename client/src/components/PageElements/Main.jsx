@@ -40,12 +40,14 @@ const Main = () => {
   };
 
   return (
-    <Container className="main-container">
+    <div>
+
+    <div className="main-container">
       <div
         className="main-header"
         style={{
           backgroundImage: movie
-            ? `linear-gradient(90deg, rgba(0,0,0,0.9360337885154062) 33%, rgba(0,0,0,0.17973126750700286) 69%), url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
+            ? `linear-gradient(90deg, rgba(0,0,0,0.8688068977591037) 26%, rgba(0,0,0,0.17973126750700286) 69%), url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
             : null,
         }}
       ></div>
@@ -67,7 +69,8 @@ const Main = () => {
           </Segment>
         ) : null}
       </div>
-    </Container>
+    </div>
+    </div>
   );
 };
 

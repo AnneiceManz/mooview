@@ -5,7 +5,7 @@ import Main from "../components/PageElements/Main";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home-div">
       <Main />
       <ListNowPlaying />
       <ListMovies />
