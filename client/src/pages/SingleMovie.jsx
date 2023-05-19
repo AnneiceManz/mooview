@@ -206,6 +206,7 @@ const SingleMovie = () => {
                   : null}
               </Card.Group>
             </Segment>
+            <Segment textAlign="center" basic>
             {!isAuthenticated && (
               <>
                 <span>Login to post a review!</span>
@@ -221,6 +222,7 @@ const SingleMovie = () => {
             )}
             {/* {!user ? null : (
             )} */}
+            </Segment>
           </div>
         </>
       ) : null}
