@@ -65,98 +65,106 @@ const SingleMovie = () => {
   }, [movie_id]);
 
   return (
-    <div className="movieInfoDiv">
+    <div className="single">
       {movieData ? (
         <>
-        <div  className="movieBackdrop">
-          <Image className="movieInfoPoster" src={`https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path}`}/>
-        </div>
-          <Container className="movieInfoContainer">
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={5}>
-                  <Image
-
-                    size="medium"
-                    rounded
-                    src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
-                  />
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <Segment padded="very" textAlign="center" basic>
-                    <Grid>
-                      <Grid.Row>
-                        <div>
-                          <h2>{movieData.data.title}</h2>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <div>
-                          <span>
-                            Released:{" "}
-                            {moment(movieData.data.release_date).format(
-                              "MMM DD, YYYY"
-                            )}{" "}
-                          </span>
-                          <span>
-                            {movieData.data.runtime}
-                            {" mins"}
-                          </span>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        {movieData.data.genres &&
-                          movieData.data.genres.slice(0, 5).map((genre, i) => (
-                            <Grid.Column width={3} key={i}>
-                              {genre.name}
-                            </Grid.Column>
-                          ))}
-                      </Grid.Row>
-                      <Grid.Row>
-                        <div>
-                          <p>{movieData.data.overview}</p>
-                        </div>
-                      </Grid.Row>
-                      <Grid.Row>
-                        <span>Starring: </span>
-                        {movieData.data.credits.cast
-                          .slice(0, 5)
-                          .map((cast, i) => (
-                            <Grid.Column width={4} key={i}>
-                              <Image src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}/>
-                              {cast.name}
-                            </Grid.Column>
-                          ))}
-                      </Grid.Row>
-                      <Grid.Row></Grid.Row>
-                      <Modal
-                        size="small"
-                        style={{
-                          marginTop: "180px",
-                          height: "auto",
-                          width: "auto",
-                        }}
-                        onClose={() => setShowModal(false)}
-                        onOpen={() => setShowModal(true)}
-                        open={showModal}
-                        trigger={
-                          <Button size="small" color="blue">
-                            Watch Trailer
-                          </Button>
-                        }
-                        dimmer="blurring"
-                      >
-                        <Modal.Content>
-                          <Youtube className="video" videoId={trailer.key} />
-                        </Modal.Content>
-                      </Modal>
-                    </Grid>
-                  </Segment>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-          <div>
+          <div className="movieInfoDiv">
+            <div
+              className="movieBackdrop"
+              style={{
+                background: `linear-gradient(180deg, rgba(6,6,6,0.2721682422969187) 0%, rgba(0,0,0,1) 30%), url(https://image.tmdb.org/t/p/w1280${movieData.data.backdrop_path})`,
+              }}
+            ></div>
+            <Container className="movieInfoContainer">
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={5}>
+                    <Image
+                      size="medium"
+                      rounded
+                      src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={10}>
+                    <Segment padded="very" textAlign="center" basic>
+                      <Grid>
+                        <Grid.Row>
+                          <div>
+                            <h2>{movieData.data.title}</h2>
+                          </div>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <div>
+                            <span>
+                              Released:{" "}
+                              {moment(movieData.data.release_date).format(
+                                "MMM DD, YYYY"
+                              )}{" "}
+                            </span>
+                            <span>
+                              {movieData.data.runtime}
+                              {" mins"}
+                            </span>
+                          </div>
+                        </Grid.Row>
+                        <Grid.Row>
+                          {movieData.data.genres &&
+                            movieData.data.genres
+                              .slice(0, 5)
+                              .map((genre, i) => (
+                                <Grid.Column width={3} key={i}>
+                                  {genre.name}
+                                </Grid.Column>
+                              ))}
+                        </Grid.Row>
+                        <Grid.Row>
+                          <div>
+                            <p>{movieData.data.overview}</p>
+                          </div>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <span>Starring: </span>
+                          {movieData.data.credits.cast
+                            .slice(0, 5)
+                            .map((cast, i) => (
+                              <Grid.Column width={4} key={i}>
+                                <Image
+                                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                                />
+                                {cast.name}
+                              </Grid.Column>
+                            ))}
+                        </Grid.Row>
+                        <Grid.Row></Grid.Row>
+                        <Modal
+                          size="small"
+                          style={{
+                            marginTop: "180px",
+                            height: "auto",
+                            width: "auto",
+                          }}
+                          onClose={() => setShowModal(false)}
+                          onOpen={() => setShowModal(true)}
+                          open={showModal}
+                          trigger={
+                            <Button size="small" color="blue">
+                              Watch Trailer
+                            </Button>
+                          }
+                          dimmer="blurring"
+                        >
+                          <Modal.Content>
+                            <Youtube className="video" videoId={trailer.key} />
+                          </Modal.Content>
+                        </Modal>
+                      </Grid>
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          </div>
+          <div className="reviews">
             <Segment padded="very" basic>
               <Header textAlign="center" as="h2">
                 Reviews

@@ -198,7 +198,6 @@ button.btn.btn-primary {
   font-weight: 400;
   width: 50%;
 }
-
 .movieInfoDiv {
   margin-top: -100px;
   background-size: cover;
@@ -209,7 +208,6 @@ button.btn.btn-primary {
 
 .movieBackdrop{
   position: absolute;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.722), rgb(0, 0, 0));
   height: 100vh;
   width: 100%;
   display: flex;
@@ -220,7 +218,7 @@ button.btn.btn-primary {
  background-size: cover;
  height: 70vh;
  width: 100%;
- opacity: 60%;
+ opacity: 100%;
 }
 
 .movieInfoContainer {
@@ -233,4 +231,9 @@ button.btn.btn-primary {
   display: flex;
   justify-content:flex-start;
   align-items: center;
+}
+
+.reviews {
+  width: 70vw;
+  margin: auto;
 }
