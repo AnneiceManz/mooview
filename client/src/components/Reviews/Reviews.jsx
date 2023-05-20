@@ -67,7 +67,7 @@ const Reviews = ({ review, movieName }) => {
           </Card.Content>
         )}
       </Card>
-      <CommentForm review_id={review.review_id} user_id={currentUser} />
+      <CommentForm review_id={review.review_id} />
     </>
   );
 };

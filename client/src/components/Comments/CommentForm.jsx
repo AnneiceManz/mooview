@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Comment, Header, Form, Button, Segment, Confirm } from "semantic-ui-react";
 import moment from "moment";
 
-const CommentForm = ({ review_id, user_id }) => {
+const CommentForm = ({ review_id }) => {
   console.log("this is the review id", review_id);
-  console.log("this is the user id", user_id);
+  const { user } = useAuth0();
+  const currentUser = user?.sub;
 
   const [writeComment, setWriteComment] = useState({
-    user_id: user_id,
+    user_id: currentUser,
     review_id: review_id,
     comment_text: "",
   });
@@ -90,7 +92,7 @@ const CommentForm = ({ review_id, user_id }) => {
                       <Comment.Text>
                         <p>{comment.comment_text}</p>
                       </Comment.Text>
-                      {user_id === comment.user_id && (
+                      {currentUser === comment.user_id && (
                         <Comment.Actions>
                           <Comment.Action
                             style={{ color: "red" }}
