@@ -84,27 +84,27 @@ const SingleMovie = () => {
                 <Grid.Row>
                   <Grid.Column width={5}>
                     <Image
-                      size="medium"
+                      style={{ marginTop: "20px", width: "20rem" }}
                       rounded
                       src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
                     />
                   </Grid.Column>
                   <Grid.Column width={10}>
-                    <Segment padded="very" textAlign="center" basic>
+                    <Segment padded textAlign="center" basic>
                       <Grid relaxed>
                         <Grid.Row>
-                          <div>
+   
                             <h2 className="single-movie-title">
                               {movieData.data.title}
                             </h2>
-                          </div>
+                   
                         </Grid.Row>
 
-                        <Grid.Row stretched>
+                        <Grid.Row width='equal'>
                           <Grid.Column>
-                            <Header style={{color: "white"}} as='h1' icon='star' content={movieData.data.vote_average.toFixed(1)} />
+                            <Header style={{color: "white", fontSize:'2em'}} as='h1' icon='star' content={movieData.data.vote_average.toFixed(1)} />
                           </Grid.Column>
-                          <Grid.Column width={12}>
+                          <Grid.Column width={12} floated="right">
                             <Grid.Row>
                               <span className="single-movie-span">
                                 Released:{" "}
@@ -145,12 +145,12 @@ const SingleMovie = () => {
                           {movieData.data.credits.cast
                             .slice(0, 5)
                             .map((cast, i) => (
-                              <Grid.Column width={3} key={i}>
+                              <Grid.Column width={3} key={i} centered>
                                 <Image
-                                  size="tiny"
+                                  style={{ width: "5rem", margin: 'auto' }}
                                   src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                                 />
-                                {cast.name}
+                                <span style={{fontSize: '0.9em'}}>{cast.name}</span>
                               </Grid.Column>
                             ))}
                         </Grid.Row>

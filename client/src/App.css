@@ -152,7 +152,7 @@
 
 .movieBackdrop {
   position: absolute;
-  height: 80vh;
+  height: 85vh;
   width: 100%;
   display: flex;
   left: 0;
@@ -161,17 +161,21 @@
 .movieInfoContainer {
   color: white;
   position: relative;
-  top: 20vh;
+  top: 10vh;
   height: 600px;
-  width: 80%;
+  width: 85vw;
   z-index: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
+.movieInfoContainer p {
+  font-size: 1.1em;
+}
+
 .single-movie-title {
-  font-size: 40px;
+  font-size: 3em;
   font-weight: bold;
   line-height: 0.8;
   font-family: "Rubik", sans-serif;
@@ -180,15 +184,17 @@
 
 .single-movie-span {
   margin: 0 10px;
+  font-size: 1em;
 }
 
 .single-movie-genres {
   margin-right: 20px;
+  font-size: 1em;
 }
 
 .reviews {
   margin: auto;
-
+margin-top: 10px;
   width: 70vw;
 }
 
