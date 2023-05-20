@@ -263,3 +263,14 @@ button.btn.btn-primary {
   margin-top: -220px;
   width: 70vw;
 }
+
+.search-results-page {
+  width: 100%;
+  margin: auto;
+}
+
+.search-results-page > h2 {
+  font-family: "Rubik", sans-serif;
+  font-size: 4em;
+  text-align: center;
+}

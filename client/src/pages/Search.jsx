@@ -24,16 +24,16 @@ const Search = () => {
   }, [query]);
 
   return (
-    <Segment>
-        <Header textAlign="center"> Search Results</Header>
-      <Card.Group itemsPerRow={3}>
+    <div className="search-results-page">
+        <h2> Search Results</h2>
+      <Card.Group itemsPerRow={4} centered>
         {movies
           ? movies.data.results.map((movie) => {
               return <Movie key={movie.id} movie={movie} />;
             })
           : null}
       </Card.Group>
-    </Segment>
+    </div>
   );
 };
 
