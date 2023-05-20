@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Comment, Header, Form, Button, Segment, Confirm } from "semantic-ui-react";
 import moment from "moment";
+import LoginButton from "../Auth0/LoginButton";
 
 const CommentForm = ({ review_id }) => {
   console.log("this is the review id", review_id);
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const currentUser = user?.sub;
 
   const [writeComment, setWriteComment] = useState({
@@ -114,7 +115,15 @@ const CommentForm = ({ review_id }) => {
                   </Comment>
                 ))
               : null}
-            <Form reply onSubmit={onSubmitForm} size="mini">
+              <Segment basic floated="right">
+               {!isAuthenticated && (
+              <>
+                <span>Login to post a comment!</span>
+                <LoginButton />
+              </>
+            )}
+            {isAuthenticated && (
+              <Form reply onSubmit={onSubmitForm} size="mini">
               <Header as="h3" dividing>
                 Add Comment
               </Header>
@@ -131,6 +140,9 @@ const CommentForm = ({ review_id }) => {
                 primary
               />
             </Form>
+            )}
+            </Segment>
+            
           </Segment>
         </Comment.Group>
       </div>
