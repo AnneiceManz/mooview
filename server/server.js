@@ -468,22 +468,20 @@ app.get("/api/movie/:movie_id", async (req, res) => {
 });
 
 //creates endpoint to fetch search results for movie
-app.get("/api/search/:movie_query", (req, res) => {
-  const apiKey = process.env.API_KEY;
-  const movie_query = req.params.movie_query;
+app.get("/api/search/:movie_query", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
+
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
