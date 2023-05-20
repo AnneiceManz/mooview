@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Card, Segment } from "semantic-ui-react";
 import Movie from "./MovieCard";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const ListNowPlaying = () => {
-
   const [movies, setMovies] = useState(null);
   const [width, setWidth] = useState(0);
   const carouselRef = useRef();
@@ -23,18 +21,26 @@ const ListNowPlaying = () => {
   }, []);
 
   return (
-      <div className="movie-list-div" >
-        <motion.h2 animate={{ x: 50}}>Now Playing</motion.h2>
-        <motion.div ref={carouselRef} className="carousel" whileTap={{curser: "grabbing"}}>
-          <motion.div drag='x' dragConstraints={{right: 0, left: -width}} className="inner-carousel">
-            {movies
-              ? movies.data.results.map((movie) => {
-                  return <Movie key={movie.id} movie={movie} />;
-                })
-              : null}
-          </motion.div>
+    <div className="movie-list-div">
+      <motion.h2 animate={{ x: 50 }}>Now Playing</motion.h2>
+      <motion.div
+        ref={carouselRef}
+        className="carousel"
+        whileTap={{ curser: "grabbing" }}
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={{ right: 0, left: -width }}
+          className="inner-carousel"
+        >
+          {movies
+            ? movies.data.results.map((movie) => {
+                return <Movie key={movie.id} movie={movie} />;
+              })
+            : null}
         </motion.div>
-      </div>
+      </motion.div>
+    </div>
   );
 };
 

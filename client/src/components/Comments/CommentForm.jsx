@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Comment, Header, Form, Button, Segment } from "semantic-ui-react";
 import moment from "moment";
 
-
 const CommentForm = ({ review_id, user_id }) => {
   console.log("this is the review id", review_id);
   console.log("this is the user id", user_id);
-
-
 
   const [writeComment, setWriteComment] = useState({
     user_id: user_id,
@@ -50,7 +47,7 @@ const CommentForm = ({ review_id, user_id }) => {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   const getComments = async () => {
     try {
@@ -75,7 +72,7 @@ const CommentForm = ({ review_id, user_id }) => {
       </div>
       <div>
         <Comment.Group collapsed={collapsed}>
-          <Segment >
+          <Segment>
             <Header as="h3" dividing>
               Comments
             </Header>
@@ -86,16 +83,22 @@ const CommentForm = ({ review_id, user_id }) => {
                     <Comment.Content>
                       <Comment.Author>{comment.username}</Comment.Author>
                       <Comment.Metadata>
-                        Posted: {moment(comment.posted).format("MMM Do YYYY, h:mm a")}
+                        Posted:{" "}
+                        {moment(comment.posted).format("MMM Do YYYY, h:mm a")}
                       </Comment.Metadata>
                       <Comment.Text>
                         <p>{comment.comment_text}</p>
                       </Comment.Text>
-                      {user_id=== comment.user_id && (
-        <Comment.Actions>
-            <Comment.Action style={{color: "red"}} onClick={() => handleDelete(comment.comment_id)}>Delete Comment</Comment.Action>
-        </Comment.Actions>
-      )}
+                      {user_id === comment.user_id && (
+                        <Comment.Actions>
+                          <Comment.Action
+                            style={{ color: "red" }}
+                            onClick={() => handleDelete(comment.comment_id)}
+                          >
+                            Delete Comment
+                          </Comment.Action>
+                        </Comment.Actions>
+                      )}
                     </Comment.Content>
                   </Comment>
                 ))

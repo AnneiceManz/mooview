@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Movie from "./MovieCard";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const ListComedy = () => {
-
-    const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState(null);
   const [width, setWidth] = useState(0);
   const carouselRef = useRef();
 
@@ -20,22 +19,30 @@ const ListComedy = () => {
     setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
   }, []);
 
-    return (
-        <div>
-             <div className="movie-list-div" >
-    <motion.h2 animate={{ x: 50}}>Comedy</motion.h2>
-    <motion.div ref={carouselRef} className="carousel" whileTap={{curser: "grabbing"}}>
-      <motion.div drag='x' dragConstraints={{right: 0, left: -width}} className="inner-carousel">
-        {movies
-          ? movies.data.results.map((movie) => {
-              return <Movie key={movie.id} movie={movie} />;
-            })
-          : null}
-      </motion.div>
-    </motion.div>
-  </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className="movie-list-div">
+        <motion.h2 animate={{ x: 50 }}>Comedy</motion.h2>
+        <motion.div
+          ref={carouselRef}
+          className="carousel"
+          whileTap={{ curser: "grabbing" }}
+        >
+          <motion.div
+            drag="x"
+            dragConstraints={{ right: 0, left: -width }}
+            className="inner-carousel"
+          >
+            {movies
+              ? movies.data.results.map((movie) => {
+                  return <Movie key={movie.id} movie={movie} />;
+                })
+              : null}
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
 };
 
 export default ListComedy;
