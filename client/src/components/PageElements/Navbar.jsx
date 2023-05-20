@@ -6,6 +6,7 @@ import { Button, Image, Menu, Container, Form } from "semantic-ui-react";
 import LoginButton from "../Auth0/LoginButton";
 import LogoutButton from "../Auth0/LogoutButton";
 import SignupButton from "../Auth0/SignupButton";
+import Footer from "./Footer";
 
 function MyNavBar() {
   const { user, isAuthenticated } = useAuth0();
@@ -110,6 +111,7 @@ function MyNavBar() {
       <Container style={{ marginTop: "8.5em", width: '100vw' }}>
         <Outlet />
       </Container>
+      <Footer />
     </>
   );
 }
