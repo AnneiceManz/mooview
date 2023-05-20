@@ -471,7 +471,7 @@ app.get("/api/movie/:movie_id", async (req, res) => {
 app.get("/api/search/:movie_query", async (req, res) => {
   try {
     const apiKey = process.env.API_KEY;
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}&include_adult=false&language=en-US`;
 
     const response = await axios.get(url);
     const data = response.data;
