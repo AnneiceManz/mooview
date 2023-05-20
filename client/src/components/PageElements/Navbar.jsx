@@ -64,7 +64,7 @@ function MyNavBar() {
           <Image
             href="/"
             src={IMAGES.mooview_logo2}
-            style={{ width: "15em", height: "auto", margin: "0.5em" }}
+            style={{ width: "15em", height: "auto"}}
             alt="Mooview Logo"
           />
         </Menu.Item>
@@ -107,7 +107,7 @@ function MyNavBar() {
           )}
         </Menu.Item>
       </Menu>
-      <Container style={{ marginTop: "13em", width: '100vw' }}>
+      <Container style={{ marginTop: "8.5em", width: '100vw' }}>
         <Outlet />
       </Container>
     </>
