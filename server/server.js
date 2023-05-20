@@ -470,6 +470,7 @@ app.get("/api/movie/scifi/", async (req, res) => {
 //creates endpoint to fetch details about movie or show by id
 app.get("/api/movie/:movie_id", async (req, res) => {
   try {
+    const movie_id = req.params.movie_id;
     const apiKey = process.env.API_KEY;
     const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
 
