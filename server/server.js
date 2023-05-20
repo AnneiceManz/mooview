@@ -1,4 +1,3 @@
-// const fetch = require("node-fetch");
 const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
@@ -390,8 +389,6 @@ app.get("/api/movie/comedy/", async (req, res) => {
   }
 });
 
-
-
 //creates endpoint to fetch action movies
 app.get("/api/movie/action/", async (req, res) => {
   try {
@@ -498,7 +495,6 @@ app.get("/api/search/:movie_query", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
-
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
