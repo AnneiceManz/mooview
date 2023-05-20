@@ -79,7 +79,7 @@ const SingleMovie = () => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-            <Container className="movieInfoContainer">
+            <div className="movieInfoContainer">
               <Grid>
                 <Grid.Row>
                   <Grid.Column width={5}>
@@ -185,7 +185,7 @@ const SingleMovie = () => {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-            </Container>
+            </div>
           </div>
           <div className="reviews">
             <Segment padded="very" basic>
