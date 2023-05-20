@@ -41,35 +41,38 @@ const Main = () => {
 
   return (
     <div>
-
-    <div className="main-container">
-      <div
-        className="main-header"
-        style={{
-          backgroundImage: movie
-            ? `linear-gradient(90deg, rgba(0,0,0,0.8688068977591037) 26%, rgba(0,0,0,0.17973126750700286) 69%), url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
-            : null,
-        }}
-      ></div>
-      <div className="main-header-overlay">
-        {movie ? (
-          <Segment basic padded>
-            <Header.Content>
-              <h1 className="header-text header-movie-title">{movie.title}</h1>
-              <Button color="red" onClick={handleClick}>
-                More Info
-              </Button>
-              <div style={{ paddingTop: "20px" }}>
-                <h4 className="header-text header-release-date">
-                  {moment(movie.release_date).format("MMM DD, YYYY")}
-                </h4>
-                <p className="header-text header-overview">{movie.overview}</p>
-              </div>
-            </Header.Content>
-          </Segment>
-        ) : null}
+      <div className="main-container">
+        <div
+          className="main-header"
+          style={{
+            backgroundImage: movie
+              ? `linear-gradient(90deg, rgba(0,0,0,0.8688068977591037) 26%, rgba(0,0,0,0.17973126750700286) 69%), url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
+              : null,
+          }}
+        ></div>
+        <div className="main-header-overlay">
+          {movie ? (
+            <Segment basic padded>
+              <Header.Content>
+                <h1 className="header-text header-movie-title">
+                  {movie.title}
+                </h1>
+                <Button color="red" onClick={handleClick}>
+                  More Info
+                </Button>
+                <div style={{ paddingTop: "20px" }}>
+                  <h4 className="header-text header-release-date">
+                    {moment(movie.release_date).format("MMM DD, YYYY")}
+                  </h4>
+                  <p className="header-text header-overview">
+                    {movie.overview}
+                  </p>
+                </div>
+              </Header.Content>
+            </Segment>
+          ) : null}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
