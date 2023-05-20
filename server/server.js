@@ -486,6 +486,7 @@ app.get("/api/movie/:movie_id", async (req, res) => {
 //creates endpoint to fetch search results for movie
 app.get("/api/search/:movie_query", async (req, res) => {
   try {
+    const movie_query = req.params.movie_query;
     const apiKey = process.env.API_KEY;
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}&include_adult=false&language=en-US`;
 
