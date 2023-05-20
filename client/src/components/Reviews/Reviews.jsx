@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
-import { Card, Button, Icon, Image } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Card, Button, Icon, Image, Confirm } from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
 import CommentForm from "../Comments/CommentForm";
 
 const Reviews = ({ review, movieName }) => {
   const { user } = useAuth0();
   const currentUser = user?.sub;
+  const [confirm, setConfirm] = useState(false);
 
   const handleDelete = async () => {
     try {
@@ -51,9 +52,17 @@ const Reviews = ({ review, movieName }) => {
           <Card.Content extra>
             <Button.Group size="tiny">
               <UpdateReview review={review} movieName={movieName} />
-              <Button color="red" onClick={handleDelete}>
+              <Button color="red" onClick={()=>setConfirm(true)}>
                 Delete
               </Button>
+              <Confirm 
+              cancelButton="Never mind"
+              confirmButton="Delete Review"
+              content="Are you sure you want to delete this review?"
+              open={confirm}
+              onCancel={() => setConfirm(false)}
+              onConfirm={handleDelete}
+              />
             </Button.Group>
           </Card.Content>
         )}
