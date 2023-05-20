@@ -45,10 +45,16 @@
   text-align: center;
 }
 .home-div {
-  width: 100vh;
-  margin: auto;
+  width: 100%;
+  margin: 5px;
 }
 
+.movie-list-div {
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px;
+}
 .inner-carousel {
   display: flex;
 }
@@ -168,7 +174,7 @@
 .single-movie-title {
   font-size: 40px;
   font-weight: bold;
-  line-height: 0.5;
+  line-height: 0.8;
   font-family: "Rubik", sans-serif;
   width: 100%;
 }
@@ -185,4 +191,15 @@
   margin: auto;
   margin-top: -220px;
   width: 70vw;
+}
+
+.search-results-page {
+  width: 100%;
+  margin: auto;
+}
+
+.search-results-page > h2 {
+  font-family: "Rubik", sans-serif;
+  font-size: 4em;
+  text-align: center;
 }

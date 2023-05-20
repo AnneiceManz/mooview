@@ -1,3 +1,4 @@
+const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -314,186 +315,186 @@ app.delete("/api/comments/:comment_id", async (req, res) => {
 //API routes/requests
 
 // creates endpoint to fetch popular movies
-app.get("/api/movie/popular/", (req, res) => {
-  const apiKey = process.env.API_KEY;
+app.get("/api/movie/popular/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
 
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+// creates endpoint to fetch upcoming movies
+app.get("/api/movie/upcoming/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`;
+
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch now playing movies
-app.get("/api/movie/now_playing/", (req, res) => {
-  const apiKey = process.env.API_KEY;
+app.get("/api/movie/now_playing/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
 
-  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch horror movies
-app.get("/api/movie/horror/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/horror/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch comedy movies
-app.get("/api/movie/comedy/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/comedy/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=35`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=35`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch action movies
-app.get("/api/movie/action/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/action/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch fantasy movies
-app.get("/api/movie/fantasy/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/fantasy/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=14`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=14`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch animated movies
-app.get("/api/movie/animated/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/animated/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch family movies
-app.get("/api/movie/family/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/family/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10751`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10751`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch scifi movies
-app.get("/api/movie/scifi/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/scifi/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=878`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=878`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch details about movie or show by id
-app.get("/api/movie/:movie_id", (req, res) => {
-  const apiKey = process.env.API_KEY;
-  const movie_id = req.params.movie_id;
+app.get("/api/movie/:movie_id", async (req, res) => {
+  try {
+    const movie_id = req.params.movie_id;
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
 
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch search results for movie
-app.get("/api/search/:movie_query", (req, res) => {
-  const apiKey = process.env.API_KEY;
-  const movie_query = req.params.movie_query;
+app.get("/api/search/:movie_query", async (req, res) => {
+  try {
+    const movie_query = req.params.movie_query;
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}&include_adult=false&language=en-US`;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movie_query}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
-
-
 
 // console.log that your server is up and running
 app.listen(PORT, () => {

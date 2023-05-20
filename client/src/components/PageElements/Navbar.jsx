@@ -107,7 +107,7 @@ function MyNavBar() {
           )}
         </Menu.Item>
       </Menu>
-      <Container style={{ marginTop: "13em" }}>
+      <Container style={{ marginTop: "13em", width: '100vw' }}>
         <Outlet />
       </Container>
     </>
