@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Comment, Header, Form, Button, Segment } from "semantic-ui-react";
+import { Comment, Header, Form, Button, Segment, Confirm } from "semantic-ui-react";
 import moment from "moment";
 
 const CommentForm = ({ review_id, user_id }) => {
@@ -14,6 +14,7 @@ const CommentForm = ({ review_id, user_id }) => {
 
   const [comments, setComments] = useState(null);
   const [collapsed, setCollapsed] = useState(true);
+  const [confirm, setConfirm] = useState(false);
 
   const handleChange = (e) => {
     setWriteComment({ ...writeComment, [e.target.name]: e.target.value });
@@ -93,10 +94,18 @@ const CommentForm = ({ review_id, user_id }) => {
                         <Comment.Actions>
                           <Comment.Action
                             style={{ color: "red" }}
-                            onClick={() => handleDelete(comment.comment_id)}
+                            onClick={() => setConfirm(true)}
                           >
                             Delete Comment
                           </Comment.Action>
+                          <Confirm 
+              cancelButton="Never mind"
+              confirmButton="Delete Comment"
+              content="Are you sure you want to delete this comment?"
+              open={confirm}
+              onCancel={() => setConfirm(false)}
+              onConfirm={() => handleDelete(comment.comment_id)}
+              />
                         </Comment.Actions>
                       )}
                     </Comment.Content>
