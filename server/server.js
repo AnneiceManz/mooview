@@ -423,19 +423,18 @@ app.get("/api/movie/animated/", async (req, res) => {
 });
 
 //creates endpoint to fetch family movies
-app.get("/api/movie/family/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/family/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10751`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10751`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch scifi movies
