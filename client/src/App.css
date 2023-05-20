@@ -142,10 +142,9 @@
 }
 .movieInfoDiv {
   display: flex;
-  margin-top: -65px;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   left: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -189,7 +188,7 @@
 
 .reviews {
   margin: auto;
-  margin-top: -220px;
+
   width: 70vw;
 }
 
