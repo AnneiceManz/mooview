@@ -330,6 +330,21 @@ app.get("/api/movie/popular/", async (req, res) => {
   }
 });
 
+// creates endpoint to fetch upcoming movies
+app.get("/api/movie/upcoming/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`;
+
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 //creates endpoint to fetch now playing movies
 app.get("/api/movie/now_playing/", async (req, res) => {
   try {
