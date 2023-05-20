@@ -453,21 +453,18 @@ app.get("/api/movie/scifi/", async (req, res) => {
 });
 
 //creates endpoint to fetch details about movie or show by id
-app.get("/api/movie/:movie_id", (req, res) => {
-  const apiKey = process.env.API_KEY;
-  const movie_id = req.params.movie_id;
+app.get("/api/movie/:movie_id", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
 
-  const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&append_to_response=videos,credits`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch search results for movie
