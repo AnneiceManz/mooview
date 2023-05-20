@@ -17,6 +17,7 @@ import PostReview from "../components/Reviews/PostReview";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/Auth0/LoginButton";
 import moment from "moment";
+import LoginText from "../components/Auth0/LoginText";
 
 const SingleMovie = () => {
   const location = useLocation();
@@ -209,8 +210,7 @@ const SingleMovie = () => {
             <Segment textAlign="center" basic>
             {!isAuthenticated && (
               <>
-                <span>Login to post a review!</span>
-                <LoginButton />
+                <span><LoginText /> to post a review!</span>
               </>
             )}
             {isAuthenticated && (
