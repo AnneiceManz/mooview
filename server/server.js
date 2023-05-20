@@ -1,4 +1,5 @@
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
+const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -315,20 +316,19 @@ app.delete("/api/comments/:comment_id", async (req, res) => {
 //API routes/requests
 
 // creates endpoint to fetch popular movies
-app.get("/api/movie/popular/", (req, res) => {
-  const apiKey = process.env.API_KEY;
-
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+app.get("/api/movie/popular/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+    
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+  })
 
 //creates endpoint to fetch now playing movies
 app.get("/api/movie/now_playing/", (req, res) => {
