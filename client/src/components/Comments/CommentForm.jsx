@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Comment, Header, Form, Button, Segment, Confirm } from "semantic-ui-react";
+import {
+  Comment,
+  Header,
+  Form,
+  Button,
+  Segment,
+  Confirm,
+} from "semantic-ui-react";
 import moment from "moment";
-import LoginButton from "../Auth0/LoginButton";
+import LoginText from "../Auth0/LoginText";
 
 const CommentForm = ({ review_id }) => {
   console.log("this is the review id", review_id);
@@ -101,48 +108,48 @@ const CommentForm = ({ review_id }) => {
                           >
                             Delete Comment
                           </Comment.Action>
-                          <Confirm 
-              cancelButton="Never mind"
-              confirmButton="Delete Comment"
-              content="Are you sure you want to delete this comment?"
-              open={confirm}
-              onCancel={() => setConfirm(false)}
-              onConfirm={() => handleDelete(comment.comment_id)}
-              />
+                          <Confirm
+                            cancelButton="Never mind"
+                            confirmButton="Delete Comment"
+                            content="Are you sure you want to delete this comment?"
+                            open={confirm}
+                            onCancel={() => setConfirm(false)}
+                            onConfirm={() => handleDelete(comment.comment_id)}
+                          />
                         </Comment.Actions>
                       )}
                     </Comment.Content>
                   </Comment>
                 ))
               : null}
-              <Segment basic floated="right">
-               {!isAuthenticated && (
-              <>
-                <span>Login to post a comment!</span>
-                <LoginButton />
-              </>
-            )}
-            {isAuthenticated && (
-              <Form reply onSubmit={onSubmitForm} size="mini">
-              <Header as="h3" dividing>
-                Add Comment
-              </Header>
-              <Form.TextArea
-                rows={2}
-                name="comment_text"
-                onChange={handleChange}
-              />
-              <Button
-                size="mini"
-                content="Add Comment"
-                labelPosition="left"
-                icon="edit"
-                primary
-              />
-            </Form>
-            )}
+            <Segment basic floated="right">
+              {!isAuthenticated && (
+                <>
+                  <span>
+                    <LoginText /> to post a comment!
+                  </span>
+                </>
+              )}
+              {isAuthenticated && (
+                <Form reply onSubmit={onSubmitForm} size="mini">
+                  <Header as="h3" dividing>
+                    Add Comment
+                  </Header>
+                  <Form.TextArea
+                    rows={2}
+                    name="comment_text"
+                    onChange={handleChange}
+                  />
+                  <Button
+                    size="mini"
+                    content="Add Comment"
+                    labelPosition="left"
+                    icon="edit"
+                    primary
+                  />
+                </Form>
+              )}
             </Segment>
-            
           </Segment>
         </Comment.Group>
       </div>
