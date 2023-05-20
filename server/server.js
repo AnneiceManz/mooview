@@ -320,7 +320,7 @@ app.get("/api/movie/popular/", async (req, res) => {
   try {
     const apiKey = process.env.API_KEY;
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-    
+
     const response = await axios.get(url);
     const data = response.data;
     res.send({ data });
@@ -328,38 +328,36 @@ app.get("/api/movie/popular/", async (req, res) => {
     console.log(error);
     res.status(500).json({ error: "An error occurred" });
   }
-  })
+});
 
 //creates endpoint to fetch now playing movies
-app.get("/api/movie/now_playing/", (req, res) => {
-  const apiKey = process.env.API_KEY;
+app.get("/api/movie/now_playing/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
 
-  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch horror movies
-app.get("/api/movie/horror/", (req, res) => {
-  const api_key = process.env.API_KEY;
+app.get("/api/movie/horror/", async (req, res) => {
+  try {
+    const apiKey = process.env.API_KEY;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27`;
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      res.send({ data });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const response = await axios.get(url);
+    const data = response.data;
+    res.send({ data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 //creates endpoint to fetch comedy movies
@@ -493,8 +491,6 @@ app.get("/api/search/:movie_query", (req, res) => {
       console.log(err);
     });
 });
-
-
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
