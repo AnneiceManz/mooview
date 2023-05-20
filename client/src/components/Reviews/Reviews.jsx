@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import { Card, Button, Icon } from "semantic-ui-react";
+import { Card, Button, Icon, Image } from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
 import CommentForm from "../Comments/CommentForm";
 
@@ -24,13 +24,22 @@ const Reviews = ({ review, movieName }) => {
     <>
       <Card centered>
         <Card.Content>
+          <div>
+
+          <Image 
+          floated="right"
+          circular
+          size="tiny"
+          src={review.picture}
+          caption={review.username}
+          />
+          </div>
           <Card.Header textAlign="center">{review.title}</Card.Header>
           <Card.Meta
             textAlign="center"
             style={{ color: "red", fontWeight: "bold" }}
           >
             <span style={{ color: "#3977C9" }}>{"Written by: "}</span>{" "}
-            {review.username}
           </Card.Meta>
           <Card.Meta>
             {review.star_rating} <Icon name="star" color="yellow" />

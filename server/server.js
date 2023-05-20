@@ -496,6 +496,11 @@ app.get("/api/search/:movie_query", async (req, res) => {
   }
 });
 
+app.get("*", (req, res) => {
+  // res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
+  res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
+});
+
 // console.log that your server is up and running
 app.listen(PORT, () => {
   console.log(`Hola, Server listening on ${PORT}`);
