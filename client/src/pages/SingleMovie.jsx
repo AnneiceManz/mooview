@@ -20,6 +20,7 @@ import moment from "moment";
 import LoginText from "../components/Auth0/LoginText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/PageElements/Footer";
 
 const SingleMovie = () => {
   const location = useLocation();
@@ -169,11 +170,48 @@ const SingleMovie = () => {
         </p> */}
       </div>
     </div>
-    <div></div>
+    <div>
+    </div>
   </div>
 </div>
+    <div className=" relative top-[18vh] md:top-0">
+      <div>
+        <Header textAlign="center" as="h2">
+          Reviews
+        </Header>
+        <Card.Group itemsPerRow={1}>
+          {reviews
+            ? reviews.map((review) => {
+                return (
+                  <Reviews
+                    key={review.review_id}
+                    review={review}
+                    movieName={movieData.data.title}
+                  />
+                );
+              })
+            : null}
+        </Card.Group>
+      </div>
+      <div>
+      {!isAuthenticated && (
+        <>
+          <span><LoginText /> to post a review!</span>
+        </>
+      )}
+      {isAuthenticated && (
+        <PostReview
+          user={user.sub}
+          movie_id={movie_id}
+          movie_title={movieData.data.title}
+        />
+      )}
+      </div>
+   </div>
+
 </>
   ) : null}
+  <Footer />
 </div>
   );
 };

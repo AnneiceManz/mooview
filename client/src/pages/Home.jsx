@@ -6,9 +6,11 @@ import ListHorror from "../components/Movies/ListHorror";
 import ListComedy from "../components/Movies/ListComedy";
 import ListAction from "../components/Movies/ListAction";
 import ListFantasy from "../components/Movies/ListFantasy";
+import Footer from "../components/PageElements/Footer";
 
 const Home = () => {
   return (
+    <>
     <div className="home-div">
       <Main />
       <ListNowPlaying />
@@ -18,6 +20,8 @@ const Home = () => {
       <ListAction />
       <ListHorror />
     </div>
+    <Footer />
+  </>
   );
 };
 

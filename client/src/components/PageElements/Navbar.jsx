@@ -150,10 +150,9 @@ function MyNavBar() {
           </nav>
         </div>
       </div>
-      <Container style={{ width: "100vw" }}>
+      <Container style={{ width: "100vw", height: '100vh' }}>
         <Outlet />
       </Container>
-      <Footer />
     </>
   );
 }
