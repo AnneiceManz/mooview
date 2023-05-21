@@ -127,7 +127,7 @@ const SingleMovie = () => {
         </div>
       </div>
 
-      <p className="text-gray-300 mb-8">{movieData.data.overview} </p>
+      <p className="md:text-gray-300 mb-8">{movieData.data.overview} </p>
       <div className="flex flex-row items-center ">
       <Modal
                             size="small"
