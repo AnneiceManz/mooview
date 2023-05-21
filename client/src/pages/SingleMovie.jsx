@@ -140,9 +140,9 @@ const SingleMovie = () => {
                             onOpen={() => setShowModal(true)}
                             open={showModal}
                             trigger={
-                              <Button basic inverted size="small">
+                              <button className="rounded border md:bg-transparent md:text-white py-2 px-5">
                                 Watch Trailer
-                              </Button>
+                              </button>
                             }
                             dimmer="blurring"
                           >
