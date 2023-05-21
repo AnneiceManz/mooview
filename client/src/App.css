@@ -55,32 +55,6 @@
   margin-top: 10px;
   padding: 5px;
 }
-.inner-carousel {
-  display: flex;
-}
-
-.item {
-  margin: 10px;
-}
-.carousel {
-  cursor: grab;
-  overflow: scroll;
-  overflow-y: hidden;
-}
-.overlay-icon {
-  color: white;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.card:hover .overlay-icon {
-  opacity: 1;
-}
 
 .main-container {
   position: relative;
