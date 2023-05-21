@@ -39,38 +39,54 @@ const Main = () => {
     navigate(`/movie/${movie.id}`);
   };
 
+  const ReadMore = (text) => {
+    const over= JSON.stringify(text);
+      const overview= over.replace(/[^\w\s]/g,"").replace(/(^\s+|\s+$)/g,"").replace(/\s+/g," ").replace("children","");
+    const [isReadMore, setIsReadMore] = useState(true);
+    const toggleReadMore = () => {setIsReadMore(!isReadMore)};
+  
+    return (
+      <p>
+        {isReadMore ? overview.slice(0, 150): overview }
+        {overview.length > 150 &&
+          <span onClick={toggleReadMore} className="text-gray-400 font-thin underline decoration-1 decoration-[#3977C9] cursor-pointer">
+            {isReadMore ? '...read more' : ' ...show less'}
+          </span>
+        }
+      </p>
+    )
+  }
+
   return (
-    <div>
-      <div className="main-container">
-        <div
-          className="main-header"
-          style={{
-            backgroundImage: movie
-              ? `linear-gradient(90deg, rgba(0,0,0,0.8688068977591037) 26%, rgba(0,0,0,0.17973126750700286) 69%), url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
-              : null,
-          }}
-        ></div>
-        <div className="main-header-overlay">
-          {movie ? (
-            <Segment basic padded>
-              <Header.Content>
-                <h1 className="header-text header-movie-title">
-                  {movie.title}
-                </h1>
-                <Button color="red" onClick={handleClick}>
-                  More Info
-                </Button>
-                <div style={{ paddingTop: "20px" }}>
-                  <h4 className="header-text header-release-date">
-                    {moment(movie.release_date).format("MMM DD, YYYY")}
-                  </h4>
-                  <p className="header-text header-overview">
-                    {movie.overview}
-                  </p>
-                </div>
-              </Header.Content>
-            </Segment>
-          ) : null}
+<div className="w-full h-[70vh] md:h-[600px] text-white">
+      <div className="w-full h-full">
+        <div className="absolute w-full h-[70vh] md:h-[600px] bg-gradient-to-r from-black">
+          {" "}
+        </div>
+        <img
+          className="w-full h-[70vh] md:h-full object-cover"
+          src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+          alt=""
+        />
+        <div className="absolute w-full top-[20%] p-4 md:p-16">
+          <h1 className="text-2xl md:text-5xl font-bold">{movie?.title} </h1>
+          <div className="my-4">
+            <button onClick={handleClick} className=" rounded border bg-[#C63729] text-white py-2 px-5" >
+            More Info
+            </button>
+          </div>
+          <p className="text-gray-400 text-base">
+            Released: {movie?.release_date}{" "}
+          </p>
+          
+        <p className="w-full sm:max-w-[80%] md:max-w-[70%] lg:max-w-[50%] text-white text-sm md:text-lg mt-2">
+            <ReadMore>
+              {movie?.overview}
+            </ReadMore>
+        </p>
+
+            
+
         </div>
       </div>
     </div>
