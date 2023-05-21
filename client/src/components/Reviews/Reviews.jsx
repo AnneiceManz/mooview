@@ -48,7 +48,7 @@ const Reviews = ({ review, movieName }) => {
           </Card.Meta>
           <Card.Description>{review.post}</Card.Description>
         </Card.Content>
-        {user?.sub === review.user_id && (
+        {currentUser === review.user_id && (
           <Card.Content extra>
             <Button.Group size="tiny">
               <UpdateReview review={review} movieName={movieName} />

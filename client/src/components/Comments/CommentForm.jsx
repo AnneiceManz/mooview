@@ -122,16 +122,16 @@ const CommentForm = ({ review_id }) => {
                   </Comment>
                 ))
               : null}
-            <Segment basic floated="right">
+            <Segment basic>
               {!isAuthenticated && (
                 <>
-                  <span>
+                  <span className='flex justify-end'>
                     <LoginText /> to post a comment!
                   </span>
                 </>
               )}
               {isAuthenticated && (
-                <Form reply onSubmit={onSubmitForm} size="mini">
+                <Form reply onSubmit={onSubmitForm}>
                   <Header as="h3" dividing>
                     Add Comment
                   </Header>
