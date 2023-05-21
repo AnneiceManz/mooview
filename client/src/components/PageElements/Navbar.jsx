@@ -71,11 +71,11 @@ function MyNavBar() {
             <img
               src={IMAGES.mooview_logo2}
               alt="Mooview Logo"
-              className="h-20 w-auto"
+              className="h-10 w-auto md:h-20 lg:h-24"
             />
           </Link>
         </div>
-        <div className="bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px]">
+        <div className="bg-zinc-50 rounded-full shadow-lg  flex items-center px-2 h-[40px] w-[200px] sm:w-[400px] lg:w-[500px]">
           <input
             type="text"
             placeholder="Search movies..."
@@ -86,12 +86,12 @@ function MyNavBar() {
           />
           <Icon
             name="search"
-            color="blue"
+            color="grey"
             size="large"
             onClick={handleSubmit}
           />
         </div>
-        <div className="hidden md:flex pr-4 items-center py-2 mr-2">
+        <div className="hidden md:flex pr-4 items-center py-2 mr-10">
           {!isAuthenticated && (
             <Button.Group size="small">
               <SignupButton />
