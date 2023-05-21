@@ -50,23 +50,25 @@ const SingleMovie = () => {
     }
   };
 
-  const fetchReviews = async () => {
-    try {
-      const response = await fetch(`/api/reviews${movie_id}`);
-      console.log(response);
-      const reviewsData = await response.json();
-      setReviews(reviewsData);
-      console.log("reviews", reviews);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   console.log("movie data", movieData);
-  console.log("review data", reviews);
+
+  // const fetchReviews = async () => {
+  //   try {
+  //     const response = await fetch(`/api/reviews${movie_id}`);
+  //     console.log(response);
+  //     const reviewsData = await response.json();
+  //     setReviews(reviewsData);
+  //     console.log("reviews", reviews);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+  // console.log("movie data", movieData);
+  // console.log("review data", reviews);
 
   useEffect(() => {
     fetchData();
-    fetchReviews();
+    // fetchReviews();
   }, [movie_id]);
 
   return (
@@ -174,41 +176,7 @@ const SingleMovie = () => {
     </div>
   </div>
 </div>
-    <div className=" relative top-[18vh] md:top-0">
-      <div>
-        <Header textAlign="center" as="h2">
-          Reviews
-        </Header>
-        <Card.Group itemsPerRow={1}>
-          {reviews
-            ? reviews.map((review) => {
-                return (
-                  <Reviews
-                    key={review.review_id}
-                    review={review}
-                    movieName={movieData.data.title}
-                  />
-                );
-              })
-            : null}
-        </Card.Group>
-      </div>
-      <div>
-      {!isAuthenticated && (
-        <>
-          <span><LoginText /> to post a review!</span>
-        </>
-      )}
-      {isAuthenticated && (
-        <PostReview
-          user={user.sub}
-          movie_id={movie_id}
-          movie_title={movieData.data.title}
-        />
-      )}
-      </div>
-   </div>
-
+<Reviews movieName={movieData.data.title} movie_id={movie_id} />
 </>
   ) : null}
   <Footer />
@@ -217,6 +185,7 @@ const SingleMovie = () => {
 };
 
 export default SingleMovie;
+
 
 
 
