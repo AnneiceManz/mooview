@@ -28,27 +28,25 @@ const Reviews = ({ review, movieName }) => {
           <div>
 
           <Image 
-          floated="right"
+          floated="left"
           circular
           size="tiny"
           src={review.picture}
-          caption={review.username}
           />
           </div>
-          <Card.Header textAlign="center">{review.title}</Card.Header>
+          <Card.Header style={{fontSize: '1.8em'}}>{review.title}</Card.Header>
           <Card.Meta
-            textAlign="center"
             style={{ color: "red", fontWeight: "bold" }}
           >
-            <span style={{ color: "#3977C9" }}>{"Written by: "}</span>{" "}
+            <span style={{ color: "#3977C9", marginLeft:'2px' }}>{review.username}</span>
           </Card.Meta>
           <Card.Meta>
             {review.star_rating} <Icon name="star" color="yellow" />
             's for {movieName}!
           </Card.Meta>
-          <Card.Description>{review.post}</Card.Description>
+          <Card.Description><p className="pt-5">{review.post}</p></Card.Description>
         </Card.Content>
-        {user?.sub === review.user_id && (
+        {currentUser === review.user_id && (
           <Card.Content extra>
             <Button.Group size="tiny">
               <UpdateReview review={review} movieName={movieName} />
