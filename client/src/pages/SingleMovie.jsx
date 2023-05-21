@@ -175,8 +175,11 @@ const SingleMovie = () => {
     <div>
     </div>
   </div>
-</div>
+<div className="grid w-full">
+
 <Reviews movieName={movieData.data.title} movie_id={movie_id} />
+</div>
+</div>
 </>
   ) : null}
   <Footer />

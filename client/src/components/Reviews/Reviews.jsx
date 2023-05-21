@@ -1,12 +1,22 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from "react";
-import { Card, Button, Icon, Image, Confirm, Form, Rating } from "semantic-ui-react";
+import {
+  Card,
+  Button,
+  Icon,
+  Image,
+  Confirm,
+  Form,
+  Rating,
+} from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
 import CommentForm from "../Comments/CommentForm";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import LoginText from "../Auth0/LoginText";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Reviews = ({  movieName, movie_id }) => {
+const Reviews = ({ movieName, movie_id }) => {
   const { user, isAuthenticated } = useAuth0();
   const currentUser = user?.sub;
   const [confirm, setConfirm] = useState(false);
@@ -27,7 +37,7 @@ const Reviews = ({  movieName, movie_id }) => {
       console.log(error.message);
     }
   };
-  
+
   console.log("review data", reviews);
 
   useEffect(() => {
@@ -72,7 +82,6 @@ const Reviews = ({  movieName, movie_id }) => {
     }
   };
 
-
   const handleDelete = async () => {
     try {
       const response = await fetch(`/api/reviews/${review.review_id}`, {
@@ -87,126 +96,159 @@ const Reviews = ({  movieName, movie_id }) => {
 
   return (
     <div className="my-12">
-    <h2>Reviews</h2>
-    <div className="mt-10 xl:grid flex-colo grid-cols-5 gap-12 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
-      {/* write review */}
-      <div className="xl:col-span-2 w-full flex flex-col gap-8">
-        <h3 className="text-xl text-text font-semibold">
-          Review "{movieName}"
-        </h3>
-        <p className="text-sm leading-7 font-medium text-border">
-          Write a review for this movie. Tell me why I should or shouldn't watch it.
-        </p>
-        <div className="text-sm w-full">
-        <Form
-        id="postSubmission"
-        action="#postSubmission"
-        onSubmit={onSubmitForm}
-      >
-        <span>Rating: {rating} stars </span>
-        <Rating
-          icon="star"
-          size="huge"
-          maxRating={10}
-          name="star_rating"
-          onRate={handleRate}
-        />
-        <Form.Input
-          fluid
-          placeholder="Title"
-          name="title"
-          value={writeReview.title}
-          onChange={handleChange}
-        />
-        <Form.TextArea
-          placeholder="Review Post"
-          name="post"
-          value={writeReview.post}
-          onChange={handleChange}
-        />
-        <Button.Group>
-          <Button color="blue" id="submitPost">
-            Post
-          </Button>
-          <Button color="red" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-        </Button.Group>
-      </Form>
-      </div>
-      {/* REVIWERS */}
-      <div className="col-span-3 flex flex-col gap-6">
-        <h3 className="text-xl text-text font-semibold">Reviews </h3>
-        <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
-        {reviews
-          ? reviews.map((review) => {
-              return (
-            <div className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
-              <div className="col-span-2 bg-main hidden md:block">
-                <img
-                  src={review.picture}
-                  alt={review.username}
-                  className="w-full h-24 rounded-lg object-cover"
-                />
-              </div>
-              <div className="col-span-7 flex flex-col gap-2">
-                <h2>{review.title}</h2>
-                <h3>{review.username}</h3>
-                <p className="text-xs leading-6 font-medium text-text">
-                  {review.post}
-                </p>
-              </div>
-              {/* rates */}
-              <div className="col-span-3 flex-rows border-l border-border text-xs gap-1 text-star">
-                <Rating value={review.star_rating} />
-              </div>
-              <div>
-              {currentUser === review.user_id && (
-          <Button.Group size="tiny">
-            <UpdateReview review={review} movieName={movieName} />
-            <Button color="red" onClick={()=>setConfirm(true)}>
-              Delete
-            </Button>
-            <Confirm 
-            cancelButton="Never mind"
-            confirmButton="Delete Review"
-            content="Are you sure you want to delete this review?"
-            open={confirm}
-            onCancel={() => setConfirm(false)}
-            onConfirm={handleDelete}
+      <h2>Reviews</h2>
+      <div className="mt-10 md:grid flex-col grid-cols-5 gap-12 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
+        {/* write review */}
+        <div className="md:col-span-2 w-full flex flex-col gap-8 ">
+          <h3 className="text-xl text-text font-semibold">
+            Review "{movieName}"
+          </h3>
+          <p className="text-sm leading-7 font-medium text-border">
+            Write a review for this movie. Tell me why I should or shouldn't
+            watch it.
+          </p>
+          <div
+            id="postSubmission"
+            action="#postSubmission"
+            className="grid grid-cols-1 gap-6"
+          >
+            <span>Rating: {rating} stars </span>
+            <Rating
+              icon="star"
+              size="huge"
+              maxRating={10}
+              name="star_rating"
+              onRate={handleRate}
             />
-          </Button.Group>
-      )}
-      </div>
-
-      <CommentForm review_id={review.review_id} />
-            </div>
-               );
-              })
-          : null}
-
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={writeReview.title}
+              onChange={handleChange}
+              className="
+          mt-1
+          block
+          w-full
+          rounded-md
+          bg-gray-100
+          border-transparent
+          focus:border-gray-500 focus:bg-white focus:ring-0
+        "
+            />
+            <textarea
+              className="
+        mt-1
+        block
+        w-full
+        rounded-md
+        bg-gray-100
+        border-transparent
+        focus:border-gray-500 focus:bg-white focus:ring-0
+      "
+              rows={4}
+              placeholder="Review Post"
+              name="post"
+              value={writeReview.post}
+              onChange={handleChange}
+            />
+            <Button.Group>
+              <Button color="blue" id="submitPost" onClick={onSubmitForm}>
+                Post
+              </Button>
+              <Button color="red" onClick={() => setShowModal(false)}>
+                Cancel
+              </Button>
+            </Button.Group>
+          </div>
         </div>
-        {!isAuthenticated && (
-        <>
-          <span><LoginText /> to post a review!</span>
-        </>
-      )}
-      {isAuthenticated && (
-        <PostReview
-          user={user.sub}
-          movie_id={movie_id}
-          movie_title={movieData.data.title}
-        />
-      )}
+        {/* REVIWERS */}
+        <div className="col-span-3 flex flex-col gap-6">
+          <h3 className="text-xl text-text font-semibold">Reviews </h3>
+          <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
+            {reviews
+              ? reviews.map((review) => {
+                  return (
+                    <div className="md:grid flex flex-col w-full grid-cols-10 gap-6 bg-dry p-4 border border-gray-100 shadow-xl rounded-lg">
+                      <div className="col-span-10 flex flex-col gap-2 items-left">
+                        <div className="grid flex flex-col grid-cols-7 grid-rows-2 gap-5 h-[35%] border-b-2">
+                      <div className="col-span-2 row-span-2 bg-main hidden md:block">
+                        <img
+                          src={review.picture}
+                          alt={review.username}
+                          className="w-auto h-auto rounded-lg object-cover"
+                        />
+                      </div>
+                          <div className="col-span-1 row-span-2 font-thin text-4xl text-center">
+                            <FontAwesomeIcon icon={faStar} color="gold" />
+                            <span>{review.star_rating}</span>
+                          </div>
+                          <div className="col-span-4">
+                            <p className="text-3xl font-bold tracking-wider row-span-1 h-2">{review.title}</p>
+                            <p className="text-slate-500 text-lg row-span-1">
+                              {review.username}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-xl leading-6 font-medium text-text">
+                          {review.post}
+                        </p>
+                      </div>
+                      {/* rates */}
+                      <div>
+                        {currentUser === review.user_id && (
+                          <Button.Group size="tiny">
+                            <UpdateReview
+                              review={review}
+                              movieName={movieName}
+                            />
+                            <Button
+                              color="red"
+                              onClick={() => setConfirm(true)}
+                            >
+                              Delete
+                            </Button>
+                            <Confirm
+                              cancelButton="Never mind"
+                              confirmButton="Delete Review"
+                              content="Are you sure you want to delete this review?"
+                              open={confirm}
+                              onCancel={() => setConfirm(false)}
+                              onConfirm={handleDelete}
+                            />
+                          </Button.Group>
+                        )}
+                      </div>
+
+                      <CommentForm review_id={review.review_id} />
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+          {!isAuthenticated && (
+            <>
+              <span>
+                <LoginText /> to post a review!
+              </span>
+            </>
+          )}
+          {isAuthenticated && (
+            <PostReview
+              user={user.sub}
+              movie_id={movie_id}
+              movie_title={movieData.data.title}
+            />
+          )}
         </div>
       </div>
     </div>
-  </div>
-    );
-  };
-  
-  export default Reviews;
-  {/* // <>
+  );
+};
+
+export default Reviews;
+{
+  /* // <>
   //   <Card centered>
   //     <Card.Content>
   //       <div>
@@ -258,4 +300,5 @@ const Reviews = ({  movieName, movie_id }) => {
 
 
 
-    */}
+    */
+}
