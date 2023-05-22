@@ -44,7 +44,7 @@ const SingleMovie = () => {
       {movieData ? (
         <>
           <div className="">
-            <div className="absolute w-full md:h-[40vh] lg:h-[70vh] bg-gradient-to-t from-black ">
+            <div className="absolute w-full md:h-[45vh] lg:h-[70vh] bg-gradient-to-t from-black ">
               {" "}
             </div>
             <img
@@ -52,11 +52,11 @@ const SingleMovie = () => {
                 movieData.data.backdrop_path || movieData.data.poster_path
               }`}
               alt=""
-              className="w-full md:h-[40vh] lg:h-[70vh] object-cover "
+              className="w-full md:h-[45vh] lg:h-[70vh]  object-cover "
             />
           </div>
           <div className="flex justify-center ">
-            <div className="flex flex-col items-center md:flex-row md:max-w-2xl lg:max-w-3xl absolute xl:max-w-4xl md:mt-[-400px] mt-[-200px] md:text-white ">
+            <div className="flex flex-col items-center md:flex-row md:max-w-2xl lg:max-w-3xl absolute xl:max-w-4xl md:mt-[-415px] mt-[-200px] md:text-white ">
               <div className=" lg:w-[30%] h-[auto] md:w-[400px] w-[200px] ">
                 <img
                   className="w-[80%] md:w-[100%] h-full md:h-auto object-cover rounded-md m-auto"
@@ -149,7 +149,7 @@ const SingleMovie = () => {
               </div>
               <div></div>
             </div>
-            <div className="flex grid w-full mt-60 md:mt-0">
+            <div className="flex grid w-full pt-20 mt-60 md:mt-0 md:pt-0">
               <Reviews movieName={movieData.data.title} movie_id={movie_id} />
             </div>
           </div>

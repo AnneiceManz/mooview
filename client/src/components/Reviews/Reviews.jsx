@@ -89,12 +89,12 @@ const Reviews = ({ movieName, movie_id }) => {
   };
 
   return (
-    <div className="my-10 relative">
-      <div className="mt-10 md:grid flex-col grid-cols-5 gap-4 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
+    <div className="mt-20 md:mt-0">
+      <div className="mt-10 md:mt-0 md:grid flex-col grid-cols-5 gap-4 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
         {/* REVIWERS */}
         <div className="col-span-3 flex flex-col gap-6">
           <h3 className="text-xl text-text font-semibold">Reviews </h3>
-          <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
+          <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-4 h-header overflow-y-scroll">
             {reviews
               ? reviews.map((review) => {
                   return (
