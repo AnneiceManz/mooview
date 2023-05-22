@@ -237,8 +237,9 @@ const Reviews = ({ movieName, movie_id }) => {
                           </Button.Group>
                         )}
                       </div>
-
+                          <div className="col-span-10 flex flex-col gap-2">
                       <CommentForm review_id={review.review_id} />
+                      </div>
                     </div>
                   );
                 })
