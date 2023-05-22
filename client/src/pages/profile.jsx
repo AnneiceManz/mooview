@@ -12,7 +12,27 @@ const Profile = () => {
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const movieName = movieData?.title;
+
+  const [userData, setUserData] = useState({
+    user_id: user.sub,
+    name: user.name,
+    email: user.email,
+    username: user.nickname,
+    picture: user.picture,
+  });
+
+  const getUser = async () => {
+    try {
+      const userId = user.sub;
+      const response = await fetch(`/api/users/${userId}`);
+      const userData = await response.json();
+      setUserData(userData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const getUserReviews = async () => {
     try {
@@ -40,6 +60,7 @@ const Profile = () => {
   useEffect(() => {
     getUserReviews();
     fetchMovieData();
+    getUser();
   }, [user]);
 
   const handleDelete = async () => {
@@ -66,15 +87,45 @@ const Profile = () => {
     }
   };
 
+ 
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleRate = (e, { rating }) => {
+    setRating(rating);
+    setFormData({
+      ...formData,
+      star_rating: rating,
+    });
+  };
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/reviews/${review.review_id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      window.location.reload();
+      const data = await response.json();
+      console.log("review updated", data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     isAuthenticated && (
       <div className="profile">
         <div className="sidebar">
-          <Image avatar size="small" src={user.picture} alt={user.name} />
+          <Image avatar size="small" src={userData.picture ? userData.picture : IMAGES.mooview_logo3} alt={userData.name} />
           <div className="sidebarItem">
-            <h2>{user.name}</h2>
-            <h2>{user.nickname}</h2>
-            <p>{user.email}</p>
+            <h2>{userData.name}</h2>
+            <h2>{userData.nickname}</h2>
+            <p>{userData.email}</p>
           </div>
           <div className="sidebarItem">
             <div className="sidebarButton">
