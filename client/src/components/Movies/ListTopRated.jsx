@@ -6,11 +6,11 @@ import {
   faCircleChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const ListMovies = () => {
+const ListTopRated = () => {
   const [movies, setMovies] = useState(null);
 
   async function loadMovies() {
-    const response = await fetch("/api/movie/popular/");
+    const response = await fetch("/api/movie/top_rated/");
     const json = await response.json();
     setMovies(json);
     console.log("this is the json", json);
@@ -33,7 +33,7 @@ const ListMovies = () => {
     <div>
       <div className="flex flex-row items-center">
         <h2 className="text-black font-bold md:text-3xl p-4 cursor-pointer">
-          Popular
+          Top Rated
         </h2>
       </div>
       <div className="relative flex items-center ml-2">
@@ -62,4 +62,4 @@ const ListMovies = () => {
   );
 };
 
-export default ListMovies;
+export default ListTopRated;

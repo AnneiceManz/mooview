@@ -1,5 +1,4 @@
 import React from "react";
-import ListMovies from "../components/Movies/ListMovies";
 import ListNowPlaying from "../components/Movies/List_Now_Playing";
 import Main from "../components/PageElements/Main";
 import ListHorror from "../components/Movies/ListHorror";
@@ -9,6 +8,7 @@ import ListFantasy from "../components/Movies/ListFantasy";
 import Footer from "../components/PageElements/Footer";
 import ListUpcoming from "../components/Movies/ListUpcoming";
 import ListAnimated from "../components/Movies/ListAnimated";
+import ListTopRated from "../components/Movies/ListTopRated";
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
       <ListUpcoming />
       <ListNowPlaying />
       <ListAnimated />
-      <ListMovies />
+      <ListTopRated />
       <ListComedy />
       <ListFantasy />
       <ListAction />

@@ -314,11 +314,11 @@ app.delete("/api/comments/:comment_id", async (req, res) => {
 
 //API routes/requests
 
-// creates endpoint to fetch popular movies
-app.get("/api/movie/popular/", async (req, res) => {
+// creates endpoint to fetch top rated movies
+app.get("/api/movie/top_rated/", async (req, res) => {
   try {
     const apiKey = process.env.API_KEY;
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+    const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
 
     const response = await axios.get(url);
     const data = response.data;
