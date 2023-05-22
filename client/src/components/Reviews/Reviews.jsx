@@ -9,6 +9,7 @@ import UpdateReview from "./UpdateReview";
 import CommentForm from "../Comments/CommentForm";
 import { useLocation } from "react-router-dom";
 import LoginText from "../Auth0/LoginText";
+import IMAGES from "../../images/IMAGES";
 
 const Reviews = ({ movieName, movie_id }) => {
   const { user, isAuthenticated } = useAuth0();
@@ -103,7 +104,7 @@ const Reviews = ({ movieName, movie_id }) => {
                         <div className="grid flex flex-col grid-clos-4 lg:grid-cols-8 lg:grid-rows-3 gap-5 h-[38%] place-items-center">
                           <div className=" col-span-1 lg:col-span-2 lg:row-span-2  m-auto">
                             <img
-                              src={review.picture}
+                              src={review.picture ? review.picture : IMAGES.mooview_logo3}
                               alt={review.username}
                               className="w-[80px] lg:w-[104px] h-auto rounded-full hidden md:block"
                             />
