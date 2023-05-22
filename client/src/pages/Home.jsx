@@ -7,12 +7,14 @@ import ListComedy from "../components/Movies/ListComedy";
 import ListAction from "../components/Movies/ListAction";
 import ListFantasy from "../components/Movies/ListFantasy";
 import Footer from "../components/PageElements/Footer";
+import ListUpcoming from "../components/Movies/ListUpcoming";
 
 const Home = () => {
   return (
     <>
     <div className="home-div">
       <Main />
+      <ListUpcoming />
       <ListNowPlaying />
       <ListMovies />
       <ListComedy />
