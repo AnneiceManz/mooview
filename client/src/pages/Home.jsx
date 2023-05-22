@@ -8,6 +8,7 @@ import ListAction from "../components/Movies/ListAction";
 import ListFantasy from "../components/Movies/ListFantasy";
 import Footer from "../components/PageElements/Footer";
 import ListUpcoming from "../components/Movies/ListUpcoming";
+import ListAnimated from "../components/Movies/ListAnimated";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Main />
       <ListUpcoming />
       <ListNowPlaying />
+      <ListAnimated />
       <ListMovies />
       <ListComedy />
       <ListFantasy />
