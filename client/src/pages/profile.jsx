@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
 import { Rating, Modal, Confirm } from "semantic-ui-react";
@@ -12,11 +12,14 @@ const Profile = () => {
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const [selectedFile, setSelectedFile] = useState(null);
   const movieName = movieData?.title;
 
+  const user_id = user.sub;
+  console.log("user", user_id);
+
   const [userData, setUserData] = useState({
-    user_id: user.sub,
     name: user.name,
     email: user.email,
     username: user.nickname,
@@ -25,18 +28,18 @@ const Profile = () => {
 
   const getUser = async () => {
     try {
-      const userId = user.sub;
+      const userId = user_id;
       const response = await fetch(`/api/users/${userId}`);
       const userData = await response.json();
       setUserData(userData);
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   const getUserReviews = async () => {
     try {
-      const userId = user.sub;
+      const userId = user_id;
       const response = await fetch(`/api/reviews/user/${userId}`);
       const reviews = await response.json();
       setReviews(reviews);
@@ -58,9 +61,9 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    getUser();
     getUserReviews();
     fetchMovieData();
-    getUser();
   }, [user]);
 
   const handleDelete = async () => {
@@ -76,8 +79,9 @@ const Profile = () => {
   };
 
   const handleDeleteUser = async () => {
+    const user_id = user.sub;
     try {
-      const response = await fetch(`/api/users/${user.sub}`, {
+      const response = await fetch(`/api/users/${user_id}`, {
         method: "DELETE",
       });
       console.log(response);
@@ -87,31 +91,30 @@ const Profile = () => {
     }
   };
 
- 
-
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleRate = (e, { rating }) => {
-    setRating(rating);
-    setFormData({
-      ...formData,
-      star_rating: rating,
-    });
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Assuming you only allow selecting a single file
+    setSelectedFile(file);
+    setUserData({ ...userData, picture: file });
   };
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/reviews/${review.review_id}`, {
+      const response = await fetch(`/api/users/${userData.user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(userData),
       });
-      window.location.reload();
       const data = await response.json();
-      console.log("review updated", data);
+      console.log("user updated", data);
+      if (response.ok) {
+        setUserData(data);
+        setShowModal(false);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -121,7 +124,12 @@ const Profile = () => {
     isAuthenticated && (
       <div className="profile">
         <div className="sidebar">
-          <Image avatar size="small" src={userData.picture ? userData.picture : IMAGES.mooview_logo3} alt={userData.name} />
+          <Image
+            avatar
+            size="small"
+            src={userData.picture ? userData.picture : IMAGES.mooview_logo3}
+            alt={userData.name}
+          />
           <div className="sidebarItem">
             <h2>{userData.name}</h2>
             <h2>{userData.nickname}</h2>
@@ -129,7 +137,52 @@ const Profile = () => {
           </div>
           <div className="sidebarItem">
             <div className="sidebarButton">
-              <Button>Update Profile</Button>
+              <Modal
+                trigger={<Button>Update Profile</Button>}
+                open={showModal}
+                onClose={() => setShowModal(false)}
+                onOpen={() => setShowModal(true)}
+              >
+                <Modal.Header>Update your profile</Modal.Header>
+                <Modal.Content>
+                  <Modal.Description>
+                    <form className="grid grid-cols-1 gap-6">
+                      <input
+                        type="text"
+                        value={userData.name}
+                        name="name"
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="email"
+                        value={userData.email}
+                        name="email"
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        value={userData.username}
+                        name="username"
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple={false}
+                        onChange={handleFileChange}
+                      />
+                    </form>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color="blue" onClick={() => setShowModal(false)}>
+                    Cancel
+                  </Button>
+                  <Button color="green" onClick={onSubmitForm}>
+                    Update
+                  </Button>
+                </Modal.Actions>
+              </Modal>
             </div>
             <div className="sidebarButton">
               <Modal
