@@ -112,7 +112,9 @@ const CommentForm = ({ review_id }) => {
                           <Confirm
                             cancelButton="Never mind"
                             confirmButton="Delete Comment"
-                            content="Are you sure you want to delete this comment?"
+                            header="Are you sure you want to delete this comment?"
+                            content={<img className="w-[50%] m-auto" src={IMAGES.mooviewQuestion}/>}
+                            size="tiny"
                             open={confirm}
                             onCancel={() => setConfirm(false)}
                             onConfirm={() => handleDelete(comment.comment_id)}
