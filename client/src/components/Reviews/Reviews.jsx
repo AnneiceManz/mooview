@@ -149,7 +149,9 @@ const Reviews = ({ movieName, movie_id }) => {
                             <Confirm
                               cancelButton="Never mind"
                               confirmButton="Delete Review"
-                              content="Are you sure you want to delete this review?"
+                              header="Are you sure you want to delete this review?"
+                              content={<img className="w-[50%] m-auto" src={IMAGES.mooviewQuestion}/>}
+                              size="tiny"
                               open={confirm}
                               onCancel={() => setConfirm(false)}
                               onConfirm={handleDelete}
