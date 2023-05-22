@@ -82,7 +82,13 @@ function MyNavBar() {
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             onKeyDown={handleKeyPress}
-            className="bg-transparent p-2 w-full focus:outline-none"
+            className="
+            block
+            w-full
+            rounded-full
+            bg-transparent
+            border-transparent
+            focus:border-zinc-100  focus:ring-0"
           />
           <Icon
             name="search"
