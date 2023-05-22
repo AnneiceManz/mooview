@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Movie = ({ movie }) => {
   const navigate = useNavigate();
@@ -11,19 +11,22 @@ const Movie = ({ movie }) => {
   };
 
   return (
-    <div className="item">
-      <Card centered>
-        <Image
-          centered
-          size="medium"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          onClick={handleClick}
-        />
-        <div className="overlay-icon">
-          {movie.vote_average} <Icon name="star" color="yellow" />
-          's
+    <div className="w-[180px] sm:w-[250px] md:w-[280px] lg:w-[280px] xl:w-[320px] inline-block cursor-pointer relative p-4 z-0 group">
+      <img
+        className="w-full h-auto hover:opacity-50 rounded"
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        alt={`${movie.title} Poster`}
+        onClick={handleClick}
+      />
+      <div
+        onClick={handleClick}
+        className="absolute top-0 left-0 w-full group-hover:bg-black/40  text-white px-5"
+      >
+        <div className="flex flex-row justify-center items-center absolute top-8 right-8 opacity-0 group-hover:opacity-100 text-gray-300">
+          <FontAwesomeIcon icon={faStar} />
+          <p className="text-lg md:text-3xl font-bold">{movie.vote_average}</p>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

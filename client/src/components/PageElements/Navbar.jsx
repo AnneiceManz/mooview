@@ -64,7 +64,7 @@ function MyNavBar() {
   console.log("From Navbar", isAuthenticated);
 
   return (
-    <>
+    <div className="flex flex-wrap">
       <div className="sticky w-screen top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8 dark:bg-transparent">
         <div className="flex items-center">
           <Link to="/">
@@ -82,7 +82,13 @@ function MyNavBar() {
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             onKeyDown={handleKeyPress}
-            className="bg-transparent p-2 w-full focus:outline-none"
+            className="
+            block
+            w-full
+            rounded-full
+            bg-transparent
+            border-transparent
+            focus:border-zinc-100  focus:ring-0"
           />
           <Icon
             name="search"
@@ -150,11 +156,10 @@ function MyNavBar() {
           </nav>
         </div>
       </div>
-      <Container style={{ width: "100vw" }}>
+      <Container style={{ width: "100vw", height: '100vh' }}>
         <Outlet />
       </Container>
-      <Footer />
-    </>
+    </div>
   );
 }
 
