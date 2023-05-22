@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import LoginText from "../Auth0/LoginText";
 import IMAGES from "../../images/IMAGES";
 
-const Reviews = ({ movieName, movie_id }) => {
+const Reviews = ({ movieName, movie_id, review }) => {
   const { user, isAuthenticated } = useAuth0();
   const currentUser = user?.sub;
   const [confirm, setConfirm] = useState(false);
@@ -17,6 +17,7 @@ const Reviews = ({ movieName, movie_id }) => {
   const movieId = parseInt(movie_id.replace("/movie/", ""));
   const state = useLocation().state;
 
+  console.log("movie id", movieId);
   const fetchReviews = async () => {
     try {
       const response = await fetch(`/api/reviews${movie_id}`);
@@ -100,6 +101,7 @@ const Reviews = ({ movieName, movie_id }) => {
                         <div className="grid flex flex-col grid-clos-4 lg:grid-cols-8 lg:grid-rows-3 gap-5 h-[38%] place-items-center">
                           <div className=" col-span-1 lg:col-span-2 lg:row-span-2  m-auto">
                             <img
+                            key={review.review_id} 
                               src={
                                 review.picture
                                   ? review.picture
