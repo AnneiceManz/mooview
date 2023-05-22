@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
-import { Rating, Confirm } from "semantic-ui-react";
+import { Rating, Modal, Confirm } from "semantic-ui-react";
 import IMAGES from "../images/IMAGES";
 import UpdateReview from "../components/Reviews/UpdateReview";
 import CommentForm from "../components/Comments/CommentForm";
@@ -11,6 +11,7 @@ const Profile = () => {
   const [reviews, setReviews] = useState(null);
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
+  const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
   const movieName = movieData?.title;
 
   const getUserReviews = async () => {
@@ -54,6 +55,19 @@ const Profile = () => {
     }
   };
 
+  const handleDeleteUser = async () => {
+    try {
+      const response = await fetch(`/api/users/${user.sub}`, {
+        method: "DELETE",
+      });
+      console.log(response);
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
   return (
     isAuthenticated && (
       <div className="profile">
@@ -69,7 +83,31 @@ const Profile = () => {
               <Button>Update Profile</Button>
             </div>
             <div className="sidebarButton">
-              <Button>Delete Profile</Button>
+              <Modal
+              trigger={<Button>Delete Profile</Button>}
+              open={confirmDeleteUser}
+              onClose={() => setConfirmDeleteUser(false)}
+              onOpen={() => setConfirmDeleteUser(true)}
+              size="small"
+              
+              >
+                <Modal.Header><p className="text-center text-red-500 text-3xl">Are you sure you want to delete your account?</p></Modal.Header>
+                <Modal.Content>
+                  <Image centered size='medium' src={IMAGES.mooviewQuestion} wrapped />
+                  <Modal.Description>
+
+                <p className="text-center font-bold text-xl">You will lose all your reviews and comments. This action cannot be undone.</p>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                <Button color='blue' onClick={() => setConfirmDeleteUser(false)}>
+                  Cancel
+                </Button>
+                <Button color='red' onClick={handleDeleteUser}>
+                  Delete
+                </Button>
+                </Modal.Actions>
+              </Modal>
             </div>
           </div>
         </div>
