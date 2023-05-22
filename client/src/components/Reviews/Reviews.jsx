@@ -95,15 +95,14 @@ const Reviews = ({ movieName, movie_id }) => {
   };
 
   return (
-    <div className="my-12">
-      <h2>Reviews</h2>
-      <div className="mt-10 md:grid flex-col grid-cols-5 gap-12 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
+    <div className="my-10 relative">
+      <div className="mt-10 md:grid flex-col grid-cols-5 gap-4 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
         {/* write review */}
         <div className="md:col-span-2 w-full flex flex-col gap-8 ">
           <h3 className="text-xl text-text font-semibold">
             Review "{movieName}"
           </h3>
-          <p className="text-sm leading-7 font-medium text-border">
+          <p className="text-lg leading-7 font-medium text-border">
             Write a review for this movie. Tell me why I should or shouldn't
             watch it.
           </p>
@@ -152,7 +151,16 @@ const Reviews = ({ movieName, movie_id }) => {
               value={writeReview.post}
               onChange={handleChange}
             />
+            {!isAuthenticated && (
+              <>
+              <span>
+                <LoginText /> to post a review!
+              </span>
+            </>
+          )}
+          {isAuthenticated && (
             <Button.Group>
+
               <Button color="blue" id="submitPost" onClick={onSubmitForm}>
                 Post
               </Button>
@@ -160,6 +168,7 @@ const Reviews = ({ movieName, movie_id }) => {
                 Cancel
               </Button>
             </Button.Group>
+          )}
           </div>
         </div>
         {/* REVIWERS */}
@@ -170,27 +179,36 @@ const Reviews = ({ movieName, movie_id }) => {
               ? reviews.map((review) => {
                   return (
                     <div className="md:grid flex flex-col w-full grid-cols-10 gap-6 bg-dry p-4 border border-gray-100 shadow-xl rounded-lg">
-                      <div className="col-span-10 flex flex-col gap-2 items-left">
-                        <div className="grid flex flex-col grid-cols-7 grid-rows-2 gap-5 h-[35%] border-b-2">
-                      <div className="col-span-2 row-span-2 bg-main hidden md:block">
-                        <img
-                          src={review.picture}
-                          alt={review.username}
-                          className="w-auto h-auto rounded-lg object-cover"
-                        />
-                      </div>
-                          <div className="col-span-1 row-span-2 font-thin text-4xl text-center">
-                            <FontAwesomeIcon icon={faStar} color="gold" />
-                            <span>{review.star_rating}</span>
-                          </div>
-                          <div className="col-span-4">
-                            <p className="text-3xl font-bold tracking-wider row-span-1 h-2">{review.title}</p>
+                      <div className="col-span-10 flex flex-col gap-2">
+                        <div className="grid flex flex-col grid-clos-4 lg:grid-cols-8 lg:grid-rows-3 gap-5 h-[38%] place-items-center">
+                          <div className=" col-span-1 lg:col-span-2 lg:row-span-2  m-auto">
+                            <img
+                              src={review.picture}
+                              alt={review.username}
+                              className="w-[80px] lg:w-[104px] h-auto rounded-full hidden md:block"
+                            />
                             <p className="text-slate-500 text-lg row-span-1">
                               {review.username}
                             </p>
                           </div>
+
+                          <div className="col-span-2 lg:col-span-3 lg:row-span-3 text-center ">
+                            <p className="hidden lg:block lg:text-3xl font-bold tracking-wider">
+                              {review.title}
+                            </p>
+                          </div>
+                          <div className=" col-span-2 lg:col-span-3 lg:row-span-3 lg:text-4xl text-right m-4">
+                            <Rating
+                     
+                              icon="star"
+                              color="yellow"
+                              disabled
+                              maxRating={10}
+                              rating={review.star_rating}
+                            />
+                          </div>
                         </div>
-                        <p className="text-xl leading-6 font-medium text-text">
+                        <p className="text-xl leading-6 font-medium">
                           {review.post}
                         </p>
                       </div>
@@ -226,20 +244,6 @@ const Reviews = ({ movieName, movie_id }) => {
                 })
               : null}
           </div>
-          {!isAuthenticated && (
-            <>
-              <span>
-                <LoginText /> to post a review!
-              </span>
-            </>
-          )}
-          {isAuthenticated && (
-            <PostReview
-              user={user.sub}
-              movie_id={movie_id}
-              movie_title={movieData.data.title}
-            />
-          )}
         </div>
       </div>
     </div>
