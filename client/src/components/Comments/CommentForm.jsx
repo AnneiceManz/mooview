@@ -91,7 +91,11 @@ const CommentForm = ({ review_id }) => {
             {comments
               ? comments.map((comment) => (
                   <Comment key={comment.comment_id}>
-                    <Comment.Avatar src={comment.picture ? comment.picture : IMAGES.mooview_logo3} />
+                    <Comment.Avatar
+                      src={
+                        comment.picture ? comment.picture : IMAGES.mooview_logo3
+                      }
+                    />
                     <Comment.Content>
                       <Comment.Author>{comment.username}</Comment.Author>
                       <Comment.Metadata>
@@ -113,7 +117,12 @@ const CommentForm = ({ review_id }) => {
                             cancelButton="Never mind"
                             confirmButton="Delete Comment"
                             header="Are you sure you want to delete this comment?"
-                            content={<img className="w-[50%] m-auto" src={IMAGES.mooviewQuestion}/>}
+                            content={
+                              <img
+                                className="w-[50%] m-auto"
+                                src={IMAGES.mooviewQuestion}
+                              />
+                            }
                             size="tiny"
                             open={confirm}
                             onCancel={() => setConfirm(false)}
@@ -128,7 +137,7 @@ const CommentForm = ({ review_id }) => {
             <Segment basic>
               {!isAuthenticated && (
                 <>
-                  <span className='flex justify-end'>
+                  <span className="flex justify-end">
                     <LoginText /> to post a comment!
                   </span>
                 </>
