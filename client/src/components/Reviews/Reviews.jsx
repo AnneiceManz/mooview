@@ -93,7 +93,7 @@ const Reviews = ({ movieName, movie_id }) => {
       <div className="mt-10 md:mt-0 md:grid flex-col grid-cols-5 gap-4 bg-dry xs:p-10 py-10 px-2 sm:p-20 rounded">
         {/* REVIWERS */}
         <div className="col-span-3 flex flex-col gap-6">
-          <h3 className="text-xl text-text font-semibold">Reviews </h3>
+          <h3 className="text-4xl text-text font-thin text-center">Reviews </h3>
           <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-4 h-header overflow-y-scroll">
             {reviews
               ? reviews.map((review) => {
@@ -167,7 +167,7 @@ const Reviews = ({ movieName, movie_id }) => {
         </div>
         {/* write review */}
         <div className="md:col-span-2 w-full flex flex-col gap-8 order-first ">
-          <h3 className="text-xl text-text font-semibold">
+          <h3 className="text-xl text-text font-bold text-center">
             Review "{movieName}"
           </h3>
           <p className="text-lg leading-7 font-medium text-border">
