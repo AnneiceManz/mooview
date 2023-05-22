@@ -71,7 +71,7 @@ const Main = () => {
         <div className="absolute w-full top-[20%] p-4 md:p-16">
           <h1 className="text-2xl md:text-5xl font-bold">{movie?.title} </h1>
           <div className="my-4">
-            <button onClick={handleClick} className=" rounded border bg-[#C63729] text-white py-2 px-5" >
+            <button onClick={handleClick} className=" rounded bg-[#C63729] text-white py-2 px-5" >
             More Info
             </button>
           </div>
