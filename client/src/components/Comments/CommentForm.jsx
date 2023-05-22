@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import moment from "moment";
 import LoginText from "../Auth0/LoginText";
+import IMAGES from "../../images/IMAGES";
 
 const CommentForm = ({ review_id }) => {
   console.log("this is the review id", review_id);
@@ -90,7 +91,7 @@ const CommentForm = ({ review_id }) => {
             {comments
               ? comments.map((comment) => (
                   <Comment key={comment.comment_id}>
-                    <Comment.Avatar src={comment.picture} />
+                    <Comment.Avatar src={comment.picture ? comment.picture : IMAGES.mooview_logo3} />
                     <Comment.Content>
                       <Comment.Author>{comment.username}</Comment.Author>
                       <Comment.Metadata>
