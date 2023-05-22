@@ -58,10 +58,11 @@ const UpdateReview = ({ review, movieName }) => {
           action="#postSubmission"
           onSubmit={onSubmitForm}
         >
-          <span>Rating: {rating} stars </span>
+          <span>Rating: {formData.star_rating ? formData.star_rating : rating} stars </span>
           <Rating
             icon="star"
             size="huge"
+            defaultRating={formData.star_rating}
             maxRating={10}
             name="star_rating"
             onRate={handleRate}
