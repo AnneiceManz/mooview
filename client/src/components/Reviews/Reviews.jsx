@@ -1,10 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Confirm,
-  Rating,
-} from "semantic-ui-react";
+import { Button, Confirm, Rating } from "semantic-ui-react";
 import UpdateReview from "./UpdateReview";
 import CommentForm from "../Comments/CommentForm";
 import { useLocation } from "react-router-dom";
@@ -95,16 +91,20 @@ const Reviews = ({ movieName, movie_id }) => {
         {/* REVIWERS */}
         <div className="col-span-3 flex flex-col gap-6">
           <h3 className="text-4xl text-text font-thin text-center">Reviews </h3>
-          <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-4 h-header overflow-y-scroll">
+          <div className="w-full flex flex-col bg-main  gap-6 rounded-lg md:p-12 p-4 h-header overflow-y-scroll">
             {reviews
               ? reviews.map((review) => {
                   return (
-                    <div className="md:grid flex flex-col w-full grid-cols-10 gap-6 bg-dry p-4 border border-gray-100 shadow-xl rounded-lg">
+                    <div className="md:grid flex flex-col w-full grid-cols-10 gap-6 bg-dry p-4 shadow-md rounded-xl">
                       <div className="col-span-10 flex flex-col gap-2">
                         <div className="grid flex flex-col grid-clos-4 lg:grid-cols-8 lg:grid-rows-3 gap-5 h-[38%] place-items-center">
                           <div className=" col-span-1 lg:col-span-2 lg:row-span-2  m-auto">
                             <img
-                              src={review.picture ? review.picture : IMAGES.mooview_logo3}
+                              src={
+                                review.picture
+                                  ? review.picture
+                                  : IMAGES.mooview_logo3
+                              }
                               alt={review.username}
                               className="w-[80px] lg:w-[104px] h-auto rounded-full hidden md:block"
                             />
@@ -150,7 +150,12 @@ const Reviews = ({ movieName, movie_id }) => {
                               cancelButton="Never mind"
                               confirmButton="Delete Review"
                               header="Are you sure you want to delete this review?"
-                              content={<img className="w-[50%] m-auto" src={IMAGES.mooviewQuestion}/>}
+                              content={
+                                <img
+                                  className="w-[50%] m-auto"
+                                  src={IMAGES.mooviewQuestion}
+                                />
+                              }
                               size="tiny"
                               open={confirm}
                               onCancel={() => setConfirm(false)}
@@ -169,7 +174,7 @@ const Reviews = ({ movieName, movie_id }) => {
           </div>
         </div>
         {/* write review */}
-        <div className="md:col-span-2 w-full flex flex-col gap-8 order-first ">
+        <div className=" md:col-span-2 w-full flex flex-col gap-8 order-first ">
           <h3 className="text-xl text-text font-bold text-center">
             Review "{movieName}"
           </h3>
@@ -180,7 +185,7 @@ const Reviews = ({ movieName, movie_id }) => {
           <div
             id="postSubmission"
             action="#postSubmission"
-            className="grid grid-cols-1 gap-6"
+            className="grid grid-cols-1 gap-6 shadow rounded p-6"
           >
             <span>Rating: {rating} stars </span>
             <Rating
@@ -216,7 +221,7 @@ const Reviews = ({ movieName, movie_id }) => {
         border-transparent
         focus:border-gray-500 focus:bg-white focus:ring-0
       "
-              rows={4}
+              rows={5}
               placeholder="Review Post"
               name="post"
               value={writeReview.post}
@@ -230,9 +235,15 @@ const Reviews = ({ movieName, movie_id }) => {
               </>
             )}
             {isAuthenticated && (
-                <Button color="blue" id="submitPost" onClick={onSubmitForm}>
+              <div className="text-center">
+                <button
+                  className="bg-[#3977C9] hover:bg-[#C63729] text-white py-2 px-8 rounded"
+                  id="submitPost"
+                  onClick={onSubmitForm}
+                >
                   Post
-                </Button>
+                </button>
+              </div>
             )}
           </div>
         </div>
