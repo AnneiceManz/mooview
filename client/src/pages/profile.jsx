@@ -13,7 +13,6 @@ const Profile = () => {
   const [confirm, setConfirm] = useState(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const movieName = movieData?.title;
 
@@ -104,12 +103,6 @@ const Profile = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files ;
-    console.log('file', file)
-    setSelectedFile(file);
-    setUserData({ ...userData, picture: selectedFile });
-  };
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -174,12 +167,6 @@ const Profile = () => {
                         value={userData.username}
                         name="username"
                         onChange={handleChange}
-                      />
-                      <input
-                        type="file"
-                        name="picture"
-                        multiple={false}
-                        onChange={handleFileChange}
                       />
                     </form>
                   </Modal.Description>
