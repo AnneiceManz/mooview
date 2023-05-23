@@ -12,7 +12,7 @@ const Profile = () => {
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const movieName = movieData?.title;
@@ -106,9 +106,9 @@ const Profile = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files ;
-    console.log('file', file) // Assuming you only allow selecting a single file
+    console.log('file', file)
     setSelectedFile(file);
-    setUserData({ ...userData, picture: file });
+    setUserData({ ...userData, picture: selectedFile });
   };
 
   const onSubmitForm = async (e) => {
