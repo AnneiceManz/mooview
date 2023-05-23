@@ -14,6 +14,7 @@ const Profile = () => {
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
+
   const movieName = movieData?.title;
 
   const user_id = user.sub;
@@ -96,7 +97,8 @@ const Profile = () => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0]; // Assuming you only allow selecting a single file
+    const file = e.target.files ;
+    console.log('file', file) // Assuming you only allow selecting a single file
     setSelectedFile(file);
     setUserData({ ...userData, picture: file });
   };
@@ -167,7 +169,7 @@ const Profile = () => {
                       />
                       <input
                         type="file"
-                        accept="image/*"
+                        name="picture"
                         multiple={false}
                         onChange={handleFileChange}
                       />
