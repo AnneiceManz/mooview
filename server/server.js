@@ -89,29 +89,29 @@ app.delete("/api/users/:user_id", async (req, res) => {
 });
 
 //A put request - Update a user
-app.put("/api/user/:user_id", async (req, res) => {
+app.put("/api/users/:user_id", async (req, res) => {
   //This will be the id that I want to find in the DB - the student to be updated
   const user_id = req.params.user_id;
   const updated_user = {
-    user_id: req.body.user_id,
     name: req.body.name,
     email: req.body.email,
-    birthday: req.body.birthday,
     username: req.body.username,
+    picture: req.body.picture,
   };
-  console.log(user_id, "Has been updated");
   // UPDATE users SET name = "something" WHERE id="16";
-  const query = `UPDATE users SET name=$1, email=$2, birthday=$3, username=$4 WHERE id=${user_id} RETURNING *`;
+  const query = `UPDATE users SET name=$1, email=$2, username=$3, picture=$4 WHERE user_id=$5 RETURNING *`;
   const values = [
     updated_user.name,
     updated_user.email,
-    updated_user.birthday,
     updated_user.username,
+    updated_user.picture,
+    user_id
   ];
   try {
     const updated = await db.query(query, values);
-    console.log(updated.rows[0]);
     res.send(updated.rows[0]);
+    console.log(user_id, "Has been updated");
+    console.log(updated.rows[0]);
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });

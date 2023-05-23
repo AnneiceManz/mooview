@@ -56,10 +56,10 @@ const SingleMovie = () => {
             />
           </div>
           <div className="flex justify-center ">
-            <div className="flex flex-col items-center md:flex-row md:max-w-2xl lg:max-w-3xl absolute xl:max-w-4xl md:mt-[-470px] mt-[-200px] md:text-white ">
-              <div className=" lg:w-[30%] h-[auto] md:w-[400px] w-[200px] ">
+            <div className="flex flex-col items-center md:flex-row md:max-w-4xl lg:max-w-3xl absolute xl:max-w-4xl md:mt-[-550px] mt-[-200px] md:text-white ">
+              <div className=" lg:w-[30%] h-[auto] md:w-[220px] w-[200px] ">
                 <img
-                  className="w-[80%] md:w-[100%] h-full md:h-auto object-cover rounded-md m-auto"
+                  className="w-[80%] md:w-[90%] h-full md:h-auto object-cover rounded-md m-auto"
                   src={`https://image.tmdb.org/t/p/w500${movieData.data.poster_path}`}
                   alt=""
                 />
@@ -77,10 +77,10 @@ const SingleMovie = () => {
                   </div>
                   <div className="flex flex-col">
                     <div className="grid grid-flow-col auto-cols-max gap-4 ">
-                      <p className="text-cyan-600 text-sm md:text-base">
+                      <p className="text-cyan-300 text-sm md:text-base">
                         Released: {movieData?.data.release_date}{" "}
                       </p>
-                      <p className="text-cyan-600 text-sm md:text-base">
+                      <p className="text-cyan-300 text-sm md:text-base">
                         {movieData?.data.runtime} min
                       </p>
                     </div>

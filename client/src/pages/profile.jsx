@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Image } from "semantic-ui-react";
 import { Rating, Modal, Confirm } from "semantic-ui-react";
@@ -7,16 +7,39 @@ import UpdateReview from "../components/Reviews/UpdateReview";
 import CommentForm from "../components/Comments/CommentForm";
 
 const Profile = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, logout } = useAuth0();
   const [reviews, setReviews] = useState(null);
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const movieName = movieData?.title;
+
+  const user_id = user.sub;
+  console.log("user", user_id);
+
+  const [userData, setUserData] = useState({
+    name: user.name,
+    email: user.email,
+    username: user.nickname,
+    picture: user.picture,
+  });
+
+  const getUser = async () => {
+    try {
+      const userId = user_id;
+      const response = await fetch(`/api/users/${userId}`);
+      const userData = await response.json();
+      setUserData(userData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const getUserReviews = async () => {
     try {
-      const userId = user.sub;
+      const userId = user_id;
       const response = await fetch(`/api/reviews/user/${userId}`);
       const reviews = await response.json();
       setReviews(reviews);
@@ -38,6 +61,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    getUser();
     getUserReviews();
     fetchMovieData();
   }, [user]);
@@ -54,13 +78,45 @@ const Profile = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+
   const handleDeleteUser = async () => {
+    const user_id = user.sub;
     try {
-      const response = await fetch(`/api/users/${user.sub}`, {
+      const response = await fetch(`/api/users/${user_id}`, {
         method: "DELETE",
       });
+      handleLogout();
       console.log(response);
-      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/users/${userData.user_id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+      const data = await response.json();
+      console.log("user updated", data);
+      if (response.ok) {
+        setUserData(data);
+        setShowModal(false);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -70,15 +126,86 @@ const Profile = () => {
     isAuthenticated && (
       <div className="profile">
         <div className="sidebar">
-          <Image avatar size="small" src={user.picture} alt={user.name} />
+          <Image
+            avatar
+            size="small"
+            src={userData.picture ? userData.picture : IMAGES.mooview_logo3}
+            alt={userData.name}
+          />
           <div className="sidebarItem">
-            <h2>{user.name}</h2>
-            <h2>{user.nickname}</h2>
-            <p>{user.email}</p>
+            <h2>{userData.username}</h2>
+            <h3>{userData.name}</h3>
+            <p>{userData.email}</p>
           </div>
           <div className="sidebarItem">
             <div className="sidebarButton">
-              <Button>Update Profile</Button>
+              <Modal
+                trigger={<Button>Update Profile</Button>}
+                open={showModal}
+                onClose={() => setShowModal(false)}
+                onOpen={() => setShowModal(true)}
+              >
+                <Modal.Header>Update your profile</Modal.Header>
+                <Modal.Content>
+                  <Modal.Description>
+                    <form className="grid grid-cols-1 gap-6">
+                      <input
+                        type="text"
+                        value={userData.name}
+                        name="name"
+                        onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+                        "
+                      />
+                      <input
+                        type="email"
+                        value={userData.email}
+                        name="email"
+                        onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+        "
+                      />
+                      <input
+                        type="text"
+                        value={userData.username}
+                        name="username"
+                        onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+        "
+                      />
+                    </form>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color="blue" onClick={onSubmitForm}>
+                    Update
+                  </Button>
+                  <Button color="red" onClick={() => setShowModal(false)}>
+                    Cancel
+                  </Button>
+                </Modal.Actions>
+              </Modal>
             </div>
             <div className="sidebarButton">
               <Modal
