@@ -7,7 +7,7 @@ import UpdateReview from "../components/Reviews/UpdateReview";
 import CommentForm from "../components/Comments/CommentForm";
 
 const Profile = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, logout } = useAuth0();
   const [reviews, setReviews] = useState(null);
   const [movieData, setMovieData] = useState(null);
   const [confirm, setConfirm] = useState(false);
@@ -79,14 +79,22 @@ const Profile = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+
   const handleDeleteUser = async () => {
     const user_id = user.sub;
     try {
       const response = await fetch(`/api/users/${user_id}`, {
         method: "DELETE",
       });
+      handleLogout();
       console.log(response);
-      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }
