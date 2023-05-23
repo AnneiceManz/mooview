@@ -103,7 +103,6 @@ const Profile = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -155,28 +154,55 @@ const Profile = () => {
                         value={userData.name}
                         name="name"
                         onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+                        "
                       />
                       <input
                         type="email"
                         value={userData.email}
                         name="email"
                         onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+        "
                       />
                       <input
                         type="text"
                         value={userData.username}
                         name="username"
                         onChange={handleChange}
+                        className="
+                          mt-1
+                          block
+                          w-full
+                          rounded-md
+                          bg-gray-100
+                          border-transparent
+                          focus:border-gray-500 focus:bg-white focus:ring-0
+        "
                       />
                     </form>
                   </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color="blue" onClick={() => setShowModal(false)}>
-                    Cancel
-                  </Button>
-                  <Button color="green" onClick={onSubmitForm}>
+                  <Button color="blue" onClick={onSubmitForm}>
                     Update
+                  </Button>
+                  <Button color="red" onClick={() => setShowModal(false)}>
+                    Cancel
                   </Button>
                 </Modal.Actions>
               </Modal>
