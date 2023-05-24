@@ -14,7 +14,7 @@ const LoginText = () => {
   };
 
   return (
-    <Link onClick={handleLogin}>
+    <Link data-testid='loginText' onClick={handleLogin}>
       Log In
     </Link>
   );

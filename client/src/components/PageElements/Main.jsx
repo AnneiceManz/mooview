@@ -67,7 +67,7 @@ const Main = () => {
   };
 
   return (
-    <div className="w-full h-[70vh] md:h-[600px] text-white">
+    <div data-testid='main' className="w-full h-[70vh] md:h-[600px] text-white">
       <div className="w-full h-full">
         <div className="absolute w-full h-[70vh] md:h-[600px] bg-gradient-to-r from-black">
           {" "}

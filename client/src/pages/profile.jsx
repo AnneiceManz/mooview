@@ -124,7 +124,7 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="profile">
+      <div data-testid='profile' className="profile">
         <div className="sidebar">
           <Image
             avatar

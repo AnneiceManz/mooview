@@ -12,7 +12,7 @@ import ListTopRated from "../components/Movies/ListTopRated";
 
 const Home = () => {
   return (
-    <>
+    <div data-testid='home'>
     <div className="home-div">
       <Main />
       <ListUpcoming />
@@ -25,7 +25,7 @@ const Home = () => {
       <ListHorror />
     </div>
     <Footer />
-  </>
+  </div>
   );
 };
 
