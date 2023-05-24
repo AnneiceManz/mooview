@@ -14,7 +14,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button color="red" onClick={handleLogout}>
+    <Button data-testid='logoutButton' color="red" onClick={handleLogout}>
       Log Out
     </Button>
   );

@@ -7,6 +7,7 @@ import Footer from './components/PageElements/Footer';
 import Main from './components/PageElements/Main';
 import Profile from './pages/profile';
 import LoginButton from './components/Auth0/LoginButton';
+import LogoutButton from './components/Auth0/LogoutButton';
 
 // test if navbar renders correctly
 
@@ -51,4 +52,16 @@ test('Login Button renders correctly', () => {
   </Router>);
   const loginButtonElement = getByTestId('loginButton');
   expect(loginButtonElement).toBeDefined();
+});
+
+
+// test if Logout Button renders correctly
+
+test('Logout Button renders correctly', () => {
+  const { getByTestId } = render(
+  <Router>
+  <LogoutButton/>
+  </Router>);
+  const logoutButtonElement = getByTestId('logoutButton');
+  expect(logoutButtonElement).toBeDefined();
 });
