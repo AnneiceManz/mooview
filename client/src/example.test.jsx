@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/PageElements/Footer';
 import Main from './components/PageElements/Main';
 
+// test if navbar renders correctly
 
 test('Navbar renders correctly', () => {
   const { getByTestId } = render(
@@ -15,6 +16,9 @@ test('Navbar renders correctly', () => {
   const navbarElement = getByTestId('navbar');
   expect(navbarElement).toBeDefined();
 });
+
+
+// test if footer renders correctly
 
 test('Footer renders correctly', () => {
   const { getByTestId } = render(
