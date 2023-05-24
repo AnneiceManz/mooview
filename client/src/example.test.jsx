@@ -9,6 +9,7 @@ import Profile from './pages/profile';
 import LoginButton from './components/Auth0/LoginButton';
 import LogoutButton from './components/Auth0/LogoutButton';
 import SignupButton from './components/Auth0/SignupButton';
+import LoginText from './components/Auth0/LoginText';
 
 // test if navbar renders correctly
 
@@ -76,4 +77,15 @@ test('Signup Button renders correctly', () => {
   </Router>);
   const signupButtonElement = getByTestId('signupButton');
   expect(signupButtonElement).toBeDefined();
+});
+
+// test if Login Text renders correctly
+
+test('Login Text renders correctly', () => {
+  const { getByTestId } = render(
+  <Router>
+  <LoginText/>
+  </Router>);
+  const loginTextElement = getByTestId('loginText');
+  expect(loginTextElement).toBeDefined();
 });
