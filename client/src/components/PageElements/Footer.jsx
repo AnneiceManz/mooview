@@ -10,7 +10,7 @@ const Footer = () => {
         )
     }
     return (
-        <div>
+        <div data-testid='footer'>
             <nav className='items-center justify-center flex m-6 bg-white h-auto'>
 
                     <Image src={IMAGES.mooview_logo3} size='tiny'/>
