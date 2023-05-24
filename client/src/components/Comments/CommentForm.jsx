@@ -76,7 +76,7 @@ const CommentForm = ({ review_id }) => {
   }, [review_id]);
 
   return (
-    <>
+    <div data-testid='comments'>
       <div>
         <Button basic floated="right" size="small" onClick={handleCollapse}>
           {collapsed ? "Show Comments" : "Collapse Comments"}
@@ -165,7 +165,7 @@ const CommentForm = ({ review_id }) => {
           </Segment>
         </Comment.Group>
       </div>
-    </>
+    </div>
   );
 };
 

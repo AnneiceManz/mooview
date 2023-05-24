@@ -10,6 +10,7 @@ import LoginButton from './components/Auth0/LoginButton';
 import LogoutButton from './components/Auth0/LogoutButton';
 import SignupButton from './components/Auth0/SignupButton';
 import LoginText from './components/Auth0/LoginText';
+import CommentForm from './components/Comments/CommentForm';
 
 // test if navbar renders correctly
 
@@ -88,4 +89,15 @@ test('Login Text renders correctly', () => {
   </Router>);
   const loginTextElement = getByTestId('loginText');
   expect(loginTextElement).toBeDefined();
+});
+
+// test if comments renders correctly
+
+test('Comments renders correctly', () => {
+  const { getByTestId } = render(
+  <Router>
+  <CommentForm/>
+  </Router>);
+  const commentElement = getByTestId('comments');
+  expect(commentElement).toBeDefined();
 });
