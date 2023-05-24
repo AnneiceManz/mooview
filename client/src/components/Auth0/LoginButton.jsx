@@ -14,7 +14,7 @@ const LoginButton = () => {
   };
 
   return (
-    <Button color="red" onClick={handleLogin}>
+    <Button data-testid='loginButton' color="red" onClick={handleLogin}>
       Log In
     </Button>
   );

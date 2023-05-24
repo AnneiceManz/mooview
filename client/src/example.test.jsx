@@ -5,6 +5,8 @@ import {render, screen} from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/PageElements/Footer';
 import Main from './components/PageElements/Main';
+import Profile from './pages/profile';
+import LoginButton from './components/Auth0/LoginButton';
 
 // test if navbar renders correctly
 
@@ -31,7 +33,7 @@ test('Footer renders correctly', () => {
 
 // test if main renders correctly
 
-test('Footer renders correctly', () => {
+test('Main renders correctly', () => {
   const { getByTestId } = render(
   <Router>
   <Main />
@@ -40,3 +42,13 @@ test('Footer renders correctly', () => {
   expect(mainElement).toBeDefined();
 });
 
+// test if Login Button renders correctly
+
+test('Login Button renders correctly', () => {
+  const { getByTestId } = render(
+  <Router>
+  <LoginButton/>
+  </Router>);
+  const loginButtonElement = getByTestId('loginButton');
+  expect(loginButtonElement).toBeDefined();
+});
