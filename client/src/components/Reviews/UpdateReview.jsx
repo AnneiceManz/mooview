@@ -50,6 +50,7 @@ const UpdateReview = ({ review, movieName }) => {
       trigger={<Button color="blue">Update</Button>}
       size="small"
       style={{ height: "auto", margin: "20%" }}
+      data-testid="updateReviewModal"
     >
       <Modal.Header>Update your review of {movieName}</Modal.Header>
       <Modal.Content>
