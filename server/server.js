@@ -210,7 +210,7 @@ app.post("/api/reviews", async (req, res) => {
   try {
     const newReview = {
       movie_id: req.body.movie_id,
-      user_id: req.body.user_id,
+      reviewers_user_id: req.body.reviewers_user_id,
       star_rating: req.body.star_rating,
       title: req.body.title,
       post: req.body.post,
@@ -220,7 +220,7 @@ app.post("/api/reviews", async (req, res) => {
       "INSERT INTO reviews(movie_id, reviewers_user_id, star_rating, title, post) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [
         newReview.movie_id,
-        newReview.user_id,
+        newReview.reviewers_user_id,
         newReview.star_rating,
         newReview.title,
         newReview.post,

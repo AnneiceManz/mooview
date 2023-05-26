@@ -13,9 +13,9 @@ const Reviews = ({ movieName, movie_id, review }) => {
   const [confirm, setConfirm] = useState(false);
   const [reviews, setReviews] = useState(null);
   const [rating, setRating] = useState(0);
-  const userId = user;
+  const userId = user?.sub;
   const movieId = parseInt(movie_id.replace("/movie/", ""));
-  const state = useLocation().state;
+  // const state = useLocation().state;
 
   console.log("movie id", movieId);
   const fetchReviews = async () => {
@@ -34,17 +34,26 @@ const Reviews = ({ movieName, movie_id, review }) => {
 
   useEffect(() => {
     fetchReviews();
+
   }, [movie_id]);
 
   const [writeReview, setWriteReview] = useState(
-    state || {
-      user_id: userId,
+    {
+      reviewers_user_id: userId,
       movie_id: movieId,
       title: "",
       post: "",
       star_rating: 0,
     }
   );
+
+  useEffect(() => {
+    setWriteReview({
+      ...writeReview,
+      reviewers_user_id: userId
+    })
+
+  },[userId])
 
   const handleChange = (e) => {
     setWriteReview({ ...writeReview, [e.target.name]: e.target.value });
