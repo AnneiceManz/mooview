@@ -15,7 +15,7 @@ const Reviews = ({ movieName, movie_id, review }) => {
   const [rating, setRating] = useState(0);
   const userId = user?.sub;
   const movieId = parseInt(movie_id.replace("/movie/", ""));
-  // const state = useLocation().state;
+  const state = useLocation().state;
 
   console.log("movie id", movieId);
   const fetchReviews = async () => {
@@ -38,7 +38,7 @@ const Reviews = ({ movieName, movie_id, review }) => {
   }, [movie_id]);
 
   const [writeReview, setWriteReview] = useState(
-    {
+    state || {
       reviewers_user_id: userId,
       movie_id: movieId,
       title: "",
@@ -82,14 +82,20 @@ const Reviews = ({ movieName, movie_id, review }) => {
       console.log(error.message);
     }
   };
-
-  const handleDelete = async () => {
+  const handleDelete = async (reviewId) => {
     try {
-      const response = await fetch(`/api/reviews/${review.review_id}`, {
+      
+        console.log('review id', reviews.review_id)
+      const response = await fetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
       });
+      if (response.ok) {
+        setConfirm(false);
+        window.location.reload();
+      } else {
       console.log(response);
       window.location.reload();
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -170,7 +176,7 @@ const Reviews = ({ movieName, movie_id, review }) => {
                               size="tiny"
                               open={confirm}
                               onCancel={() => setConfirm(false)}
-                              onConfirm={handleDelete}
+                              onConfirm={() => handleDelete(review?.review_id)}
                             />
                           </Button.Group>
                         )}
