@@ -60,6 +60,7 @@ const PostReview = ({ user, movie_id, movieName }) => {
       }
       size="small"
       style={{ height: "auto", margin: "20%" }}
+      data-testid='postReviewModal'
     >
       <Modal.Header>Write a Review for {movieName}</Modal.Header>
       <Modal.Content>

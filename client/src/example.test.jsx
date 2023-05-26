@@ -11,6 +11,7 @@ import LogoutButton from './components/Auth0/LogoutButton';
 import SignupButton from './components/Auth0/SignupButton';
 import LoginText from './components/Auth0/LoginText';
 import CommentForm from './components/Comments/CommentForm';
+import PostReview from './components/Reviews/PostReview';
 
 // test if navbar renders correctly
 
@@ -101,3 +102,16 @@ test('Comments renders correctly', () => {
   const commentElement = getByTestId('comments');
   expect(commentElement).toBeDefined();
 });
+
+
+
+// test if Post review modal renders correctly
+
+// test('Post Review modal renders correctly', () => {
+//   const { getByTestId } = render(
+//   <Router>
+//   <PostReview review={{movie_id: "/12345"}}/>
+//   </Router>);
+//   const postReviewElement = getByTestId('postReviewModal');
+//   expect(postReviewElement).toBeDefined();
+// });

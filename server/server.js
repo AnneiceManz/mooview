@@ -118,6 +118,39 @@ app.put("/api/users/:user_id", async (req, res) => {
   }
 });
 
+//Favorites table routes/requests
+
+// create the get request for all favorites for single user_id in the endpoint '/api/favorites/user/:user_id'
+app.get("/api/favorites/user/:user_id", async (req, res) => {
+  const user_id = req.params.user_id;
+  try {
+    const { rows: reviews } = await db.query(
+      "SELECT * FROM favorites WHERE user_id=$1",
+      [user_id]
+    );
+    res.send(reviews);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
+//Watch list table routes/requests
+
+// create the get request for all wtahc list for single user_id in the endpoint '/api/watch/user/:user_id'
+app.get("/api/watch/user/:user_id", async (req, res) => {
+  const user_id = req.params.user_id;
+  try {
+    const { rows: reviews } = await db.query(
+      "SELECT * FROM watch WHERE user_id=$1",
+      [user_id]
+    );
+    res.send(reviews);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
 //Reviews routes/requests
 
 // create the get request for reviews in the endpoint '/api/reviews'

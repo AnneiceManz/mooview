@@ -130,7 +130,7 @@ const Reviews = ({ movieName, movie_id, review }) => {
                             />
                           </div>
                         </div>
-                        <p className="text-xl leading-6 font-medium">
+                        <p className="text-xl mt-10 leading-6 font-medium">
                           {review.post}
                         </p>
                       </div>
