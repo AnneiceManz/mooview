@@ -100,7 +100,7 @@ const SingleMovie = () => {
                 </p>
                 <div className="justify-center items-start grid grid-flow-col auto-cols-max gap-2 mb-1">
                   {movieData.data.credits.cast.slice(0, 5).map((cast, i) => (
-                    <div className="w-[4em] mx-2.5">
+                    <div className="w-[4em] mx-2.5" key={i}>
                       <img
                         className="w-[4em] rounded-md"
                         src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
