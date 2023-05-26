@@ -66,7 +66,6 @@ app.post("/api/users", async (req, res) => {
         newUser.picture,
       ]
     );
-    console.log(result.rows[0]);
     //if value is undefined set value to null/nothing
     res.json(result.rows[0] ?? {});
   } catch (e) {
@@ -226,7 +225,6 @@ app.post("/api/reviews", async (req, res) => {
         newReview.post,
       ]
     );
-    console.log(result.rows[0]);
     res.json(result.rows[0]);
   } catch (e) {
     console.log(e);
@@ -303,7 +301,6 @@ app.post("/api/comments", async (req, res) => {
       "INSERT INTO comments(movie_review_id, user_id, comment_text) VALUES($1, $2, $3) RETURNING *",
       [newComment.review_id, newComment.user_id, newComment.comment_text]
     );
-    console.log(result.rows[0]);
     res.json(result.rows[0]);
   } catch (e) {
     console.log(e);
@@ -324,7 +321,6 @@ app.put("/api/comments/:comment_id", async (req, res) => {
   const values = [updatedComment.comment_text];
   try {
     const updated = await db.query(query, values);
-    console.log(updated.rows[0]);
     res.send(updated.rows[0]);
   } catch (e) {
     console.log(e);
@@ -536,5 +532,5 @@ app.get("*", (req, res) => {
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
-  console.log(`Hola, Server listening on ${PORT}`);
+  console.log(`Hello, The server is listening on ${PORT}`);
 });

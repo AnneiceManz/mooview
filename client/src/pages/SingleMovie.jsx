@@ -10,9 +10,6 @@ import Footer from "../components/PageElements/Footer";
 const SingleMovie = () => {
   const location = useLocation();
   const movie_id = location.pathname;
-
-  console.log(`movie_id: ${movie_id}`);
-
   const [movieData, setMovieData] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -20,20 +17,16 @@ const SingleMovie = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(`/api${movie_id}`);
-      console.log(response);
       const movieData = await response.json();
       setMovieData(movieData);
       const trailerId = movieData.data.videos.results.find(
         (vid) => vid.name === "Official Trailer"
       );
       setTrailer(trailerId ? trailerId : movieData.data.videos.results[0]);
-      console.log("json", movieData);
     } catch (error) {
       console.log(error.message);
     }
   };
-
-  console.log("movie data", movieData);
 
   useEffect(() => {
     fetchData();
