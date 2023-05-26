@@ -9,6 +9,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#api-reference">API Reference</a></li>
         <li><a href="#color-reference">Color Reference</a></li>
       </ul>
@@ -55,6 +56,13 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 - ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 - ![Semantic UI React](https://img.shields.io/badge/Semantic%20UI%20React-%2335BDB2.svg?style=for-the-badge&logo=SemanticUIReact&logoColor=white)
 - ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+
+<!-- Screenshots -->
+
+## Screenshots
+<img src='https://github.com/AnneiceManz/mooview/blob/main/exampleImages/3-devices-white.png'/>
+<img src='https://github.com/AnneiceManz/mooview/blob/main/exampleImages/mooviegif.gif' />
 
 <!-- API Reference -->
 
