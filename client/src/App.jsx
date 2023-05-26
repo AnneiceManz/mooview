@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import MyNavBar from "./components/PageElements/Navbar";
 import Search from "./pages/Search";
 import { AuthGuard } from "./components/Auth0/AuthGuard";
+import PageNotFound from "./pages/404";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/profile" element={<AuthGuard component={Profile} />} />
         <Route path="/movie/:movie_id" element={<SingleMovie />} />
         <Route path="/search/:search_term" element={<Search />} />
+        <Route path="*" element={<PageNotFound/>} />
       </Route>
     </Routes>
   );
