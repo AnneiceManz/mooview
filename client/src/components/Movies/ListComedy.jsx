@@ -14,8 +14,8 @@ const ListComedy = () => {
     const response = await fetch("/api/movie/comedy/");
     const json = await response.json();
     setMovies(json);
-    console.log("this is the json", json);
   }
+  
   useEffect(() => {
     loadMovies();
   }, []);

@@ -15,6 +15,7 @@ const ListUpcoming = () => {
     const json = await response.json();
     setMovies(json);
   }
+  
   useEffect(() => {
     loadMovies();
   }, []);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Header, Segment } from "semantic-ui-react";
 import moment from "moment";
 
 const Main = () => {
@@ -67,7 +66,7 @@ const Main = () => {
   };
 
   return (
-    <div data-testid='main' className="w-full h-[70vh] md:h-[600px] text-white">
+    <div data-testid="main" className="w-full h-[70vh] md:h-[600px] text-white">
       <div className="w-full h-full">
         <div className="absolute w-full h-[70vh] md:h-[600px] bg-gradient-to-r from-black">
           {" "}

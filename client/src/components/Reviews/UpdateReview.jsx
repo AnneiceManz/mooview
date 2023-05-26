@@ -35,7 +35,6 @@ const UpdateReview = ({ review, movieName }) => {
       });
       window.location.reload();
       const data = await response.json();
-      console.log("review updated", data);
     } catch (error) {
       console.log(error.message);
     }

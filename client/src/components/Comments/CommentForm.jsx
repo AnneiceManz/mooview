@@ -13,7 +13,6 @@ import LoginText from "../Auth0/LoginText";
 import IMAGES from "../../images/IMAGES";
 
 const CommentForm = ({ review_id }) => {
-  console.log("this is the review id", review_id);
   const { user, isAuthenticated } = useAuth0();
   const currentUser = user?.sub;
 
@@ -42,7 +41,6 @@ const CommentForm = ({ review_id }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(writeComment),
       });
-      console.log("New Comment Added", response);
       window.location.reload();
     } catch (error) {
       console.log(error.message);
@@ -54,7 +52,6 @@ const CommentForm = ({ review_id }) => {
       const response = await fetch(`/api/comments/${comment_id}`, {
         method: "DELETE",
       });
-      console.log(response);
       window.location.reload();
     } catch (error) {
       console.log(error.message);

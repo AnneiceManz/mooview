@@ -20,7 +20,6 @@ function MyNavBar() {
 
     if (!search) return;
     navigate(`/search/${search}`);
-    console.log("searched: ", search);
     setSearch("");
   };
 
@@ -50,7 +49,6 @@ function MyNavBar() {
         body: JSON.stringify(userInfo),
       });
       const userAdded = await response.json();
-      console.log(userAdded);
     } catch (error) {
       console.log(error.message);
     }
@@ -60,11 +58,8 @@ function MyNavBar() {
     addUserToDB(user);
   }, [user, isAuthenticated]);
 
-  console.log("From Navbar", user);
-  console.log("From Navbar", isAuthenticated);
-
   return (
-    <div className="flex flex-wrap" data-testid='navbar'>
+    <div className="flex flex-wrap" data-testid="navbar">
       <div className="sticky w-screen top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8 dark:bg-transparent">
         <div className="flex items-center">
           <Link to="/">
@@ -114,7 +109,7 @@ function MyNavBar() {
           )}
         </div>
         <div className="md:hidden mr-5">
-            <Icon name="bars" size="big" color="red" onClick={handleNavClick} />
+          <Icon name="bars" size="big" color="red" onClick={handleNavClick} />
         </div>
         {nav ? (
           <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>
@@ -156,7 +151,7 @@ function MyNavBar() {
           </nav>
         </div>
       </div>
-      <Container style={{ width: "100vw", height: '100vh' }}>
+      <Container style={{ width: "100vw", height: "100vh" }}>
         <Outlet />
       </Container>
     </div>

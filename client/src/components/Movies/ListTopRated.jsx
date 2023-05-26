@@ -13,8 +13,8 @@ const ListTopRated = () => {
     const response = await fetch("/api/movie/top_rated/");
     const json = await response.json();
     setMovies(json);
-    console.log("this is the json", json);
   }
+  
   useEffect(() => {
     loadMovies();
   }, []);

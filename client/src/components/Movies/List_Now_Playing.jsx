@@ -14,7 +14,6 @@ const ListNowPlaying = () => {
     const response = await fetch("/api/movie/now_playing/");
     const json = await response.json();
     setMovies(json);
-    console.log("this is the json", json);
   }
 
   useEffect(() => {

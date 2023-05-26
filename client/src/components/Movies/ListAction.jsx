@@ -14,7 +14,6 @@ const ListAction = () => {
     const response = await fetch("/api/movie/action/");
     const json = await response.json();
     setMovies(json);
-    console.log("this is the json", json);
   }
   useEffect(() => {
     loadMovies();

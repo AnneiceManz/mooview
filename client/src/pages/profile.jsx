@@ -17,7 +17,6 @@ const Profile = () => {
   const movieName = movieData?.title;
 
   const user_id = user.sub;
-  console.log("user", user_id);
 
   const [userData, setUserData] = useState({
     name: user.name,
@@ -54,7 +53,6 @@ const Profile = () => {
       console.log(response);
       const movieData = await response.json();
       setMovieData(movieData);
-      console.log("json", movieData);
     } catch (error) {
       console.log(error.message);
     }
@@ -71,7 +69,6 @@ const Profile = () => {
       const response = await fetch(`/api/reviews/${review.review_id}`, {
         method: "DELETE",
       });
-      console.log(response);
       window.location.reload();
     } catch (error) {
       console.log(error.message);
@@ -93,7 +90,6 @@ const Profile = () => {
         method: "DELETE",
       });
       handleLogout();
-      console.log(response);
     } catch (error) {
       console.log(error.message);
     }
@@ -112,7 +108,6 @@ const Profile = () => {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
-      console.log("user updated", data);
       if (response.ok) {
         setUserData(data);
         setShowModal(false);

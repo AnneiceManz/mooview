@@ -17,24 +17,18 @@ const Reviews = ({ movieName, movie_id, review }) => {
   const movieId = parseInt(movie_id.replace("/movie/", ""));
   const state = useLocation().state;
 
-  console.log("movie id", movieId);
   const fetchReviews = async () => {
     try {
       const response = await fetch(`/api/reviews${movie_id}`);
-      console.log(response);
       const reviewsData = await response.json();
       setReviews(reviewsData);
-      console.log("reviews", reviews);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  console.log("review data", reviews);
-
   useEffect(() => {
     fetchReviews();
-
   }, [movie_id]);
 
   const [writeReview, setWriteReview] = useState(
@@ -50,15 +44,13 @@ const Reviews = ({ movieName, movie_id, review }) => {
   useEffect(() => {
     setWriteReview({
       ...writeReview,
-      reviewers_user_id: userId
-    })
-
-  },[userId])
+      reviewers_user_id: userId,
+    });
+  }, [userId]);
 
   const handleChange = (e) => {
     setWriteReview({ ...writeReview, [e.target.name]: e.target.value });
   };
-  console.log(writeReview.star_rating, "stars!!!");
 
   const handleRate = (e, { rating }) => {
     setRating(rating);
@@ -84,8 +76,6 @@ const Reviews = ({ movieName, movie_id, review }) => {
   };
   const handleDelete = async (reviewId) => {
     try {
-      
-        console.log('review id', reviews.review_id)
       const response = await fetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
       });
@@ -93,8 +83,8 @@ const Reviews = ({ movieName, movie_id, review }) => {
         setConfirm(false);
         window.location.reload();
       } else {
-      console.log(response);
-      window.location.reload();
+        console.log(response);
+        window.location.reload();
       }
     } catch (error) {
       console.log(error.message);
@@ -116,7 +106,7 @@ const Reviews = ({ movieName, movie_id, review }) => {
                         <div className="grid flex flex-col grid-clos-4 lg:grid-cols-8 lg:grid-rows-3 gap-5 h-[38%] place-items-center">
                           <div className=" col-span-1 lg:col-span-2 lg:row-span-2  m-auto">
                             <img
-                            key={review.review_id} 
+                              key={review.review_id}
                               src={
                                 review.picture
                                   ? review.picture
