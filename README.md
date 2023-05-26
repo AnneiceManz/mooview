@@ -122,11 +122,53 @@ Step 5: Start the program!
 ```bash
   cd server && npm run dev
 ```
+<br>
+<br>
+<!-- About Me -->
+
+## About Me
+
+<div align="center">
+<img src="https://media.giphy.com/media/iFroMXf8HkQD5LrJOJ/giphy.gif" align="center" style="width: 100%" />
+</div>  
+  
+
+### <div align="center">I'm Anneice, a full-time full-stack developer 👩🏿‍💻 working remotely since 2013 🚀</div>  
+  
+
+- ♀️ Pronouns: She/Her/Hers/Queen 👸🏿
+  
+
+- 🌱 I’m currently learning: Python 
+  
+
+- ❓ Ask me about anything related to PERN stack, CSS, and related technologies  
+  
+
+- ⚡ Fun fact: I love cows 🐄  
+  
+
+- 💕 Hobbies: Reading 📚, Video Games 🎮, Photography 📷, Crochet 🧶 
+  
+
+- 🏡 My Family: Married 👩🏿‍❤️‍👨🏽, 3 kids 👩🏾‍🦱🧑🏾‍🦱👩🏾‍🦱, and 2 dogs 🐾 
+  
+
+- 🍴 Favorite Food: Sushi 🍣, Tacos 🌮, and Ice Cream 🍨  
+
+
+- 😍 I Cannot Stop Talking About: Hamilton "I am not throwing away my shot!"
+
+<br>
+<br>
 <!-- FEEDBACK -->
 
 ## Feedback
 
 If you have any feedback, please reach out to us at anneice.manzanares@gmail.com
+
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
