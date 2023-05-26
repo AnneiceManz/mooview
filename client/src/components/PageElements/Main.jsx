@@ -87,7 +87,7 @@ const Main = () => {
             </button>
           </div>
           <p className="text-gray-400 text-base">
-            Released: {movie?.release_date}{" "}
+            Released: {moment(movie?.release_date).format('MMM Do, YYYY')}{" "}
           </p>
 
           <p className="w-full sm:max-w-[80%] md:max-w-[70%] lg:max-w-[50%] text-white text-sm md:text-lg mt-2">
