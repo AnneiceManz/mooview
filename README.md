@@ -15,6 +15,8 @@
       </ul>
     </li>
         <li><a href="#installation">Installation</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#about-me">About Me</a></li>
     <li><a href="#feedback">Feedback</a></li>
   </ol>
 </details>
@@ -124,6 +126,21 @@ Step 5: Start the program!
 ```
 <br>
 <br>
+
+<!-- Roadmap -->
+## Roadmap
+
+- [x] Functional Searchbar
+- [x] Comment of Reviews
+- [ ] Actor/Actress Page
+- [ ] Watch List
+- [ ] Favorites List
+- [ ] Follow other users
+- [ ] Update Profile Picture
+
+<br>
+<br>
+
 <!-- About Me -->
 
 ## About Me
