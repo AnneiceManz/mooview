@@ -71,6 +71,7 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 ## API Reference
 
 - [The Movie DB API](https://developer.themoviedb.org/reference/intro/getting-started)
+- [Google Slidedeck Presentation](https://docs.google.com/presentation/d/1WPagj0iimUoQe-yzIkIUy27K3fYAwKvEE_QdFIr7pLY/edit?usp=sharing)
 
 <!-- Color Reference -->
 
