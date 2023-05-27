@@ -65,6 +65,7 @@ Mooview is the ultimate movie review app that makes informed decisions easy for 
 ## Screenshots
 <img src='https://github.com/AnneiceManz/mooview/blob/main/exampleImages/3-devices-white.png'/>
 <img src='https://github.com/AnneiceManz/mooview/blob/main/exampleImages/mooviegif.gif' />
+<img src='https://github.com/AnneiceManz/mooview/blob/main/exampleImages/drawSQL-movie-review-export-2023-04-28.png' />
 
 <!-- API Reference -->
 
